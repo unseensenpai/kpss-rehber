@@ -1,6 +1,14 @@
 import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
-import { kaynakSemasi, konuSemasi, sinavSemasi, takvimSemasi } from './lib/semalar.js';
+import {
+  kaynakSemasi,
+  konuSemasi,
+  sablonSemasi,
+  seviyeSemasi,
+  sinavSemasi,
+  takvimSemasi,
+  uzunlukSemasi,
+} from './lib/semalar.js';
 
 const sinavlar = defineCollection({
   loader: glob({ pattern: '*.yaml', base: './src/content/sinavlar' }),
@@ -23,4 +31,20 @@ const takvim = defineCollection({
   schema: takvimSemasi,
 });
 
-export const collections = { sinavlar, konular, kaynaklar, takvim };
+// Prompt şablonları: gövde ham metin olarak kullanılır (entry.body), Markdown olarak işlenmez.
+const sablonlar = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/prompts/sablonlar' }),
+  schema: sablonSemasi,
+});
+
+const seviyeler = defineCollection({
+  loader: file('./src/prompts/seviyeler.yaml'),
+  schema: seviyeSemasi,
+});
+
+const uzunluklar = defineCollection({
+  loader: file('./src/prompts/uzunluklar.yaml'),
+  schema: uzunlukSemasi,
+});
+
+export const collections = { sinavlar, konular, kaynaklar, takvim, sablonlar, seviyeler, uzunluklar };

@@ -129,3 +129,24 @@ details.test .tablo-kap { border-radius: 0 0 var(--yaricap) var(--yaricap); }
 .arama-sonuclari li { background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: var(--yaricap); padding: 10px 16px; margin-bottom: 8px; }
 .arama-sonuclari p { margin: 4px 0 0; font-size: 14px; color: var(--soluk); }
 mark { background: color-mix(in srgb, var(--vurgu) 25%, transparent); color: inherit; border-radius: 3px; }
+
+/* Prompt paneli */
+.prompt-paneli { margin-top: 40px; padding: 20px; background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: var(--yaricap); }
+.prompt-paneli h2 { margin-top: 0; }
+.ayarlar { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 16px 0; }
+.ayarlar label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; }
+.ayarlar select { font: inherit; font-weight: normal; padding: 6px 10px; border: 1px solid var(--cizgi); border-radius: 8px; background: var(--zemin); color: var(--metin); max-width: 100%; }
+.uyari { color: #9a5b00; font-size: 14px; }
+:root[data-theme='dark'] .uyari { color: #f0b45c; }
+.prompt-kartlari { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.prompt-karti { border: 1px solid var(--cizgi); border-radius: var(--yaricap); padding: 12px 16px; background: var(--zemin); }
+.prompt-karti h3 { margin: 0; font-size: 17px; }
+.prompt-karti > p { margin: 4px 0 8px; font-size: 14px; }
+.prompt-karti summary { cursor: pointer; font-size: 14px; color: var(--vurgu); }
+.prompt-karti pre { white-space: pre-wrap; word-break: break-word; font: 14px/1.55 ui-monospace, 'Cascadia Mono', Consolas, monospace; background: var(--yuzey); border: 1px solid var(--cizgi); border-radius: 8px; padding: 12px; max-height: 24rem; overflow: auto; }
+.dugmeler { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.bildirim { font-size: 14px; margin: 6px 0 0; min-height: 1.4em; }
+mark.ogrenci-alani { background: #ffe58a; color: #3b2f00; font-weight: 600; padding: 0 2px; }
+:root[data-theme='dark'] mark.ogrenci-alani { background: #6b5500; color: #fff3c4; }
+.geri-bildirim { margin-top: 20px; padding-top: 12px; border-top: 1px solid var(--cizgi); }
+.geri-bildirim p { margin: 0 0 4px; }

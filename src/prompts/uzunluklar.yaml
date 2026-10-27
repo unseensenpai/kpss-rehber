@@ -1,0 +1,13 @@
+# Uzunluk ekseni (spec §7). Talimat, şablondaki {{uzunlukTalimati}} yerine girer.
+- id: ozet
+  sira: 1
+  ad: Özet
+  talimat: Kısa tut. Yalnızca en önemli noktaları maddeler hâlinde ver, toplamda bir ekranı geçme.
+- id: normal
+  sira: 2
+  ad: Normal
+  talimat: Dengeli bir uzunlukta anlat. Gerekli yerlerde kısa açıklama ve örnek kullan.
+- id: detayli
+  sira: 3
+  ad: Detaylı
+  talimat: Ayrıntılı anlat. Her alt başlığı açıklama ve örnekle ele al, sonunda kısa bir tekrar özeti ver.

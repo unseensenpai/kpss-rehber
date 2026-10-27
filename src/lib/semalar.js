@@ -110,3 +110,28 @@ export const konuSemasi = z
     }
     if (!k.soruTipi) ctx.addIssue({ code: 'custom', path: ['soruTipi'], message: `${k.durum} konuda zorunlu` });
   });
+
+/** `src/prompts/seviyeler.yaml`: 1–5 seviye ve modele verilecek talimat. */
+export const seviyeSemasi = z.object({
+  id: kimlik,
+  seviye: z.number().int().min(1).max(5),
+  ad: z.string().min(1),
+  talimat: z.string().min(1),
+});
+
+/** `src/prompts/uzunluklar.yaml`: ozet / normal / detayli. */
+export const uzunlukSemasi = z.object({
+  id: z.enum(['ozet', 'normal', 'detayli']),
+  sira: pozitifTam,
+  ad: z.string().min(1),
+  talimat: z.string().min(1),
+});
+
+/** `src/prompts/sablonlar/<id>.md` ön bilgisi; gövde şablon metnidir. */
+export const sablonSemasi = z.object({
+  baslik: z.string().min(1),
+  aciklama: z.string().min(1),
+  sira: pozitifTam,
+  // Özel şablon yalnızca konunun `ekPromptlar` listesinde adı geçen konularda görünür.
+  ozel: z.boolean().default(false),
+});

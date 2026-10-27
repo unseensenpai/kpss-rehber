@@ -4,6 +4,7 @@ import Taban from '../../../layouts/Taban.astro';
 import Kirinti from '../../../components/Kirinti.astro';
 import KaynakSatiri from '../../../components/KaynakSatiri.astro';
 import DurumRozeti from '../../../components/DurumRozeti.astro';
+import PromptPaneli from '../../../components/PromptPaneli.astro';
 import { veri } from '../../../lib/veri.js';
 import { konuKullanimlari } from '../../../lib/mufredat.js';
 import { yol } from '../../../lib/yol.js';
@@ -99,6 +100,8 @@ const ilk = kullanimlar[0];
       )}
     </section>
   )}
+
+  <PromptPaneli tum={tum} konular={[konu]} />
 
   <KaynakSatiri belge={belge} dogrulandi={k.dogrulandi} guncelleme={k.guncelleme} baslik={k.baslik} />
 </Taban>

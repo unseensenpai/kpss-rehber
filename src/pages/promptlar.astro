@@ -1,0 +1,17 @@
+---
+import Taban from '../layouts/Taban.astro';
+import Kirinti from '../components/Kirinti.astro';
+import PromptPaneli from '../components/PromptPaneli.astro';
+import { veri } from '../lib/veri.js';
+
+const tum = await veri();
+---
+<Taban baslik="Prompt kütüphanesi" aciklama="Sınav ve konu seçerek hazır AI promptlarını doldur, kopyala ya da ChatGPT/Claude'da aç.">
+  <Kirinti ogeler={[{ ad: 'Promptlar' }]} />
+  <h1>Prompt kütüphanesi</h1>
+  <p>
+    Sınavını ve konunu seç; promptlar seviyene ve istediğin uzunluğa göre dolar. Aynı promptlar her konu
+    sayfasının altında da var. Site içinde yapay zekâ çalışmaz: promptu kendi ChatGPT ya da Claude hesabında kullanırsın.
+  </p>
+  <PromptPaneli tum={tum} konular={tum.konular} kutuphane />
+</Taban>

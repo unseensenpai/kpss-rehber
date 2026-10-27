@@ -4,6 +4,10 @@
  * çıktı hata mesajı listesi (boşsa veri tutarlı).
  */
 
+import { konuKullanimlari } from './mufredat.js';
+import { DEGISKENLER, konuSablonlari, promptDegerleri, promptDoldur, sablonDegiskenleri } from './prompt-doldur.js';
+import { UZUNLUKLAR, VARSAYILAN } from './uyarlama.js';
+
 /** @typedef {{ id: string, data: any }} Kayit */
 
 /** Her sınav-test-ders üçlüsünü dolaşır. */
@@ -143,8 +147,60 @@ export function takvimHatalari(
   return hatalar;
 }
 
+/**
+ * Prompt şablonları: yalnızca bilinen değişkenler, ekPromptlar var olan özel
+ * şablonlara bağlı, seviye 1–5 ve üç uzunluk eksiksiz, her konu için deneme
+ * doldurmada `{{…}}` kalmıyor.
+ */
+export function promptHatalari({ sablonlar = [], seviyeler = [], uzunluklar = [], konular = [], sinavlar = [] }) {
+  const hatalar = [];
+  const bozuk = new Set();
+  for (const s of sablonlar) {
+    const govde = s.body ?? '';
+    const bilinmeyen = sablonDegiskenleri(govde).filter((d) => !DEGISKENLER.includes(d));
+    if (bilinmeyen.length) hatalar.push(`şablon '${s.id}': bilinmeyen değişken ${bilinmeyen.join(', ')}`);
+    const yarim = /\{\{|\}\}/.test(govde.replace(/\{\{\s*[a-zA-Z]+\s*\}\}/g, ''));
+    if (yarim) hatalar.push(`şablon '${s.id}': kapanmamış ya da hatalı {{…}} işareti`);
+    // Her konu için aynı hatayı tekrarlamamak için deneme doldurmaya girmez.
+    if (bilinmeyen.length || yarim) bozuk.add(s.id);
+  }
+  if (!sablonlar.length) return hatalar;
+
+  const seviyeNo = seviyeler.map((s) => s.data.seviye).sort();
+  if (seviyeNo.join() !== '1,2,3,4,5') hatalar.push(`seviyeler 1–5 olmalı, bulunan: ${seviyeNo.join(', ')}`);
+  const uzunlukId = uzunluklar.map((u) => u.id).sort();
+  if (uzunlukId.join() !== [...UZUNLUKLAR].sort().join()) hatalar.push(`uzunluklar ${UZUNLUKLAR.join('/')} olmalı`);
+
+  const sablonMap = new Map(sablonlar.map((s) => [s.id, s]));
+  const seviye = seviyeler.find((s) => s.data.seviye === VARSAYILAN.seviye)?.data;
+  const uzunluk = uzunluklar.find((u) => u.id === VARSAYILAN.uzunluk)?.data;
+  for (const k of konular) {
+    for (const ek of k.data.ekPromptlar ?? []) {
+      if (!sablonMap.get(ek)?.data.ozel) hatalar.push(`${k.id}: ekPromptlar '${ek}' özel bir şablon değil ya da yok`);
+    }
+    const kullanim = konuKullanimlari(sinavlar, k.id)[0];
+    if (!kullanim || !seviye || !uzunluk) continue;
+    const degerler = promptDegerleri({
+      sinav: kullanim.sinav.data.ad,
+      ders: kullanim.ders.ad,
+      konu: k.data,
+      seviye,
+      uzunluk,
+    });
+    for (const s of konuSablonlari(sablonlar, k).filter((x) => !bozuk.has(x.id))) {
+      try {
+        const metin = promptDoldur(s.body ?? '', degerler);
+        if (/\{\{|\}\}/.test(metin)) hatalar.push(`${k.id} › ${s.id}: doldurulmamış {{…}} kaldı`);
+      } catch (e) {
+        hatalar.push(`${k.id} › ${s.id}: ${e.message}`);
+      }
+    }
+  }
+  return hatalar;
+}
+
 /** Tüm kontroller; hata mesajlarını tek listede döner. */
-export function veriyiDogrula({ sinavlar, konular, kaynaklar = [], takvim = [] }) {
+export function veriyiDogrula({ sinavlar, konular, kaynaklar = [], takvim = [], sablonlar, seviyeler, uzunluklar }) {
   return [
     ...kaynakEksikleri(sinavlar, konular, kaynaklar),
     ...dersKlasorUyumsuzlugu(konular),
@@ -154,5 +210,6 @@ export function veriyiDogrula({ sinavlar, konular, kaynaklar = [], takvim = [] }
     ...agirlikHatalari(sinavlar),
     ...tekrarlananDersler(sinavlar),
     ...takvimHatalari(takvim, sinavlar, kaynaklar),
+    ...promptHatalari({ sablonlar, seviyeler, uzunluklar, konular, sinavlar }),
   ];
 }
