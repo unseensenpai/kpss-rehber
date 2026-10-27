@@ -206,5 +206,122 @@
     "url": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-ortaogretim-sinavi-temel-soru-kitapcigi-ve-cevap-anahtari-10-b671sx-25124536.pdf",
     "sha256": "61210ec9caa967faf51d15435e7ab6d99b23bf24be5eeccddd9bf0601a21d98a",
     "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-kamu-yonetimi-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Kamu Yönetimi Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Public Administration Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/kamu-yonetimi-abuck9-13135237.pdf",
+    "sha256": "cf8283de5a526b669ae2e0db9badf53fc3601f96154143df8fce39d91b7eb7d8",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-uluslararasi-iliskiler-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Uluslararası İlişkiler Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A International Relations Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/uluslararasi-liskiler-0171kr-13135237.pdf",
+    "sha256": "15b9739a8e0be4caa61d72afa83dd0cd20a42bf1fa022baa191c67df244cd131",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-calisma-ekonomisi-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Çalışma Ekonomisi ve Endüstri İlişkileri Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Labor Economics and Industrial Relations Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/calisma-ekonomisi-ve-endustri-liskileri-q52ben-13135237.pdf",
+    "sha256": "fd843137a9fc2d8a1b0b92404f64c8fb3d93a4ce8c450aa2a52e46577dcad4cc",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-hukuk-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Hukuk Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Law Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/hukuk-i3rv1i-13135237.pdf",
+    "sha256": "4b6cc4233da5a4d9f6e690c6bf28270464c21a23bd1adf57be426f65ae4c6907",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-iktisat-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu İktisat Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Economics Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/ktisat-7zyiu4-13135237.pdf",
+    "sha256": "fb3f31323d9328a24e776ccd1d7a1d1c82859bef8e24748c6e609f45aeaa14c0",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-maliye-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Maliye Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Public Finance Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/maliye-9ucjrj-13135237.pdf",
+    "sha256": "818e3df0a978661ce0e12678f1858d161e08a81baf0e97f379ab53c086b1e325",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-isletme-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu İşletme Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Business Administration Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/sletme-p4h2it-13135237.pdf",
+    "sha256": "3bcc9b63820e24d0887073e56439ab5ea3c2a32e58487592d30a796d2e072083",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-muhasebe-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu Muhasebe Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Accounting Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/muhasebe-mue8u4-13135237.pdf",
+    "sha256": "5505429637579e2a81bc212c6d14086953646e30d43781d6b4af59d8cdabe8dd",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-a-grubu-istatistik-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS A Grubu İstatistik Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Group A Statistics Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/statistik-m3t0cl-13135237.pdf",
+    "sha256": "c5826146ac737f8f54f365b2ad0c11ecda7adc9fc98423b1c2324cde1516abb6",
+    "checkedAt": "2026-10-28"
   }
 ]

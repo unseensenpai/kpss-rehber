@@ -1,5 +1,6 @@
 # Structure and weights: kpss-lisans-2026 guide, "Sınavda Uygulanacak Testler" and Tablo-1.
 # Candidates choose which sessions to take and answer all three tests in each chosen session.
+# Each subject is one topic: the guide lists subjects with weights but no finer topics.
 name: { tr: "KPSS Lisans Alan Bilgisi (A Grubu)", en: "KPSS Bachelor's Field Knowledge (Group A)" }
 shortName: { tr: "A Grubu", en: "Group A" }
 group: KPSS
@@ -9,6 +10,7 @@ description: { tr: "Her test 40 soru; testler sırayla ayrı kitapçıkla uygula
 source:
   document: kpss-lisans-2026
   verified: true
+  booklets: [kpss-a-grubu-kamu-yonetimi-kitapcik-2026, kpss-a-grubu-uluslararasi-iliskiler-kitapcik-2026, kpss-a-grubu-calisma-ekonomisi-kitapcik-2026, kpss-a-grubu-hukuk-kitapcik-2026, kpss-a-grubu-iktisat-kitapcik-2026, kpss-a-grubu-maliye-kitapcik-2026, kpss-a-grubu-isletme-kitapcik-2026, kpss-a-grubu-muhasebe-kitapcik-2026, kpss-a-grubu-istatistik-kitapcik-2026]
 sessions:
   - name: { tr: "1. Oturum (Cumartesi sabah)", en: "Session 1 (Saturday morning)" }
     tests:
@@ -20,32 +22,32 @@ sessions:
             name: { tr: "Siyaset Bilimi", en: "Political Science" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [siyaset-bilimi/siyaset-bilimi]
           - id: anayasa
             name: { tr: "Anayasa", en: "Constitution" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [anayasa/anayasa]
           - id: yonetim-bilimleri
             name: { tr: "Yönetim Bilimleri", en: "Administrative Sciences" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [yonetim-bilimleri/yonetim-bilimleri]
           - id: yonetim-hukuku
             name: { tr: "Yönetim Hukuku", en: "Administrative Law" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [yonetim-hukuku/yonetim-hukuku]
           - id: kentlesme-cevre-sorunlari
             name: { tr: "Kentleşme ve Çevre Sorunları", en: "Urbanization and Environmental Problems" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [kentlesme-cevre-sorunlari/kentlesme-cevre-sorunlari]
           - id: turk-siyasi-hayati
             name: { tr: "Türk Siyasi Hayatı (Osmanlıdan Günümüze Siyasi Olaylar)", en: "Turkish Political Life (Political Events from the Ottomans to Today)" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [turk-siyasi-hayati/turk-siyasi-hayati]
       - name: { tr: "Uluslararası İlişkiler", en: "International Relations" }
         questionCount: 40
         durationMin: 50
@@ -54,32 +56,32 @@ sessions:
             name: { tr: "Uluslararası İlişkiler Teorisi", en: "International Relations Theory" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [uluslararasi-iliskiler-teorisi/uluslararasi-iliskiler-teorisi]
           - id: uluslararasi-hukuk
             name: { tr: "Uluslararası Hukuk", en: "International Law" }
             weight: 25
             questionCount: 10
-            topics: []
+            topics: [uluslararasi-hukuk/uluslararasi-hukuk]
           - id: siyasi-tarih
             name: { tr: "Siyasi Tarih", en: "Political History" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [siyasi-tarih/siyasi-tarih]
           - id: uluslararasi-guncel-sorunlar
             name: { tr: "Uluslararası Güncel Sorunlar", en: "Current International Issues" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [uluslararasi-guncel-sorunlar/uluslararasi-guncel-sorunlar]
           - id: uluslararasi-orgutler
             name: { tr: "Uluslararası Örgütler", en: "International Organizations" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [uluslararasi-orgutler/uluslararasi-orgutler]
           - id: turk-dis-politikasi
             name: { tr: "Türk Dış Politikası", en: "Turkish Foreign Policy" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [turk-dis-politikasi/turk-dis-politikasi]
       - name: { tr: "Çalışma Ekonomisi ve Endüstri İlişkileri", en: "Labor Economics and Industrial Relations" }
         questionCount: 40
         durationMin: 50
@@ -88,17 +90,17 @@ sessions:
             name: { tr: "İş ve Sosyal Güvenlik Hukuku", en: "Labor and Social Security Law" }
             weight: 55
             questionCount: 22
-            topics: []
+            topics: [is-sosyal-guvenlik-hukuku/is-sosyal-guvenlik-hukuku]
           - id: calisma-ekonomisi
             name: { tr: "Çalışma Ekonomisi", en: "Labor Economics" }
             weight: 30
             questionCount: 12
-            topics: []
+            topics: [calisma-ekonomisi/calisma-ekonomisi]
           - id: calisma-psikolojisi-sosyolojisi
             name: { tr: "Çalışma Psikolojisi ve Çalışma Sosyolojisi", en: "Work Psychology and Sociology of Work" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [calisma-psikolojisi-sosyolojisi/calisma-psikolojisi-sosyolojisi]
   - name: { tr: "2. Oturum (Cumartesi öğleden sonra)", en: "Session 2 (Saturday afternoon)" }
     tests:
       - name: { tr: "Hukuk", en: "Law" }
@@ -109,37 +111,37 @@ sessions:
             name: { tr: "Anayasa Hukuku", en: "Constitutional Law" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [anayasa-hukuku/anayasa-hukuku]
           - id: idare-hukuku
             name: { tr: "İdare Hukuku ve İdari Yargı", en: "Administrative Law and Administrative Justice" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [idare-hukuku/idare-hukuku]
           - id: ceza-hukuku
             name: { tr: "Ceza Hukuku (Genel Hükümler ve Ceza Muhakemesi Hukuku)", en: "Criminal Law (General Provisions and Criminal Procedure)" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [ceza-hukuku/ceza-hukuku]
           - id: medeni-hukuk
             name: { tr: "Medeni Hukuk", en: "Civil Law" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [medeni-hukuk/medeni-hukuk]
           - id: borclar-hukuku
             name: { tr: "Borçlar Hukuku (Genel Hükümler)", en: "Law of Obligations (General Provisions)" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [borclar-hukuku/borclar-hukuku]
           - id: ticaret-hukuku
             name: { tr: "Ticaret Hukuku", en: "Commercial Law" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [ticaret-hukuku/ticaret-hukuku]
           - id: icra-iflas-hukuku
             name: { tr: "İcra ve İflas Hukuku", en: "Enforcement and Bankruptcy Law" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [icra-iflas-hukuku/icra-iflas-hukuku]
       - name: { tr: "İktisat", en: "Economics" }
         questionCount: 40
         durationMin: 50
@@ -148,37 +150,37 @@ sessions:
             name: { tr: "İktisadi Doktrinler Tarihi", en: "History of Economic Thought" }
             weight: 5
             questionCount: 2
-            topics: []
+            topics: [iktisadi-doktrinler-tarihi/iktisadi-doktrinler-tarihi]
           - id: mikro-iktisat
             name: { tr: "Mikro İktisat", en: "Microeconomics" }
             weight: 30
             questionCount: 12
-            topics: []
+            topics: [mikro-iktisat/mikro-iktisat]
           - id: makro-iktisat
             name: { tr: "Makro İktisat", en: "Macroeconomics" }
             weight: 25
             questionCount: 10
-            topics: []
+            topics: [makro-iktisat/makro-iktisat]
           - id: para-banka-kredi
             name: { tr: "Para-Banka-Kredi", en: "Money, Banking and Credit" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [para-banka-kredi/para-banka-kredi]
           - id: uluslararasi-iktisat
             name: { tr: "Uluslararası İktisat", en: "International Economics" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [uluslararasi-iktisat/uluslararasi-iktisat]
           - id: kalkinma-buyume
             name: { tr: "Kalkınma-Büyüme", en: "Development and Growth" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [kalkinma-buyume/kalkinma-buyume]
           - id: turkiye-ekonomisi
             name: { tr: "Türkiye Ekonomisi", en: "Turkish Economy" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [turkiye-ekonomisi/turkiye-ekonomisi]
       - name: { tr: "Maliye", en: "Public Finance" }
         questionCount: 40
         durationMin: 50
@@ -187,37 +189,37 @@ sessions:
             name: { tr: "Maliye Teorisi", en: "Public Finance Theory" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [maliye-teorisi/maliye-teorisi]
           - id: kamu-gelirleri
             name: { tr: "Kamu Gelirleri", en: "Public Revenue" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [kamu-gelirleri/kamu-gelirleri]
           - id: kamu-giderleri
             name: { tr: "Kamu Giderleri", en: "Public Expenditure" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [kamu-giderleri/kamu-giderleri]
           - id: kamu-borclari
             name: { tr: "Kamu Borçları", en: "Public Debt" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [kamu-borclari/kamu-borclari]
           - id: butce
             name: { tr: "Bütçe", en: "Budget" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [butce/butce]
           - id: vergi-hukuku
             name: { tr: "Vergi Hukuku", en: "Tax Law" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [vergi-hukuku/vergi-hukuku]
           - id: maliye-politikasi
             name: { tr: "Maliye Politikası", en: "Fiscal Policy" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [maliye-politikasi/maliye-politikasi]
   - name: { tr: "3. Oturum (Pazar sabah)", en: "Session 3 (Sunday morning)" }
     tests:
       - name: { tr: "İşletme", en: "Business Administration" }
@@ -228,27 +230,27 @@ sessions:
             name: { tr: "Temel Kavramlar", en: "Basic Concepts" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [isletme-temel-kavramlar/isletme-temel-kavramlar]
           - id: isletme-yonetimi
             name: { tr: "İşletme Yönetimi", en: "Business Management" }
             weight: 25
             questionCount: 10
-            topics: []
+            topics: [isletme-yonetimi/isletme-yonetimi]
           - id: uretim-yonetimi
             name: { tr: "Üretim Yönetimi", en: "Production Management" }
             weight: 25
             questionCount: 10
-            topics: []
+            topics: [uretim-yonetimi/uretim-yonetimi]
           - id: pazarlama-yonetimi
             name: { tr: "Pazarlama Yönetimi", en: "Marketing Management" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [pazarlama-yonetimi/pazarlama-yonetimi]
           - id: finansal-yonetim
             name: { tr: "Finansal Yönetim", en: "Financial Management" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [finansal-yonetim/finansal-yonetim]
       - name: { tr: "Muhasebe", en: "Accounting" }
         questionCount: 40
         durationMin: 50
@@ -257,17 +259,17 @@ sessions:
             name: { tr: "Genel Muhasebe", en: "General Accounting" }
             weight: 70
             questionCount: 28
-            topics: []
+            topics: [genel-muhasebe/genel-muhasebe]
           - id: mali-tablolar-analizi
             name: { tr: "Mali Tablolar Analizi", en: "Financial Statement Analysis" }
             weight: 20
             questionCount: 8
-            topics: []
+            topics: [mali-tablolar-analizi/mali-tablolar-analizi]
           - id: ihtisas-muhasebesi
             name: { tr: "İhtisas Muhasebesi (Maliyet, Yönetim Muhasebesi, Denetim, TFRS, TMS)", en: "Specialized Accounting (Cost, Management Accounting, Auditing, TFRS, TMS)" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [ihtisas-muhasebesi/ihtisas-muhasebesi]
       - name: { tr: "İstatistik", en: "Statistics" }
         questionCount: 40
         durationMin: 60
@@ -276,49 +278,49 @@ sessions:
             name: { tr: "Olasılık ve Stokastik Süreçler", en: "Probability and Stochastic Processes" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [olasilik-stokastik-surecler/olasilik-stokastik-surecler]
           - id: matematiksel-istatistik
             name: { tr: "Matematiksel İstatistik", en: "Mathematical Statistics" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [matematiksel-istatistik/matematiksel-istatistik]
           - id: yoneylem-arastirmasi
             name: { tr: "Yöneylem Araştırması", en: "Operations Research" }
             weight: 5
             questionCount: 2
-            topics: []
+            topics: [yoneylem-arastirmasi/yoneylem-arastirmasi]
           - id: cok-degiskenli-analizler
             name: { tr: "Çok Değişkenli Analizler", en: "Multivariate Analysis" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [cok-degiskenli-analizler/cok-degiskenli-analizler]
           - id: parametrik-olmayan-testler
             name: { tr: "Parametrik Olmayan Testler", en: "Nonparametric Tests" }
             weight: 5
             questionCount: 2
-            topics: []
+            topics: [parametrik-olmayan-testler/parametrik-olmayan-testler]
           - id: uygulamali-istatistik
             name: { tr: "Uygulamalı İstatistik", en: "Applied Statistics" }
             weight: 15
             questionCount: 6
-            topics: []
+            topics: [uygulamali-istatistik/uygulamali-istatistik]
           - id: zaman-serileri
             name: { tr: "Zaman Serileri", en: "Time Series" }
             weight: 5
             questionCount: 2
-            topics: []
+            topics: [zaman-serileri/zaman-serileri]
           - id: deney-tasarimi-varyans
             name: { tr: "Deney Tasarımı ve Varyans Analizi", en: "Experimental Design and Analysis of Variance" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [deney-tasarimi-varyans/deney-tasarimi-varyans]
           - id: ornekleme
             name: { tr: "Örnekleme", en: "Sampling" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [ornekleme/ornekleme]
           - id: regresyon-analizi
             name: { tr: "Regresyon Analizi", en: "Regression Analysis" }
             weight: 10
             questionCount: 4
-            topics: []
+            topics: [regresyon-analizi/regresyon-analizi]
