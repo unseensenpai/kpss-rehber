@@ -1,0 +1,24 @@
+KPSS Rehber içerik lisansı
+==========================
+
+Copyright (c) 2026 unseensenpai ve katkıcılar
+
+Aşağıdaki içerik Creative Commons Atıf-AynıLisanslaPaylaş 4.0 Uluslararası
+(CC BY-SA 4.0) lisansı ile lisanslanmıştır:
+
+  - src/content/konular/**   (konu özetleri ve konu bilgileri)
+  - src/prompts/**           (prompt şablonları, seviye ve uzunluk talimatları)
+
+Bu içeriği, kaynak göstererek ("KPSS Rehber, https://github.com/unseensenpai/kpss-rehber")
+ve türettiğiniz çalışmayı aynı lisansla paylaşmak koşuluyla kopyalayabilir,
+dağıtabilir ve uyarlayabilirsiniz.
+
+Lisans özeti:   https://creativecommons.org/licenses/by-sa/4.0/deed.tr
+Lisans metni:   https://creativecommons.org/licenses/by-sa/4.0/legalcode.tr
+
+Kapsam dışı
+-----------
+  - Sitenin kaynak kodu MIT lisanslıdır (bkz. LICENSE).
+  - Sınav yapısı, soru sayıları, süreler ve tarihler ÖSYM'nin resmi belgelerinden
+    alınmış olgusal bilgilerdir. ÖSYM belgeleri ve soru kitapçıkları ÖSYM'ye aittir;
+    bu repoda yalnızca bağlantıları bulunur, metinleri kopyalanmaz.
