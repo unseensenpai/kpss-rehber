@@ -1,0 +1,47 @@
+# Yapı ve ağırlıklar: kpss-ortaogretim-2026 kılavuzu, "Sınavda Uygulanacak Testler" ve Tablo-1.
+# Ders soru sayıları kılavuzdaki "yaklaşık ağırlık" yüzdelerinden türetilmiştir.
+ad: "KPSS Ortaöğretim Genel Yetenek – Genel Kültür"
+kisaAd: "KPSS Ortaöğretim"
+kaynak:
+  belge: kpss-ortaogretim-2026
+  dogrulandi: true
+oturumlar:
+  - ad: Genel Yetenek-Genel Kültür
+    sureDk: 130
+    testler:
+      - ad: Genel Yetenek
+        soruSayisi: 60
+        dersler:
+          - ders: turkce
+            ad: "Sözel Bölüm"
+            agirlik: 50
+            soruSayisi: 30
+            konular: []
+          - ders: matematik
+            ad: "Sayısal Bölüm"
+            agirlik: 50
+            soruSayisi: 30
+            konular: []
+      - ad: Genel Kültür
+        soruSayisi: 60
+        dersler:
+          - ders: tarih
+            ad: "Tarih"
+            agirlik: 45
+            soruSayisi: 27
+            konular: [tarih/osmanli-oncesi-turk-devletleri, tarih/osmanli-tarihi, tarih/ataturk-ilkeleri-inkilap-tarihi, tarih/cagdas-turk-dunya-tarihi]
+          - ders: cografya
+            ad: "Türkiye Coğrafyası"
+            agirlik: 30
+            soruSayisi: 18
+            konular: [cografya/turkiye-fiziki, cografya/turkiye-beseri, cografya/turkiye-ekonomik]
+          - ders: vatandaslik
+            ad: "Temel Yurttaşlık Bilgisi"
+            agirlik: 15
+            soruSayisi: 9
+            konular: [vatandaslik/hukuk-baslangici, vatandaslik/anayasa-insan-haklari, vatandaslik/idare]
+          - ders: guncel-bilgiler
+            ad: "Güncel Bilgiler"
+            agirlik: 10
+            soruSayisi: 6
+            konular: [guncel-bilgiler/turkiye-dunya-guncel]

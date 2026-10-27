@@ -8,6 +8,8 @@ export default defineConfig({
   output: 'static',
   build: { format: 'directory' },
   devToolbar: { enabled: false },
+  // Konu içeriklerinde kod bloğu yok; Shiki'nin inline stilleri CSP ile çakışır.
+  markdown: { syntaxHighlight: false },
   security: {
     // Astro kendi script/style'larının hash'lerini otomatik ekler.
     csp: {

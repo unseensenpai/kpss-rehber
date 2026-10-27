@@ -1,0 +1,734 @@
+# Yapı ve ağırlıklar: meb-ags-2026 kılavuzu, 3.1 ve Tablo-1 (ÖABT).
+# Aday yalnızca kendi alanının testine girer. Yabancı dil alanları ÖABT yerine YDS/e-YDS kullanır.
+ad: "Öğretmenlik Alan Bilgisi Testi (ÖABT)"
+kisaAd: "ÖABT"
+kaynak:
+  belge: meb-ags-2026
+  dogrulandi: true
+oturumlar:
+  - ad: ÖABT
+    tekTestSecilir: true
+    testler:
+      - ad: "Türkçe"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: tr-anlama-anlatma
+            ad: "Anlama ve Anlatma Teknikleri"
+            agirlik: 32
+            soruSayisi: 16
+            konular: []
+          - ders: tr-dil-bilgisi
+            ad: "Dil Bilgisi ve Dil Bilimi"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: tr-cocuk-edebiyati
+            ad: "Çocuk Edebiyatı"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: tr-halk-edebiyati
+            ad: "Türk Halk Edebiyatı"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: tr-eski-edebiyat
+            ad: "Eski Türk Edebiyatı"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: tr-yeni-edebiyat
+            ad: "Yeni Türk Edebiyatı"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: tr-edebiyat-kuramlari
+            ad: "Edebiyat Bilgi ve Kuramları"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+      - ad: "İlköğretim Matematik"
+        soruSayisi: 50
+        sureDk: 90
+        dersler:
+          - ders: im-analiz
+            ad: "Analiz"
+            agirlik: 36
+            soruSayisi: 18
+            konular: []
+          - ders: im-cebir
+            ad: "Cebir"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: im-geometri
+            ad: "Geometri"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: im-uygulamali
+            ad: "Uygulamalı Matematik"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+      - ad: "Matematik"
+        soruSayisi: 50
+        sureDk: 90
+        dersler:
+          - ders: mat-analiz
+            ad: "Analiz"
+            agirlik: 36
+            soruSayisi: 18
+            konular: []
+          - ders: mat-cebir
+            ad: "Cebir"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: mat-geometri
+            ad: "Geometri"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: mat-uygulamali
+            ad: "Uygulamalı Matematik"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+      - ad: "Fen Bilimleri"
+        soruSayisi: 50
+        sureDk: 90
+        dersler:
+          - ders: fen-fizik
+            ad: "Fizik"
+            agirlik: 32
+            soruSayisi: 16
+            konular: []
+          - ders: fen-kimya
+            ad: "Kimya"
+            agirlik: 30
+            soruSayisi: 15
+            konular: []
+          - ders: fen-biyoloji
+            ad: "Biyoloji"
+            agirlik: 26
+            soruSayisi: 13
+            konular: []
+          - ders: fen-jeoloji
+            ad: "Jeoloji (Yer Bilimi)"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: fen-astronomi
+            ad: "Astronomi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: fen-cevre-bilimi
+            ad: "Çevre Bilimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+      - ad: "Sosyal Bilgiler"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: sb-tarih
+            ad: "Tarih"
+            agirlik: 44
+            soruSayisi: 22
+            konular: []
+          - ders: sb-cografya
+            ad: "Coğrafya"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: sb-siyaset-bilimi
+            ad: "Siyaset Bilimi"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: sb-diger-sosyal-bilimler
+            ad: "Diğer Sosyal Bilim Alanları"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+      - ad: "Türk Dili ve Edebiyatı"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: tde-turk-dili
+            ad: "Eski Türk Dili ve Yeni Türk Dili"
+            agirlik: 30
+            soruSayisi: 15
+            konular: []
+          - ders: tde-halk-edebiyati
+            ad: "Türk Halk Edebiyatı"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: tde-eski-edebiyat
+            ad: "Eski Türk Edebiyatı"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: tde-yeni-edebiyat
+            ad: "Yeni Türk Edebiyatı"
+            agirlik: 30
+            soruSayisi: 15
+            konular: []
+      - ad: "Tarih"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: ot-tarih-metodolojisi
+            ad: "Tarih Metodolojisi"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: ot-osmanli-turkcesi
+            ad: "Osmanlı Türkçesi"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: ot-eski-cag
+            ad: "Eski Çağ Tarihi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: ot-ilk-turk-devletleri
+            ad: "İlk Türk Devletleri Tarihi"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: ot-orta-cag-islam
+            ad: "Orta Çağ İslam Tarihi"
+            agirlik: 14
+            soruSayisi: 7
+            konular: []
+          - ders: ot-osmanli
+            ad: "Osmanlı Tarihi"
+            agirlik: 18
+            soruSayisi: 9
+            konular: []
+          - ders: ot-cumhuriyet
+            ad: "Türkiye Cumhuriyeti Tarihi"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: ot-dunya-tarihi
+            ad: "Orta Çağ’dan XX. Yüzyıl’a Dünya Tarihi"
+            agirlik: 14
+            soruSayisi: 7
+            konular: []
+          - ders: ot-xx-yuzyil
+            ad: "XX. Yüzyıl Türk ve Dünya Tarihi"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+      - ad: "Coğrafya"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: oc-fiziki
+            ad: "Fiziki Coğrafya"
+            agirlik: 40
+            soruSayisi: 20
+            konular: []
+          - ders: oc-beseri-ekonomik
+            ad: "Beşerî ve Ekonomik Coğrafya"
+            agirlik: 40
+            soruSayisi: 20
+            konular: []
+          - ders: oc-kitalar-ulkeler
+            ad: "Kıtalar ve Ülkeler Coğrafyası"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+      - ad: "Fizik"
+        soruSayisi: 50
+        sureDk: 90
+        dersler:
+          - ders: fiz-mekanik
+            ad: "Mekanik"
+            agirlik: 30
+            soruSayisi: 15
+            konular: []
+          - ders: fiz-elektrik-manyetizma
+            ad: "Elektrik ve Manyetizma"
+            agirlik: 24
+            soruSayisi: 12
+            konular: []
+          - ders: fiz-madde-isil
+            ad: "Maddenin Mekanik ve Isıl Özellikleri"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: fiz-dalgalar-optik
+            ad: "Dalgalar ve Optik"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: fiz-modern-fizik
+            ad: "Modern Fizik"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+      - ad: "Kimya/Kimya Teknolojisi"
+        soruSayisi: 50
+        sureDk: 90
+        dersler:
+          - ders: kim-temel
+            ad: "Temel Kimya"
+            agirlik: 32
+            soruSayisi: 16
+            konular: []
+          - ders: kim-analitik
+            ad: "Analitik Kimya"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: kim-anorganik
+            ad: "Anorganik Kimya"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: kim-organik
+            ad: "Organik Kimya"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: kim-fizikokimya
+            ad: "Fizikokimya"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+      - ad: "Biyoloji"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: bio-hucre-metabolizma
+            ad: "Hücre ve Metabolizma"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: bio-bitki
+            ad: "Bitki Biyolojisi"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: bio-insan-hayvan
+            ad: "İnsan ve Hayvan Biyolojisi"
+            agirlik: 28
+            soruSayisi: 14
+            konular: []
+          - ders: bio-ekoloji
+            ad: "Ekoloji"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: bio-siniflandirma
+            ad: "Canlıların Sınıflandırılması"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: bio-genetik
+            ad: "Genetik"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+      - ad: "Din Kültürü ve Ahlâk Bilgisi / İmam-Hatip Lisesi Meslek Dersleri"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: dkab-kuran-tecvid
+            ad: "Kur’an-ı Kerim ve Tecvid"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: dkab-tefsir
+            ad: "Tefsir"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: dkab-hadis
+            ad: "Hadis"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: dkab-fikih
+            ad: "Fıkıh"
+            agirlik: 14
+            soruSayisi: 7
+            konular: []
+          - ders: dkab-akaid
+            ad: "Akaid"
+            agirlik: 2
+            soruSayisi: 1
+            konular: []
+          - ders: dkab-kelam
+            ad: "Kelam"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: dkab-mezhepler
+            ad: "İslam Mezhepleri ve Akımları"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: dkab-siyer
+            ad: "Siyer"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: dkab-islam-tarihi
+            ad: "İslam Tarihi, Kültür ve Medeniyeti"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: dkab-islam-felsefesi
+            ad: "İslam Felsefesi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: dkab-din-felsefesi
+            ad: "Din Felsefesi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: dkab-din-sosyolojisi
+            ad: "Din Sosyolojisi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: dkab-din-psikolojisi
+            ad: "Din Psikolojisi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: dkab-din-egitimi
+            ad: "Din Eğitimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: dkab-dinler-tarihi
+            ad: "Dinler Tarihi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+      - ad: "Rehberlik"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: reh-psikolojik-kavramlar
+            ad: "Temel Psikolojik Kavramlar"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: reh-kuram-ilke-teknikler
+            ad: "Psikolojik Danışma Kuram İlke ve Teknikleri"
+            agirlik: 20
+            soruSayisi: 10
+            konular: []
+          - ders: reh-davranis-uyum
+            ad: "Davranış ve Uyum Problemleri"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: reh-bireyi-tanima
+            ad: "Bireyi Tanıma Teknikleri"
+            agirlik: 14
+            soruSayisi: 7
+            konular: []
+          - ders: reh-bireyle-grupla
+            ad: "Bireyle ve Grupla Psikolojik Danışma"
+            agirlik: 14
+            soruSayisi: 7
+            konular: []
+          - ders: reh-mesleki-rehberlik
+            ad: "Mesleki Rehberlik ve Kariyer Danışmanlığı"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: reh-arastirma-program
+            ad: "Psikolojik Danışma ve Rehberlikte Araştırma ve Program Geliştirme"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: reh-etik-yasal
+            ad: "Meslek Etiği ve Yasal Konular"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+      - ad: "Beden Eğitimi"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: be-temeller
+            ad: "Beden Eğitimi ve Sporun Temelleri"
+            agirlik: 16
+            soruSayisi: 8
+            konular: []
+          - ders: be-anatomi-kinesiyoloji
+            ad: "İnsan Anatomisi ve Kinesiyoloji"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: be-saglik-ilk-yardim
+            ad: "Sağlık Bilgisi ve İlk Yardım"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: be-egzersiz-fizyolojisi
+            ad: "Egzersiz Fizyolojisi"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: be-antrenman
+            ad: "Antrenman Bilgisi"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: be-fiziksel-uygunluk
+            ad: "Fiziksel Uygunluk"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: be-egzersiz-beslenme
+            ad: "Egzersiz ve Beslenme"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-engelliler
+            ad: "Engelliler İçin Beden Eğitimi ve Spor"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-psikomotor
+            ad: "Psikomotor Gelişim"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: be-spor-yonetimi
+            ad: "Beden Eğitimi ve Spor Yönetimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-beceri-ogrenimi
+            ad: "Beceri Öğrenimi"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: be-atletizm
+            ad: "Atletizm"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-takim-sporlari
+            ad: "Takım Sporları"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: be-ritim-dans
+            ad: "Ritim Eğitimi ve Dans, Halk Oyunları"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-jimnastik
+            ad: "Jimnastik"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: be-egitsel-oyunlar
+            ad: "Eğitsel Oyunlar"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+      - ad: "Okul Öncesi"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: oo-giris
+            ad: "Erken Çocukluk Eğitimine Giriş"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: oo-saglik-ilk-yardim
+            ad: "Çocuk Sağlığı ve İlk Yardım"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oo-gelisim
+            ad: "Erken Çocukluk Döneminde Gelişim"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: oo-ruh-sagligi
+            ad: "Çocuk Ruh Sağlığı"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: oo-edebiyat
+            ad: "Erken Çocukluk Dönemi Edebiyatı"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oo-program-yontem
+            ad: "Erken Çocuklukta Program, Yöntem ve Yaklaşımlar"
+            agirlik: 12
+            soruSayisi: 6
+            konular: []
+          - ders: oo-anne-baba
+            ad: "Anne-Baba Eğitimi"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oo-cocuk-haklari
+            ad: "Çocuk Hakları"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oo-alan-egitimi
+            ad: "Alan Eğitimi Testi"
+            agirlik: 40
+            soruSayisi: 20
+            konular: []
+      - ad: "Sınıf Öğretmenliği"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: so-temel-matematik
+            ad: "İlkokulda Temel Matematik"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: so-temel-fen
+            ad: "İlkokulda Temel Fen Bilimleri"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: so-turk-dili
+            ad: "Türk Dili"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: so-turk-tarihi-kulturu
+            ad: "Türk Tarihi ve Kültürü"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: so-cografya-jeopolitik
+            ad: "Türkiye Coğrafyası ve Jeopolitiği"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: so-cocuk-edebiyati
+            ad: "Çocuk Edebiyatı"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: so-alan-egitimi
+            ad: "Alan Eğitimi Testi"
+            agirlik: 66
+            soruSayisi: 33
+            konular: []
+      - ad: "Özel Eğitim"
+        soruSayisi: 50
+        sureDk: 70
+        dersler:
+          - ders: oe-zihin-otizm
+            ad: "Zihin Yetersizliği ve Otizm Spektrum Bozukluğu"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: oe-ogrenme-guclugu-ozel-yetenek
+            ad: "Öğrenme Güçlüğü ve Özel Yetenek"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oe-isitme-gorme
+            ad: "İşitme ve Görme Yetersizliği"
+            agirlik: 10
+            soruSayisi: 5
+            konular: []
+          - ders: oe-erken-cocukluk
+            ad: "Erken Çocuklukta Özel Eğitim"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-uygulamali-davranis-analizi
+            ad: "Uygulamalı Davranış Analizi"
+            agirlik: 8
+            soruSayisi: 4
+            konular: []
+          - ders: oe-bep
+            ad: "Bireyselleştirilmiş Eğitim Programları"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oe-degerlendirme
+            ad: "Özel Eğitimde Değerlendirme"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oe-dil-iletisim
+            ad: "Dil ve İletişim Becerilerinin Desteklenmesi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-politika-yasal
+            ad: "Özel Eğitim Politikaları ve Yasal Düzenlemeler"
+            agirlik: 6
+            soruSayisi: 3
+            konular: []
+          - ders: oe-tymm-programlari
+            ad: "2024 TYMM Özel Eğitim Programları"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-okuma-yazma
+            ad: "Özel Eğitimde Okuma-Yazma Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-fen-sosyal
+            ad: "Özel Eğitimde Fen ve Sosyal Bilgiler Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-matematik
+            ad: "Özel Eğitimde Matematik Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-sanatsal-beceriler
+            ad: "Özel Eğitimde Sanatsal Becerilerin Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-fiziksel-egitim-spor
+            ad: "Özel Eğitimde Fiziksel Eğitim ve Spor"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-sosyal-uyum
+            ad: "Özel Eğitimde Sosyal Uyum Becerilerinin Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-turkce
+            ad: "Özel Eğitimde Türkçe Öğretimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-oyun-muzik
+            ad: "Özel Eğitimde Oyun ve Müzik"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []
+          - ders: oe-aile-egitimi
+            ad: "Özel Eğitimde Aile Eğitimi"
+            agirlik: 4
+            soruSayisi: 2
+            konular: []

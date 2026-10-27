@@ -1,0 +1,44 @@
+# Yapı ve ağırlıklar: meb-ags-2026 kılavuzu, 3.1 ve Tablo-1.
+# 2026'dan itibaren Eğitim Bilimleri KPSS'de değil, AGS içinde.
+ad: "MEB Akademi Giriş Sınavı (AGS)"
+kisaAd: "MEB-AGS"
+kaynak:
+  belge: meb-ags-2026
+  dogrulandi: true
+oturumlar:
+  - ad: AGS
+    sureDk: 110
+    testler:
+      - ad: Akademi Giriş Sınavı
+        soruSayisi: 80
+        dersler:
+          - ders: turkce
+            ad: "Sözel Yetenek"
+            agirlik: 18.75
+            soruSayisi: 15
+            konular: [turkce/sozcukte-anlam, turkce/cumlede-anlam, turkce/anlatimin-olusmasi, turkce/paragrafta-anlam, turkce/sozel-mantik]
+          - ders: matematik
+            ad: "Sayısal Yetenek"
+            agirlik: 18.75
+            soruSayisi: 15
+            konular: [matematik/temel-matematik, matematik/grafik-tablo-yorumlama, matematik/mantiksal-muhakeme]
+          - ders: tarih
+            ad: "Tarih"
+            agirlik: 7.5
+            soruSayisi: 6
+            konular: [tarih/osmanli-oncesi-turk-devletleri, tarih/osmanli-tarihi, tarih/ataturk-ilkeleri-inkilap-tarihi, tarih/cagdas-turk-dunya-tarihi]
+          - ders: cografya
+            ad: "Türkiye Coğrafyası"
+            agirlik: 7.5
+            soruSayisi: 6
+            konular: [cografya/turkiye-fiziki, cografya/turkiye-beseri, cografya/turkiye-ekonomik]
+          - ders: egitim-bilimleri
+            ad: "Eğitim Bilimleri ve Türk Millî Eğitim Sistemi"
+            agirlik: 37.5
+            soruSayisi: 30
+            konular: [egitim-bilimleri/egitimin-temelleri, egitim-bilimleri/ogretim-yontem-teknikleri, egitim-bilimleri/sinif-yonetimi, egitim-bilimleri/program-okuryazarligi, egitim-bilimleri/olcme-degerlendirme, egitim-bilimleri/ogrenme-psikolojisi, egitim-bilimleri/gelisim-psikolojisi, egitim-bilimleri/rehberlik, egitim-bilimleri/egitim-ogretim-teknolojileri, egitim-bilimleri/milli-egitim-sistemi, egitim-bilimleri/maarif-modeli]
+          - ders: mevzuat
+            ad: "Mevzuat"
+            agirlik: 10
+            soruSayisi: 8
+            konular: [mevzuat/anayasa-insan-haklari, mevzuat/milli-egitim-temel-kanunu, mevzuat/ilkogretim-egitim-kanunu, mevzuat/ogretmenlik-meslegi-kanunu]

@@ -6,16 +6,21 @@
 
 /** @typedef {{ id: string, data: any }} Kayit */
 
-/** Her sınav-ders-konu referansını dolaşır. */
-function* referanslar(/** @type {Kayit[]} */ sinavlar) {
+/** Her sınav-test-ders üçlüsünü dolaşır. */
+function* dersler(/** @type {Kayit[]} */ sinavlar) {
   for (const s of sinavlar) {
     for (const o of s.data.oturumlar) {
       for (const t of o.testler) {
-        for (const d of t.dersler) {
-          for (const konu of d.konular) yield { sinav: s.id, test: t.ad, ders: d.ders, konu };
-        }
+        for (const d of t.dersler) yield { sinav: s.id, test: t, ders: d };
       }
     }
+  }
+}
+
+/** Her sınav-ders-konu referansını dolaşır. */
+function* referanslar(/** @type {Kayit[]} */ sinavlar) {
+  for (const { sinav, test, ders } of dersler(sinavlar)) {
+    for (const konu of ders.konular) yield { sinav, test: test.ad, ders: ders.ders, konu };
   }
 }
 
@@ -65,25 +70,90 @@ export function soruToplamiHatalari(/** @type {Kayit[]} */ sinavlar) {
   return hatalar;
 }
 
-/** Her kayıt bir kaynağa ve yıla dayanmalı (Zod'u atlayan veri için de güvence). */
-export function kaynakEksikleri(/** @type {Kayit[]} */ sinavlar, /** @type {Kayit[]} */ konular) {
+/** Ağırlığı verilen dersin soru sayısı, testin o yüzdesinin yuvarlanmışı olmalı. */
+export function agirlikHatalari(/** @type {Kayit[]} */ sinavlar) {
+  const hatalar = [];
+  for (const { sinav, test, ders } of dersler(sinavlar)) {
+    if (ders.agirlik === undefined) continue;
+    const beklenen = Math.round((test.soruSayisi * ders.agirlik) / 100);
+    if (beklenen !== ders.soruSayisi) {
+      hatalar.push(
+        `${sinav} › ${test.ad} › ${ders.ders}: %${ders.agirlik} → ${beklenen} soru olmalı, ${ders.soruSayisi} yazılmış`,
+      );
+    }
+  }
+  return hatalar;
+}
+
+/** Bir test içinde aynı ders iki kez yazılamaz. */
+export function tekrarlananDersler(/** @type {Kayit[]} */ sinavlar) {
   const hatalar = [];
   for (const s of sinavlar) {
-    if (!s.data.kaynak?.tip || !s.data.kaynak?.yil) hatalar.push(`${s.id}: kaynak tipi/yılı eksik`);
+    for (const o of s.data.oturumlar) {
+      for (const t of o.testler) {
+        const gorulen = new Set();
+        for (const d of t.dersler) {
+          if (gorulen.has(d.ders)) hatalar.push(`${s.id} › ${t.ad}: '${d.ders}' dersi iki kez yazılmış`);
+          gorulen.add(d.ders);
+        }
+      }
+    }
+  }
+  return hatalar;
+}
+
+/**
+ * Her kayıt bir kaynağa dayanmalı: sınavın ve konunun belgesi `kaynaklar`da olmalı,
+ * konunun kaynak tipi ve yılı dolu olmalı (Zod'u atlayan veri için de güvence).
+ */
+export function kaynakEksikleri(
+  /** @type {Kayit[]} */ sinavlar,
+  /** @type {Kayit[]} */ konular,
+  /** @type {Kayit[]} */ kaynaklar = [],
+) {
+  const belgeler = new Set(kaynaklar.map((k) => k.id));
+  const hatalar = [];
+  for (const s of sinavlar) {
+    const belge = s.data.kaynak?.belge;
+    if (!belge) hatalar.push(`${s.id}: kaynak belgesi eksik`);
+    else if (!belgeler.has(belge)) hatalar.push(`${s.id}: '${belge}' belgesi kaynaklar listesinde yok`);
   }
   for (const k of konular) {
     if (!k.data.kaynak || !k.data.kaynakYili) hatalar.push(`${k.id}: kaynak/kaynakYili eksik`);
+    if (k.data.belge && !belgeler.has(k.data.belge)) {
+      hatalar.push(`${k.id}: '${k.data.belge}' belgesi kaynaklar listesinde yok`);
+    }
+  }
+  return hatalar;
+}
+
+/** Takvim kayıtları var olan sınavlara ve belgelere bağlanmalı. */
+export function takvimHatalari(
+  /** @type {Kayit[]} */ takvim,
+  /** @type {Kayit[]} */ sinavlar,
+  /** @type {Kayit[]} */ kaynaklar,
+) {
+  const sinavIdleri = new Set(sinavlar.map((s) => s.id));
+  const belgeler = new Set(kaynaklar.map((k) => k.id));
+  const hatalar = [];
+  for (const t of takvim) {
+    if (!sinavIdleri.has(t.data.sinav)) hatalar.push(`takvim '${t.id}': '${t.data.sinav}' sınavı yok`);
+    if (!belgeler.has(t.data.belge)) hatalar.push(`takvim '${t.id}': '${t.data.belge}' belgesi yok`);
+    if (t.data.bitis && t.data.bitis < t.data.baslangic) hatalar.push(`takvim '${t.id}': bitiş başlangıçtan önce`);
   }
   return hatalar;
 }
 
 /** Tüm kontroller; hata mesajlarını tek listede döner. */
-export function veriyiDogrula(/** @type {Kayit[]} */ sinavlar, /** @type {Kayit[]} */ konular) {
+export function veriyiDogrula({ sinavlar, konular, kaynaklar = [], takvim = [] }) {
   return [
-    ...kaynakEksikleri(sinavlar, konular),
+    ...kaynakEksikleri(sinavlar, konular, kaynaklar),
     ...dersKlasorUyumsuzlugu(konular),
     ...eksikReferanslar(sinavlar, konular),
     ...yetimKonular(sinavlar, konular),
     ...soruToplamiHatalari(sinavlar),
+    ...agirlikHatalari(sinavlar),
+    ...tekrarlananDersler(sinavlar),
+    ...takvimHatalari(takvim, sinavlar, kaynaklar),
   ];
 }

@@ -1,0 +1,72 @@
+[
+  {
+    "id": "kpss-lisans-2026",
+    "baslik": "2026 KPSS Kılavuzu (Lisans: Genel Yetenek-Genel Kültür, Alan Bilgisi, DHBT)",
+    "tur": "kilavuz",
+    "tip": "osym-kilavuz",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2026/KPSS/LISANS/kilavuz_Ld01072026.pdf",
+    "sha256": "56529c57f0de5065db4695f3ba0c177fbea1e46a4799dc05c719757cfab70dd9",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "kpss-onlisans-2026",
+    "baslik": "2026 KPSS Ön Lisans Başvuru Kılavuzu",
+    "tur": "kilavuz",
+    "tip": "osym-kilavuz",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/8/basvuru-kilavuzu-fqs59p-13083438.pdf",
+    "sha256": "d6c5a9e3741cc9d70d4262bd18d2d13c5104590188e4a904b9c6eeedf4cd5cc3",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "kpss-ortaogretim-2026",
+    "baslik": "2026 KPSS Ortaöğretim Başvuru Kılavuzu",
+    "tur": "kilavuz",
+    "tip": "osym-kilavuz",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/8/basvuru-kilavuzu-ci4pae-27090228.pdf",
+    "sha256": "06c9919887af2810a26e971a8b0f15792894f17281c478efdba720bca0a0954a",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "meb-ags-2026",
+    "baslik": "2026 MEB Akademi Giriş Sınavı (MEB-AGS) Başvuru Kılavuzu",
+    "tur": "kilavuz",
+    "tip": "osym-kilavuz",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/basvuru-kilavuzu-p9djhk-30105733.pdf",
+    "sha256": "e5414dff5d0badeef0abef67f88fa311ecd52f3b6364d0d470bb684ed8d65c6b",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "meb-ags-konu-dagilimi-2026",
+    "baslik": "2026 AGS ve ÖABT Konu Dağılımları",
+    "tur": "konu-dagilimi",
+    "tip": "osym-oabt-kapsam",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2026/MEB-AGS/konudagilimi08012026.pdf",
+    "sha256": "9be6d1849644f0c7bbabf81b67c59cc655147cd1e18fb46d7313b095ecb55f1a",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "kpss-lisans-gygk-kitapcik-2026",
+    "baslik": "2026 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı",
+    "tur": "soru-kitapcigi",
+    "tip": "cikmis-soru-analizi",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/9/2026-kpss-lisansgenel-yetenek-genel-kultur-temel-soru-kitapcigi-ve-cevap-anahtari-10-9dh155-06125847.pdf",
+    "sha256": "becc024ea962ac4cba97a4e7eea3b703808431e4602077c7ecb7c04273b636f8",
+    "kontrolTarihi": "2026-10-27"
+  },
+  {
+    "id": "kpss-onlisans-kitapcik-2026",
+    "baslik": "2026 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı",
+    "tur": "soru-kitapcigi",
+    "tip": "cikmis-soru-analizi",
+    "yil": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10-le3c9n-04123429.pdf",
+    "sha256": "761b95d44601ff45d3cd3c60828a711c9723cfa6e06fe0d82e6c3d460354e6ff",
+    "kontrolTarihi": "2026-10-27"
+  }
+]

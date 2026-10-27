@@ -1,40 +1,55 @@
 import { describe, expect, it } from 'vitest';
-import { konuSemasi, sinavSemasi } from '../../src/lib/semalar.js';
+import { kaynakSemasi, konuSemasi, sinavSemasi, takvimSemasi } from '../../src/lib/semalar.js';
 
 const konu = {
   baslik: 'Paragraf',
   ders: 'turkce',
+  kaynak: 'osym-kilavuz',
+  kaynakYili: 2026,
+  guncelleme: '2026-10-27',
+};
+
+const icerik = {
   altBasliklar: ['Ana düşünce'],
   anahtarKavramlar: ['konu', 'ana fikir'],
   soruTipi: 'Paragrafın ana düşüncesini bulma',
-  kaynak: 'cikmis-soru-analizi',
-  kaynakYili: 2025,
-  guncelleme: '2026-10-27',
 };
 
 const sinav = {
   ad: 'Örnek',
-  kaynak: { tip: 'osym-kilavuz', yil: 2026, dogrulandi: false },
+  kisaAd: 'Ö',
+  kaynak: { belge: 'kpss-lisans-2026', dogrulandi: true },
   oturumlar: [
     {
       ad: 'Sabah',
       sureDk: 60,
-      testler: [{ ad: 'GY', soruSayisi: 1, dersler: [{ ders: 'turkce', soruSayisi: 1, konular: ['turkce/paragraf'] }] }],
+      testler: [
+        {
+          ad: 'GY',
+          soruSayisi: 1,
+          dersler: [{ ders: 'turkce', ad: 'Türkçe', soruSayisi: 1, konular: ['turkce/paragraf'] }],
+        },
+      ],
     },
   ],
 };
 
 describe('konuSemasi', () => {
-  it('geçerli konuyu kabul eder, dogrulandi varsayılanı false', () => {
+  it('iskelet konu içerik alanları olmadan geçerli; varsayılanlar dolar', () => {
     const k = konuSemasi.parse(konu);
-    expect(k.dogrulandi).toBe(false);
+    expect(k).toMatchObject({ durum: 'iskelet', dogrulandi: false, altBasliklar: [] });
     expect(k.guncelleme).toBeInstanceOf(Date);
   });
-  it.each(['baslik', 'ders', 'altBasliklar', 'anahtarKavramlar', 'soruTipi', 'kaynak', 'kaynakYili', 'guncelleme'])(
-    "zorunlu '%s' alanı eksikse reddeder",
+  it.each(['baslik', 'ders', 'kaynak', 'kaynakYili', 'guncelleme'])("zorunlu '%s' alanı eksikse reddeder", (alan) => {
+    const { [alan]: _, ...eksik } = konu;
+    expect(konuSemasi.safeParse(eksik).success).toBe(false);
+  });
+  it.each(['altBasliklar', 'anahtarKavramlar', 'soruTipi'])(
+    "taslak konuda '%s' zorunlu",
     (alan) => {
-      const { [alan]: _, ...eksik } = konu;
-      expect(konuSemasi.safeParse(eksik).success).toBe(false);
+      const { [alan]: _, ...eksik } = icerik;
+      expect(konuSemasi.safeParse({ ...konu, ...icerik, durum: 'taslak' }).success).toBe(true);
+      expect(konuSemasi.safeParse({ ...konu, ...eksik, durum: 'taslak' }).success).toBe(false);
     },
   );
   it('tanımsız kaynak tipini reddeder', () => {
@@ -55,10 +70,41 @@ describe('sinavSemasi', () => {
     bozuk.oturumlar[0].testler[0].dersler[0].konular = ['paragraf'];
     expect(sinavSemasi.safeParse(bozuk).success).toBe(false);
   });
-  it('doğrulanmış kaynak url olmadan reddedilir', () => {
-    const bozuk = { ...sinav, kaynak: { ...sinav.kaynak, dogrulandi: true } };
+  it('süre oturumda ya da her testte bulunmalı', () => {
+    const bozuk = structuredClone(sinav);
+    delete bozuk.oturumlar[0].sureDk;
     expect(sinavSemasi.safeParse(bozuk).success).toBe(false);
-    bozuk.kaynak.url = 'https://www.osym.gov.tr/';
+    bozuk.oturumlar[0].testler[0].sureDk = 50;
     expect(sinavSemasi.safeParse(bozuk).success).toBe(true);
+  });
+  it('ağırlık 100\'ü aşamaz', () => {
+    const bozuk = structuredClone(sinav);
+    bozuk.oturumlar[0].testler[0].dersler[0].agirlik = 120;
+    expect(sinavSemasi.safeParse(bozuk).success).toBe(false);
+  });
+});
+
+describe('kaynakSemasi', () => {
+  const kaynak = {
+    id: 'kpss-lisans-2026',
+    baslik: 'Kılavuz',
+    tur: 'kilavuz',
+    tip: 'osym-kilavuz',
+    yil: 2026,
+    url: 'https://dokuman.osym.gov.tr/x.pdf',
+    sha256: 'a'.repeat(64),
+    kontrolTarihi: '2026-10-27',
+  };
+  it('geçerli belgeyi kabul eder, hatalı hash\'i reddeder', () => {
+    expect(kaynakSemasi.safeParse(kaynak).success).toBe(true);
+    expect(kaynakSemasi.safeParse({ ...kaynak, sha256: 'abc' }).success).toBe(false);
+  });
+});
+
+describe('takvimSemasi', () => {
+  it('saat SS:DD biçiminde olmalı', () => {
+    const t = { id: 'a', sinav: 'dhbt', tur: 'sinav', baslangic: '2026-11-01', belge: 'kpss-lisans-2026' };
+    expect(takvimSemasi.safeParse({ ...t, saat: '10:15' }).success).toBe(true);
+    expect(takvimSemasi.safeParse({ ...t, saat: '10.15' }).success).toBe(false);
   });
 });

@@ -1,0 +1,321 @@
+# Yapı ve ağırlıklar: kpss-lisans-2026 kılavuzu, "Sınavda Uygulanacak Testler" ve Tablo-1.
+# Aday girmek istediği oturumları seçer; seçtiği oturumdaki üç testin hepsini cevaplar.
+ad: "KPSS Lisans Alan Bilgisi (A Grubu)"
+kisaAd: "A Grubu"
+aciklama: "Her test 40 soru; testler sırayla ayrı kitapçıkla uygulanır."
+kaynak:
+  belge: kpss-lisans-2026
+  dogrulandi: true
+oturumlar:
+  - ad: "1. Oturum (Cumartesi sabah)"
+    testler:
+      - ad: "Kamu Yönetimi"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: siyaset-bilimi
+            ad: "Siyaset Bilimi"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: anayasa
+            ad: "Anayasa"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: yonetim-bilimleri
+            ad: "Yönetim Bilimleri"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: yonetim-hukuku
+            ad: "Yönetim Hukuku"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: kentlesme-cevre-sorunlari
+            ad: "Kentleşme ve Çevre Sorunları"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: turk-siyasi-hayati
+            ad: "Türk Siyasi Hayatı (Osmanlıdan Günümüze Siyasi Olaylar)"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+      - ad: "Uluslararası İlişkiler"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: uluslararasi-iliskiler-teorisi
+            ad: "Uluslararası İlişkiler Teorisi"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: uluslararasi-hukuk
+            ad: "Uluslararası Hukuk"
+            agirlik: 25
+            soruSayisi: 10
+            konular: []
+          - ders: siyasi-tarih
+            ad: "Siyasi Tarih"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: uluslararasi-guncel-sorunlar
+            ad: "Uluslararası Güncel Sorunlar"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: uluslararasi-orgutler
+            ad: "Uluslararası Örgütler"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: turk-dis-politikasi
+            ad: "Türk Dış Politikası"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+      - ad: "Çalışma Ekonomisi ve Endüstri İlişkileri"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: is-sosyal-guvenlik-hukuku
+            ad: "İş ve Sosyal Güvenlik Hukuku"
+            agirlik: 55
+            soruSayisi: 22
+            konular: []
+          - ders: calisma-ekonomisi
+            ad: "Çalışma Ekonomisi"
+            agirlik: 30
+            soruSayisi: 12
+            konular: []
+          - ders: calisma-psikolojisi-sosyolojisi
+            ad: "Çalışma Psikolojisi ve Çalışma Sosyolojisi"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+  - ad: "2. Oturum (Cumartesi öğleden sonra)"
+    testler:
+      - ad: "Hukuk"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: anayasa-hukuku
+            ad: "Anayasa Hukuku"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: idare-hukuku
+            ad: "İdare Hukuku ve İdari Yargı"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: ceza-hukuku
+            ad: "Ceza Hukuku (Genel Hükümler ve Ceza Muhakemesi Hukuku)"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: medeni-hukuk
+            ad: "Medeni Hukuk"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: borclar-hukuku
+            ad: "Borçlar Hukuku (Genel Hükümler)"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: ticaret-hukuku
+            ad: "Ticaret Hukuku"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: icra-iflas-hukuku
+            ad: "İcra ve İflas Hukuku"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+      - ad: "İktisat"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: iktisadi-doktrinler-tarihi
+            ad: "İktisadi Doktrinler Tarihi"
+            agirlik: 5
+            soruSayisi: 2
+            konular: []
+          - ders: mikro-iktisat
+            ad: "Mikro İktisat"
+            agirlik: 30
+            soruSayisi: 12
+            konular: []
+          - ders: makro-iktisat
+            ad: "Makro İktisat"
+            agirlik: 25
+            soruSayisi: 10
+            konular: []
+          - ders: para-banka-kredi
+            ad: "Para-Banka-Kredi"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: uluslararasi-iktisat
+            ad: "Uluslararası İktisat"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: kalkinma-buyume
+            ad: "Kalkınma-Büyüme"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: turkiye-ekonomisi
+            ad: "Türkiye Ekonomisi"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+      - ad: "Maliye"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: maliye-teorisi
+            ad: "Maliye Teorisi"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: kamu-gelirleri
+            ad: "Kamu Gelirleri"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: kamu-giderleri
+            ad: "Kamu Giderleri"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: kamu-borclari
+            ad: "Kamu Borçları"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: butce
+            ad: "Bütçe"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: vergi-hukuku
+            ad: "Vergi Hukuku"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: maliye-politikasi
+            ad: "Maliye Politikası"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+  - ad: "3. Oturum (Pazar sabah)"
+    testler:
+      - ad: "İşletme"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: isletme-temel-kavramlar
+            ad: "Temel Kavramlar"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: isletme-yonetimi
+            ad: "İşletme Yönetimi"
+            agirlik: 25
+            soruSayisi: 10
+            konular: []
+          - ders: uretim-yonetimi
+            ad: "Üretim Yönetimi"
+            agirlik: 25
+            soruSayisi: 10
+            konular: []
+          - ders: pazarlama-yonetimi
+            ad: "Pazarlama Yönetimi"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: finansal-yonetim
+            ad: "Finansal Yönetim"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+      - ad: "Muhasebe"
+        soruSayisi: 40
+        sureDk: 50
+        dersler:
+          - ders: genel-muhasebe
+            ad: "Genel Muhasebe"
+            agirlik: 70
+            soruSayisi: 28
+            konular: []
+          - ders: mali-tablolar-analizi
+            ad: "Mali Tablolar Analizi"
+            agirlik: 20
+            soruSayisi: 8
+            konular: []
+          - ders: ihtisas-muhasebesi
+            ad: "İhtisas Muhasebesi (Maliyet, Yönetim Muhasebesi, Denetim, TFRS, TMS)"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+      - ad: "İstatistik"
+        soruSayisi: 40
+        sureDk: 60
+        dersler:
+          - ders: olasilik-stokastik-surecler
+            ad: "Olasılık ve Stokastik Süreçler"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: matematiksel-istatistik
+            ad: "Matematiksel İstatistik"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: yoneylem-arastirmasi
+            ad: "Yöneylem Araştırması"
+            agirlik: 5
+            soruSayisi: 2
+            konular: []
+          - ders: cok-degiskenli-analizler
+            ad: "Çok Değişkenli Analizler"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: parametrik-olmayan-testler
+            ad: "Parametrik Olmayan Testler"
+            agirlik: 5
+            soruSayisi: 2
+            konular: []
+          - ders: uygulamali-istatistik
+            ad: "Uygulamalı İstatistik"
+            agirlik: 15
+            soruSayisi: 6
+            konular: []
+          - ders: zaman-serileri
+            ad: "Zaman Serileri"
+            agirlik: 5
+            soruSayisi: 2
+            konular: []
+          - ders: deney-tasarimi-varyans
+            ad: "Deney Tasarımı ve Varyans Analizi"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: ornekleme
+            ad: "Örnekleme"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
+          - ders: regresyon-analizi
+            ad: "Regresyon Analizi"
+            agirlik: 10
+            soruSayisi: 4
+            konular: []
