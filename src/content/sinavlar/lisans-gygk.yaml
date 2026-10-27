@@ -1,0 +1,34 @@
+# DOĞRULANMADI: yapı ve sayılar K3'te güncel ÖSYM kılavuzuyla kontrol edilecek.
+ad: KPSS Lisans Genel Yetenek – Genel Kültür
+kaynak:
+  tip: osym-kilavuz
+  yil: 2026
+  dogrulandi: false
+oturumlar:
+  - ad: Sabah
+    sureDk: 130
+    testler:
+      - ad: Genel Yetenek
+        soruSayisi: 60
+        dersler:
+          - ders: turkce
+            soruSayisi: 30
+            konular: [turkce/paragraf]
+          - ders: matematik
+            soruSayisi: 30
+            konular: [matematik/temel-kavramlar]
+      - ad: Genel Kültür
+        soruSayisi: 60
+        dersler:
+          - ders: tarih
+            soruSayisi: 27
+            konular: [tarih/osmanli-kurulus]
+          - ders: cografya
+            soruSayisi: 18
+            konular: []
+          - ders: vatandaslik
+            soruSayisi: 9
+            konular: []
+          - ders: guncel-bilgiler
+            soruSayisi: 6
+            konular: []

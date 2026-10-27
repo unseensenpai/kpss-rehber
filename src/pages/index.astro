@@ -1,7 +1,14 @@
 ---
 import Taban from '../layouts/Taban.astro';
+import { veri } from '../lib/veri.js';
+
+// Build sırasında tutarlılık kontrolü de buradan geçer.
+const { sinavlar } = await veri();
 ---
 <Taban>
   <h1>Hangi sınava hazırlanıyorsun?</h1>
   <p>KPSS müfredatı, konu özetleri ve hazır promptlar yakında burada.</p>
+  <ul>
+    {sinavlar.map((s) => <li>{s.data.ad}</li>)}
+  </ul>
 </Taban>
