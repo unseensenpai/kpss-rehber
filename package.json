@@ -13,7 +13,8 @@
     "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "test": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "check:sources": "node tools/source-check.mjs"
   },
   "dependencies": {
     "astro": "7.3.8"

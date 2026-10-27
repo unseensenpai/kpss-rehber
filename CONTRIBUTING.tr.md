@@ -26,8 +26,11 @@ Node 22 gerekir. `npm install` hata verirse repodaki `.npmrc` dosyasının yerin
 | `src/i18n/tr.js`, `en.js` | Arayüz metinleri; iki sözlüğün anahtarları aynı olmalı |
 | `data/sources.json` | Takip edilen resmi ÖSYM belgeleri |
 | `data/calendar.yaml` | Başvuru ve sınav tarihleri |
+| `data/source-watch.json` | Haftalık kaynak kontrolünün okuduğu ÖSYM sayfaları ve yok sayacağı belgeler |
 
 Tüm veri build sırasında doğrulanır. Bozuk referans, yetim konu, tutmayan soru toplamı, kaynaksız kayıt, eksik çeviri ya da doldurulmamış şablon değişkeni **build'i kırar**; hata mesajı neyi düzeltmen gerektiğini söyler.
+
+Haftalık bir iş (`npm run check:sources`) yeni ya da değişen ÖSYM belgelerini `new-source` etiketli issue olarak bildirir. Siteyi yeni sınav yılına taşıma adımları [docs/ANNUAL-REVIEW.tr.md](docs/ANNUAL-REVIEW.tr.md) dosyasında.
 
 ## Kaynak kuralı (en önemli kural)
 

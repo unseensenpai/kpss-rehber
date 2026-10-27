@@ -26,8 +26,11 @@ Node 22 is required. If `npm install` fails, make sure the repository's `.npmrc`
 | `src/i18n/tr.js`, `en.js` | UI strings; both dictionaries must have the same keys |
 | `data/sources.json` | Tracked official ÖSYM documents |
 | `data/calendar.yaml` | Application and exam dates |
+| `data/source-watch.json` | ÖSYM pages the weekly source check reads, and documents it should ignore |
 
 All data is validated at build time. A broken reference, an orphan topic, question counts that do not add up, a record without a source, a missing translation or an unfilled template variable **fails the build**; the error message says what to fix.
+
+A weekly job (`npm run check:sources`) reports new or changed ÖSYM documents as `new-source` issues. How to move the site to a new exam year is in [docs/ANNUAL-REVIEW.md](docs/ANNUAL-REVIEW.md).
 
 ## Source rule (the most important rule)
 
