@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+
+# Özel: spec ve planlar sadece yerelde
+docs/specs/
+docs/plans/
+dist/
+.astro/
+test-results/
+playwright-report/

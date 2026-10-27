@@ -1,0 +1,50 @@
+---
+import '../styles/genel.css';
+import { yol } from '../lib/yol.js';
+
+interface Props {
+  baslik?: string;
+  aciklama?: string;
+}
+const { baslik, aciklama = 'KPSS müfredatı, konu özetleri ve hazır AI promptları.' } = Astro.props;
+const tamBaslik = baslik ? `${baslik} · KPSS Rehber` : 'KPSS Rehber';
+---
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={aciklama} />
+    <title>{tamBaslik}</title>
+    <link rel="icon" type="image/svg+xml" href={yol('/favicon.svg')} />
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('kpss-rehber:tema'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <header class="ust">
+      <div class="kap">
+        <a class="logo" href={yol('/')}>KPSS Rehber</a>
+        <button class="dugme" type="button" data-tema-dugme aria-label="Temayı değiştir">◐ Tema</button>
+      </div>
+    </header>
+    <main class="kap">
+      <slot />
+    </main>
+    <footer class="alt">
+      <div class="kap">
+        Bu site ÖSYM ile bağlantılı değildir. Resmi bilgi için <a href="https://www.osym.gov.tr" rel="noopener noreferrer">osym.gov.tr</a>.
+      </div>
+    </footer>
+    <script>
+      import '../scripts/tema.js';
+    </script>
+  </body>
+</html>
