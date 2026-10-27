@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "KPSS müfredatı, konu özetleri ve hazır AI promptları",
+  "description": "KPSS curriculum map, topic summaries and ready-made AI prompts",
   "license": "MIT",
   "engines": {
     "node": ">=22.12.0"

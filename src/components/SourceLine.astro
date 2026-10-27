@@ -1,0 +1,30 @@
+---
+/** The official document behind the data, verification state, last update and the "report a mistake" link. */
+import { reportIssueUrl } from '../lib/curriculum.js';
+import { formatDate, localeOf, localized, translator } from '../i18n/index.js';
+import { site } from '../site.config.js';
+
+interface Props {
+  document?: { data: { title: Record<string, string>; url: string; checkedAt: Date } };
+  verified: boolean;
+  updated?: Date;
+  title: string;
+}
+const { document: doc, verified, updated, title } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const reportUrl = reportIssueUrl(site.repo, { title, page: Astro.url.pathname, prefix: t('source.issuePrefix') });
+---
+<aside class="source-line" aria-label={t('source.label')} data-pagefind-ignore>
+  <p>
+    <strong>{t('source.heading')}</strong>
+    {doc ? <a href={doc.data.url} rel="noopener noreferrer">{localized(doc.data.title, locale)}</a> : t('source.unspecified')}
+    {' '}
+    {verified ? <span class="badge badge-ok">{t('source.verified')}</span> : <span class="badge badge-warn">{t('source.unverified')}</span>}
+  </p>
+  <p class="muted">
+    {updated && <>{t('source.updated', { date: formatDate(updated, locale) })} · </>}
+    {doc && <>{t('source.checked', { date: formatDate(doc.data.checkedAt, locale) })} · </>}
+    <a href={reportUrl} rel="noopener noreferrer">{t('source.report')}</a>
+  </p>
+</aside>

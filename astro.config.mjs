@@ -8,10 +8,10 @@ export default defineConfig({
   output: 'static',
   build: { format: 'directory' },
   devToolbar: { enabled: false },
-  // Konu içeriklerinde kod bloğu yok; Shiki'nin inline stilleri CSP ile çakışır.
+  // Topic content has no code blocks; Shiki's inline styles conflict with the CSP.
   markdown: { syntaxHighlight: false },
   security: {
-    // Astro kendi script/style'larının hash'lerini otomatik ekler.
+    // Astro adds hashes for its own scripts and styles automatically.
     csp: {
       directives: [
         "default-src 'self'",
@@ -22,7 +22,7 @@ export default defineConfig({
         "form-action 'none'",
         "object-src 'none'",
       ],
-      // Pagefind araması WebAssembly derler; 'self' Astro varsayılanını korur.
+      // Pagefind search compiles WebAssembly; 'self' keeps Astro's default.
       scriptDirective: { resources: ["'self'", "'wasm-unsafe-eval'"] },
     },
   },

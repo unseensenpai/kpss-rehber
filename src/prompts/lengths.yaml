@@ -1,0 +1,13 @@
+# Length axis (spec §7). `instruction` replaces {{lengthInstruction}} in templates.
+- id: brief
+  order: 1
+  name: { tr: "Özet" }
+  instruction: { tr: "Kısa tut. Yalnızca en önemli noktaları maddeler hâlinde ver, toplamda bir ekranı geçme." }
+- id: normal
+  order: 2
+  name: { tr: "Normal" }
+  instruction: { tr: "Dengeli bir uzunlukta anlat. Gerekli yerlerde kısa açıklama ve örnek kullan." }
+- id: detailed
+  order: 3
+  name: { tr: "Detaylı" }
+  instruction: { tr: "Ayrıntılı anlat. Her alt başlığı açıklama ve örnekle ele al, sonunda kısa bir tekrar özeti ver." }

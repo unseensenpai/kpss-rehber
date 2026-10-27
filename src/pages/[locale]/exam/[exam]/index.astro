@@ -1,0 +1,90 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import SourceLine from '../../../../components/SourceLine.astro';
+import Countdown from '../../../../components/Countdown.astro';
+import ProgressBar from '../../../../components/ProgressBar.astro';
+import { loadData } from '../../../../lib/data.js';
+import { examDates, examSubjects, examSummary } from '../../../../lib/curriculum.js';
+import { LOCALES, localeOf, localePath, localized, translator } from '../../../../i18n/index.js';
+
+export async function getStaticPaths() {
+  const data = await loadData();
+  return LOCALES.flatMap((locale) => data.exams.map((exam) => ({ params: { locale, exam: exam.id }, props: { exam, data } })));
+}
+
+const { exam, data } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const L = (v: any) => localized(v, locale);
+const name = L(exam.data.name);
+const shortName = L(exam.data.shortName);
+const { source, sessions, description } = exam.data;
+const summary = examSummary(exam);
+const { next, last } = examDates(data.calendar, exam.id);
+const day = next ?? last;
+const doc = data.sources.find((s) => s.id === source.document);
+const subjectHref = (id: string) => localePath(locale, `/exam/${exam.id}/${id}/`);
+const weighted = examSubjects(exam).some(({ subject }) => subject.weight !== undefined);
+---
+<Base title={shortName} description={t('exam.description', { name })} searchable searchTitle={t('exam.searchTitle', { name: shortName })}>
+  <Breadcrumb items={[{ name: shortName }]} />
+  <h1 data-last-exam data-exam-id={exam.id}>{name}</h1>
+  {description && <p>{L(description)}</p>}
+
+  <dl class="summary" data-pagefind-ignore>
+    {summary.optional ? (
+      <div><dt>{t('exam.tests')}</dt><dd>{summary.testCount} <span class="muted">{t('exam.optional')}</span></dd></div>
+    ) : (
+      <>
+        <div><dt>{t('exam.totalQuestions')}</dt><dd>{summary.questions}</dd></div>
+        <div><dt>{t('exam.duration')}</dt><dd>{t('exam.minutes', { n: summary.durationMin })}</dd></div>
+      </>
+    )}
+    {day && <div><dt>{t('exam.examDay')}</dt><dd><Countdown date={day.start} /></dd></div>}
+  </dl>
+
+  {sessions.map((session) => (
+    <section class="session">
+      <h2>{L(session.name)}{session.durationMin && <span class="muted"> · {t('exam.minutes', { n: session.durationMin })}</span>}</h2>
+      {session.singleTestChoice && <p class="muted">{t('exam.singleTest')}</p>}
+      {session.tests.map((test) => {
+        const testName = L(test.name);
+        const table = (
+          <div class="table-wrap"><table>
+            <caption class="visually-hidden">{t('exam.caption', { test: testName })}</caption>
+            <thead><tr><th scope="col">{t('exam.subject')}</th><th scope="col">{t('exam.questions')}</th><th scope="col">{t('exam.weight')}</th><th scope="col">{t('exam.progress')}</th></tr></thead>
+            <tbody>
+              {test.subjects.map((s) => (
+                <tr>
+                  <th scope="row"><a href={subjectHref(s.id)}>{L(s.name)}</a></th>
+                  <td>{s.questionCount}</td>
+                  <td>{s.weight !== undefined ? `%${s.weight}` : '—'}</td>
+                  <td>{s.topics.length ? <ProgressBar topics={s.topics} label={L(s.name)} /> : <span class="muted">—</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table></div>
+        );
+        const info = `${t('exam.testQuestions', { n: test.questionCount })}${test.durationMin ? ` · ${t('exam.minutes', { n: test.durationMin })}` : ''}`;
+        return session.singleTestChoice ? (
+          <details class="test">
+            <summary><span>{testName}</span> <span class="muted">{info}</span></summary>
+            {table}
+          </details>
+        ) : (
+          <div class="test">
+            <h3>{testName} <span class="muted">{info}</span></h3>
+            {table}
+          </div>
+        );
+      })}
+    </section>
+  ))}
+
+  {weighted && <p class="muted note">{t('exam.weightNote')}</p>}
+  <SourceLine document={doc} verified={source.verified} title={shortName} />
+</Base>
+<script>
+  import '../../../../scripts/last-exam.js';
+</script>

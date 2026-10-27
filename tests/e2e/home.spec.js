@@ -1,0 +1,32 @@
+import { expect, test } from '@playwright/test';
+
+test('the root page sends visitors to their language', async ({ page }) => {
+  await page.goto('./');
+  await expect(page).toHaveURL(/\/kpss-rehber\/tr\/$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
+});
+
+test('home page opens with a Turkish heading', async ({ page }) => {
+  await page.goto('./tr/');
+  await expect(page).toHaveTitle(/KPSS Rehber/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Hangi sınava hazırlanıyorsun?');
+});
+
+test('theme toggle switches dark/light and remembers it', async ({ page }) => {
+  await page.goto('./tr/');
+  const html = page.locator('html');
+  const before = await html.getAttribute('data-theme');
+  await page.getByRole('button', { name: /tema/i }).click();
+  const after = await html.getAttribute('data-theme');
+  expect(after).not.toBe(before);
+  await page.reload();
+  await expect(html).toHaveAttribute('data-theme', after);
+});
+
+test('loads without CSP violations', async ({ page }) => {
+  const errors = [];
+  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+  await page.goto('./tr/');
+  await page.getByRole('button', { name: /tema/i }).click();
+  expect(errors).toEqual([]);
+});

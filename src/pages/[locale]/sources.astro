@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import { loadData } from '../../lib/data.js';
+import { formatDate, localeOf, localeParams, localized, translator } from '../../i18n/index.js';
+
+export function getStaticPaths() {
+  return localeParams();
+}
+
+const locale = localeOf(Astro);
+const t = translator(locale);
+const { sources } = await loadData();
+const title = (s: (typeof sources)[number]) => localized(s.data.title, locale);
+const sorted = [...sources].sort((a, b) => b.data.year - a.data.year || title(a).localeCompare(title(b), locale));
+---
+<Base title={t('sources.title')} description={t('sources.description')}>
+  <Breadcrumb items={[{ name: t('sources.title') }]} />
+  <h1>{t('sources.title')}</h1>
+  <p>{t('sources.intro')}</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">{t('sources.document')}</th><th scope="col">{t('sources.kind')}</th><th scope="col">{t('sources.year')}</th><th scope="col">{t('sources.checked')}</th></tr></thead>
+    <tbody>
+      {sorted.map((s) => (
+        <tr>
+          <th scope="row"><a href={s.data.url} rel="noopener noreferrer">{title(s)}</a></th>
+          <td>{t(`sources.kinds.${s.data.kind}`)}</td>
+          <td>{s.data.year}</td>
+          <td>{formatDate(s.data.checkedAt, locale)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table></div>
+</Base>

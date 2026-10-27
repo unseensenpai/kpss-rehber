@@ -1,0 +1,48 @@
+name: Hata bildir
+description: Sitede yanlış bilgi, bozuk bağlantı ya da çalışmayan bir şey bildir.
+title: "[Hata] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Teşekkürler! Sayfadaki "Hata bildir" bağlantısından geldiysen sayfa adresi aşağıda dolu gelir.
+        Lütfen kişisel bilgi (ad, T.C. kimlik no, aday no) paylaşma.
+  # The site's "report a mistake" link prefills this field via ?page=...
+  - type: input
+    id: page
+    attributes:
+      label: Sayfa
+      description: Hatanın olduğu sayfanın adresi
+      placeholder: /kpss-rehber/konu/tarih/osmanli-tarihi/
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Hata türü
+      options:
+        - Yanlış ya da eski bilgi (soru sayısı, süre, tarih, kapsam)
+        - Konu özetinde hata
+        - Prompt beklendiği gibi çalışmıyor
+        - Bozuk bağlantı
+        - Görünüm / erişilebilirlik sorunu
+        - Diğer
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Ne yanlış, doğrusu ne olmalı?
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Kaynak
+      description: Doğrusunu gösteren resmi belge (ÖSYM kılavuzu vb.) bağlantısı
+  - type: input
+    id: browser
+    attributes:
+      label: Tarayıcı ve cihaz
+      placeholder: Chrome, Android

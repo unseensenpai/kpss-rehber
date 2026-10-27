@@ -1,0 +1,72 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import SourceLine from '../../../../components/SourceLine.astro';
+import StateBadge from '../../../../components/StateBadge.astro';
+import ProgressBar from '../../../../components/ProgressBar.astro';
+import { loadData } from '../../../../lib/data.js';
+import { examSubjects, sortByMostAsked, topicAverage } from '../../../../lib/curriculum.js';
+import { LOCALES, localeOf, localePath, localized, translator } from '../../../../i18n/index.js';
+
+export async function getStaticPaths() {
+  const data = await loadData();
+  return LOCALES.flatMap((locale) =>
+    data.exams.flatMap((exam) =>
+      examSubjects(exam).map(({ test, subject }) => ({
+        params: { locale, exam: exam.id, subject: subject.id },
+        props: { exam, test, subject, data },
+      })),
+    ),
+  );
+}
+
+const { exam, test, subject, data } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const L = (v: any) => localized(v, locale);
+const examName = L(exam.data.shortName);
+const subjectName = L(subject.name);
+const localeTopics = data.topics[locale];
+const topics = sortByMostAsked(subject.topics.map((id: string) => localeTopics.find((x: any) => x.id === id)));
+const doc = data.sources.find((s: any) => s.id === exam.data.source.document);
+---
+<Base
+  title={`${subjectName} · ${examName}`}
+  description={t('subject.description', { exam: examName, test: L(test.name), subject: subjectName })}
+  searchable
+  searchTitle={t('subject.searchTitle', { subject: subjectName, exam: examName })}
+>
+  <Breadcrumb items={[{ name: examName, href: localePath(locale, `/exam/${exam.id}/`) }, { name: subjectName }]} />
+  <h1>{subjectName}</h1>
+  <dl class="summary" data-pagefind-ignore>
+    <div><dt>{t('subject.test')}</dt><dd>{L(test.name)}</dd></div>
+    <div><dt>{t('subject.questions')}</dt><dd>{subject.questionCount}{subject.weight !== undefined && <span class="muted"> {t('subject.approx', { weight: subject.weight })}</span>}</dd></div>
+    <div><dt>{t('subject.topicCount')}</dt><dd>{topics.length}</dd></div>
+  </dl>
+  <ProgressBar topics={subject.topics} label={subjectName} />
+
+  {topics.length ? (
+    <section>
+      <h2>{t('subject.topics')}</h2>
+      <ol class="topic-list">
+        {topics.map((topic: any) => {
+          const avg = topicAverage(topic);
+          return (
+            <li>
+              <a href={localePath(locale, `/topic/${topic.id}/`)}>{topic.data.title}</a>
+              <span class="topic-meta">
+                {avg !== null && <span class="muted">{t('subject.average', { n: avg })}</span>}
+                <StateBadge state={topic.data.state} />
+                <span class="status-mark" data-topic-status-mark={topic.id} hidden></span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ) : (
+    <p class="empty">{t('subject.empty')}</p>
+  )}
+
+  <SourceLine document={doc} verified={exam.data.source.verified} title={`${subjectName} (${examName})`} />
+</Base>

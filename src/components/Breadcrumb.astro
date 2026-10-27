@@ -1,0 +1,19 @@
+---
+/** Where the page sits in the curriculum tree: Home › Exam › Subject › Topic. */
+import { localeOf, localePath, translator } from '../i18n/index.js';
+
+interface Props {
+  items: { name: string; href?: string }[];
+}
+const { items } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+---
+<nav aria-label={t('breadcrumb.label')} class="breadcrumb" data-pagefind-ignore>
+  <ol>
+    <li><a href={localePath(locale, '/')}>{t('breadcrumb.home')}</a></li>
+    {items.map((i) => (
+      <li>{i.href ? <a href={i.href}>{i.name}</a> : <span aria-current="page">{i.name}</span>}</li>
+    ))}
+  </ol>
+</nav>

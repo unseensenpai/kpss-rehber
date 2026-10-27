@@ -1,0 +1,115 @@
+---
+/**
+ * Ready-made prompt cards (spec §7). One topic on a topic page; exam/topic choice in
+ * the prompt library. The build renders text filled with default settings (readable
+ * without JS); prompt-panel.js refills it from the profile.
+ */
+import { panelData } from '../lib/prompt-panel-data.js';
+import { fillPrompt, promptValues, splitStudentFields } from '../lib/prompt.js';
+import { DEFAULTS, FEEDBACK } from '../lib/adaptation.js';
+import { PROVIDERS } from '../lib/providers.js';
+import { localeOf, translator } from '../i18n/index.js';
+
+interface Props {
+  data: any;
+  topics: any[];
+  library?: boolean;
+}
+const { data, topics, library = false } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const panel = panelData(data, topics, locale);
+const topicById = (id: string) => panel.topics.find((x) => x.id === id)!;
+// The library starts with the first exam's first topic.
+const firstExam = library ? panel.exams[0] : null;
+const firstTopic = firstExam ? topicById(firstExam.subjects[0].topics[0]) : panel.topics[0];
+const context = firstExam ? firstTopic.contexts.find((c) => c.examId === firstExam.id)! : firstTopic.contexts[0];
+const level = panel.levels.find((l) => l.level === DEFAULTS.level)!;
+const length = panel.lengths.find((l) => l.id === DEFAULTS.length)!;
+const values = promptValues({
+  exam: context.exam,
+  subject: context.subject,
+  topic: firstTopic,
+  level,
+  length,
+  fallbacks: t('panel.fallbacks'),
+});
+---
+<section class="prompt-panel" data-pagefind-ignore data-prompt-panel data-panel={JSON.stringify(panel)} data-library={library ? '' : undefined} aria-labelledby="prompt-heading">
+  <h2 id="prompt-heading">{library ? t('panel.headingLibrary') : t('panel.headingTopic')}</h2>
+  <p class="muted">
+    {t('panel.intro')} <mark class="student-field">{t('panel.fieldExample')}</mark> {t('panel.fieldHint')}
+  </p>
+
+  <div class="settings">
+    {library && (
+      <>
+        <label>{t('panel.exam')}
+          <select data-exam-select>
+            {panel.exams.map((e) => <option value={e.id} selected={e.id === context.examId}>{e.shortName}</option>)}
+          </select>
+        </label>
+        <label>{t('panel.topic')}
+          <select data-topic-select>
+            {firstExam!.subjects.map((s) => (
+              <optgroup label={s.name}>{s.topics.map((id) => <option value={id}>{topicById(id).title}</option>)}</optgroup>
+            ))}
+          </select>
+        </label>
+      </>
+    )}
+    <label hidden={library || firstTopic.contexts.length < 2}>{t('panel.context')}
+      <select data-context>
+        {firstTopic.contexts.map((c, i) => <option value={i}>{c.shortName} · {c.subject}</option>)}
+      </select>
+    </label>
+    <label>{t('panel.level')}
+      <select data-level>
+        {panel.levels.map((l) => <option value={l.level} selected={l.level === level.level}>{l.level} · {l.name}</option>)}
+      </select>
+    </label>
+    <label>{t('panel.length')}
+      <select data-length>
+        {panel.lengths.map((l) => <option value={l.id} selected={l.id === length.id}>{l.name}</option>)}
+      </select>
+    </label>
+  </div>
+  <p class="warning" data-save-warning hidden>{t('panel.storageWarning')}</p>
+
+  <ul class="prompt-cards">
+    {panel.templates.map((tpl) => {
+      const visible = firstTopic.templates.includes(tpl.id);
+      const text = visible ? fillPrompt(tpl.text, values) : '';
+      return (
+        <li class="prompt-card" data-template={tpl.id} hidden={!visible}>
+          <h3>{tpl.title}</h3>
+          <p class="muted">{tpl.description}</p>
+          <details>
+            <summary>{t('panel.show')}</summary>
+            <pre data-preview>{splitStudentFields(text).map((p) => (p.field ? <mark class="student-field">{p.text}</mark> : p.text))}</pre>
+          </details>
+          <div class="buttons">
+            <button type="button" class="button" data-copy>{t('panel.copy')}</button>
+            {Object.keys(PROVIDERS).map((id) => (
+              <button type="button" class="button" data-open={id}>{t(`panel.open.${id}`)}</button>
+            ))}
+          </div>
+          <p class="muted notice" aria-live="polite" data-notice></p>
+        </li>
+      );
+    })}
+  </ul>
+
+  <div class="feedback">
+    <p><strong>{t('panel.feedbackQuestion')}</strong> <span class="muted">{t('panel.feedbackHint')}</span></p>
+    <div class="buttons">
+      {Object.keys(FEEDBACK).map((type) => (
+        <button type="button" class="button" data-feedback={type}>{t(`panel.feedback.${type}`)}</button>
+      ))}
+    </div>
+    <p class="muted" aria-live="polite" data-adapt-message></p>
+  </div>
+</section>
+<script>
+  import '../scripts/prompt-panel.js';
+</script>

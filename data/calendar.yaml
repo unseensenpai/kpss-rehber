@@ -1,0 +1,24 @@
+# 2026 application and exam dates. Each entry is taken from the first page of the guide in `document`.
+- { id: lisans-gygk-application, exam: lisans-gygk, kind: application, start: 2026-07-01, end: 2026-07-13, document: kpss-lisans-2026 }
+- { id: lisans-gygk-late-application, exam: lisans-gygk, kind: late-application, start: 2026-07-22, end: 2026-07-23, document: kpss-lisans-2026 }
+- { id: lisans-gygk-exam, exam: lisans-gygk, kind: exam, start: 2026-09-06, time: "10:15", document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-application, exam: lisans-alan-bilgisi, kind: application, start: 2026-07-01, end: 2026-07-13, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-late-application, exam: lisans-alan-bilgisi, kind: late-application, start: 2026-07-22, end: 2026-07-23, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-1, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "10:15", note: { tr: "1. oturum: Kamu Yönetimi, Uluslararası İlişkiler, Çalışma Ekonomisi ve Endüstri İlişkileri" }, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-2, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "14:45", note: { tr: "2. oturum: Hukuk, İktisat, Maliye" }, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-3, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-13, time: "10:15", note: { tr: "3. oturum: İşletme, Muhasebe, İstatistik" }, document: kpss-lisans-2026 }
+- { id: onlisans-gygk-application, exam: onlisans-gygk, kind: application, start: 2026-07-29, end: 2026-08-10, document: kpss-onlisans-2026 }
+- { id: onlisans-gygk-late-application, exam: onlisans-gygk, kind: late-application, start: 2026-08-19, end: 2026-08-20, document: kpss-onlisans-2026 }
+- { id: onlisans-gygk-exam, exam: onlisans-gygk, kind: exam, start: 2026-10-04, time: "10:15", document: kpss-onlisans-2026 }
+- { id: ortaogretim-gygk-application, exam: ortaogretim-gygk, kind: application, start: 2026-08-27, end: 2026-09-08, document: kpss-ortaogretim-2026 }
+- { id: ortaogretim-gygk-late-application, exam: ortaogretim-gygk, kind: late-application, start: 2026-09-15, end: 2026-09-16, document: kpss-ortaogretim-2026 }
+- { id: ortaogretim-gygk-exam, exam: ortaogretim-gygk, kind: exam, start: 2026-10-25, time: "10:15", document: kpss-ortaogretim-2026 }
+- { id: dhbt-application, exam: dhbt, kind: application, start: 2026-09-22, end: 2026-09-30, document: kpss-lisans-2026 }
+- { id: dhbt-late-application, exam: dhbt, kind: late-application, start: 2026-10-05, document: kpss-lisans-2026 }
+- { id: dhbt-exam, exam: dhbt, kind: exam, start: 2026-11-01, time: "10:15", document: kpss-lisans-2026 }
+- { id: meb-ags-application, exam: meb-ags, kind: application, start: 2026-05-08, end: 2026-05-20, document: meb-ags-2026 }
+- { id: meb-ags-late-application, exam: meb-ags, kind: late-application, start: 2026-06-03, end: 2026-06-05, document: meb-ags-2026 }
+- { id: meb-ags-exam, exam: meb-ags, kind: exam, start: 2026-07-26, time: "10:15", document: meb-ags-2026 }
+- { id: meb-oabt-application, exam: meb-oabt, kind: application, start: 2026-05-08, end: 2026-05-20, document: meb-ags-2026 }
+- { id: meb-oabt-late-application, exam: meb-oabt, kind: late-application, start: 2026-06-03, end: 2026-06-05, document: meb-ags-2026 }
+- { id: meb-oabt-exam, exam: meb-oabt, kind: exam, start: 2026-07-26, time: "14:45", document: meb-ags-2026 }

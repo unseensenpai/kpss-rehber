@@ -1,7 +1,7 @@
-/** Site geneli ayarlar (spec §3). */
+/** Site-wide settings (spec §3). */
 export const site = {
-  ad: 'KPSS Rehber',
+  name: 'KPSS Rehber',
   repo: 'unseensenpai/kpss-rehber',
-  // Doluysa altbilgide bağış bağlantısı görünür; boşsa hiçbir şey gösterilmez.
-  bagis: '',
+  // When set, a donation link shows in the footer; when empty, nothing shows.
+  donation: '',
 };

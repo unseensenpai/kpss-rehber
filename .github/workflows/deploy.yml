@@ -1,4 +1,4 @@
-name: Yayınla
+name: Deploy
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
       - run: npm run test:e2e
         env:
           CI: 'true'
-      # Ücretsiz planda Pages yalnızca public repoda çalışır; private iken yalnızca testler koşar.
+      # On the free plan Pages only works for public repos; while private, only the tests run.
       - if: ${{ !github.event.repository.private }}
         uses: actions/configure-pages@v6
       - if: ${{ !github.event.repository.private }}

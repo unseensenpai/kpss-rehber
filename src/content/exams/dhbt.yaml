@@ -1,0 +1,25 @@
+# Structure: kpss-lisans-2026 guide, "KPSS ve DHBT'ye katılacak adaylar için açıklamalar".
+# DHBT-1 is shared by all education levels; DHBT-2 follows a separate curriculum per level.
+name: { tr: "Din Hizmetleri Alan Bilgisi Testi (DHBT)" }
+shortName: { tr: "DHBT" }
+group: KPSS
+order: 5
+description: { tr: "Aday, KPSS'ye girdiği öğrenim düzeyinde DHBT'ye girer." }
+source:
+  document: kpss-lisans-2026
+  verified: true
+sessions:
+  - name: { tr: "DHBT" }
+    durationMin: 60
+    tests:
+      - name: { tr: "Alan Bilgisi Testi" }
+        questionCount: 40
+        subjects:
+          - id: temel-din-bilgisi
+            name: { tr: "DHBT-1: Temel Din Bilgisi" }
+            questionCount: 20
+            topics: [temel-din-bilgisi/islam-inanc-esaslari, temel-din-bilgisi/islam-ibadet-esaslari, temel-din-bilgisi/kuran-bilgisi, temel-din-bilgisi/siyer, temel-din-bilgisi/islam-ahlaki]
+          - id: din-hizmetleri-alan
+            name: { tr: "DHBT-2: Öğrenim Düzeyine Göre Alan Bilgisi" }
+            questionCount: 20
+            topics: [din-hizmetleri-alan/tefsir, din-hizmetleri-alan/fikih, din-hizmetleri-alan/hadis, din-hizmetleri-alan/akaid-kelam, din-hizmetleri-alan/islam-tarihi, din-hizmetleri-alan/dinler-mezhepler-tarihi, din-hizmetleri-alan/dini-hitabet]

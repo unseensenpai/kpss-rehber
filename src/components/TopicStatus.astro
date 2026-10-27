@@ -1,0 +1,29 @@
+---
+/** A topic's study status and personal note; written only to the browser profile. */
+import { NOTE_LIMIT, STATUSES } from '../lib/profile-data.js';
+import { localeOf, translator } from '../i18n/index.js';
+
+interface Props {
+  topicId: string;
+}
+const { topicId } = Astro.props;
+const t = translator(localeOf(Astro));
+---
+<section class="topic-status" data-topic-status={topicId} data-pagefind-ignore aria-labelledby="status-heading">
+  <h2 id="status-heading">{t('topicStatus.heading')}</h2>
+  <fieldset>
+    <legend class="visually-hidden">{t('topicStatus.legend')}</legend>
+    <label><input type="radio" name="status" value="" checked /> {t('status.notStarted')}</label>
+    {STATUSES.map((s) => (
+      <label><input type="radio" name="status" value={s} /> {t(`status.${s}`)}</label>
+    ))}
+  </fieldset>
+  <label class="field">
+    <span>{t('topicStatus.note')} <span class="muted">{t('topicStatus.noteHint')}</span></span>
+    <textarea data-note maxlength={NOTE_LIMIT} rows="3" placeholder={t('topicStatus.notePlaceholder')}></textarea>
+  </label>
+  <p class="muted" aria-live="polite" data-status-message></p>
+</section>
+<script>
+  import '../scripts/topic-status.js';
+</script>

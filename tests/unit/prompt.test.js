@@ -1,185 +1,176 @@
 import { describe, expect, it } from 'vitest';
-import {
-  konuSablonlari,
-  ogrenciAlanlariniAyir,
-  promptDegerleri,
-  promptDoldur,
-  sablonDegiskenleri,
-} from '../../src/lib/prompt-doldur.js';
-import { baslangicAyari, geriBildirimUygula } from '../../src/lib/uyarlama.js';
-import { disAcUrl, EN_UZUN_URL_METNI } from '../../src/lib/dis-ac.js';
-import { promptHatalari } from '../../src/lib/dogrula.js';
+import { fillPrompt, promptValues, splitStudentFields, templateVariables, topicTemplates } from '../../src/lib/prompt.js';
+import { applyFeedback, initialSettings } from '../../src/lib/adaptation.js';
+import { MAX_URL_TEXT, providerUrl } from '../../src/lib/providers.js';
+import { promptErrors } from '../../src/lib/validate.js';
 
-describe('promptDoldur', () => {
-  it('değişkenleri yerleştirir, boşlukları tolere eder', () => {
-    expect(promptDoldur('Konu: {{konu}} / {{ ders }}', { konu: 'Paragraf', ders: 'Türkçe' })).toBe(
-      'Konu: Paragraf / Türkçe',
-    );
+const fallbacks = { subtopics: 'all subtopics', keyConcepts: 'core concepts', questionStyle: 'typical style', preferencesPrefix: 'Preferences:' };
+
+describe('fillPrompt', () => {
+  it('fills variables and tolerates inner spaces', () => {
+    expect(fillPrompt('Topic: {{topic}} / {{ subject }}', { topic: 'Paragraf', subject: 'Türkçe' })).toBe('Topic: Paragraf / Türkçe');
   });
-  it('eksik değişkende hata fırlatır', () => {
-    expect(() => promptDoldur('{{konu}} {{seviyeAdi}}', { konu: 'x' })).toThrow(/seviyeAdi/);
+  it('throws on a missing variable', () => {
+    expect(() => fillPrompt('{{topic}} {{levelName}}', { topic: 'x' })).toThrow(/levelName/);
   });
-  it('boş değer geçerli; geride kalan boş satırlar teke iner', () => {
-    expect(promptDoldur('A\n{{tercihler}}\n\nB', { tercihler: '' })).toBe('A\n\nB');
+  it('an empty value is valid; blank lines left behind collapse', () => {
+    expect(fillPrompt('A\n{{preferences}}\n\nB', { preferences: '' })).toBe('A\n\nB');
   });
-  it('sablonDegiskenleri tekrarsız liste verir', () => {
-    expect(sablonDegiskenleri('{{a}} {{b}} {{a}}')).toEqual(['a', 'b']);
+  it('templateVariables lists unique names', () => {
+    expect(templateVariables('{{a}} {{b}} {{a}}')).toEqual(['a', 'b']);
   });
 });
 
-describe('promptDegerleri', () => {
-  const seviye = { ad: 'Orta', talimat: 'orta talimat' };
-  const uzunluk = { talimat: 'normal talimat' };
-  it('iskelet konuda boş alanlar için genel yönerge koyar', () => {
-    const d = promptDegerleri({ sinav: 'S', ders: 'D', konu: { baslik: 'K', altBasliklar: [] }, seviye, uzunluk });
-    expect(d.altBasliklar).toMatch(/tüm alt başlıklar/);
-    expect(d.soruTipi).toMatch(/tipik soru/);
-    expect(d.tercihler).toBe('');
+describe('promptValues', () => {
+  const level = { name: 'Orta', instruction: 'medium' };
+  const length = { instruction: 'normal' };
+  it('uses fallbacks for a skeleton topic', () => {
+    const v = promptValues({ exam: 'S', subject: 'D', topic: { title: 'K', subtopics: [] }, level, length, fallbacks });
+    expect(v).toMatchObject({ subtopics: 'all subtopics', questionStyle: 'typical style', preferences: '' });
   });
-  it('listeleri virgülle birleştirir, tercihleri cümleye çevirir', () => {
-    const d = promptDegerleri({
-      sinav: 'S',
-      ders: 'D',
-      konu: { baslik: 'K', altBasliklar: ['a', 'b'], anahtarKavramlar: ['x'], soruTipi: 'tip' },
-      seviye,
-      uzunluk,
-      tercihler: 'tablo kullan',
+  it('joins lists and prefixes preferences', () => {
+    const v = promptValues({
+      exam: 'S',
+      subject: 'D',
+      topic: { title: 'K', subtopics: ['a', 'b'], keyConcepts: ['x'], questionStyle: 'style' },
+      level,
+      length,
+      preferences: 'use tables',
+      fallbacks,
     });
-    expect(d).toMatchObject({ altBasliklar: 'a, b', anahtarKavramlar: 'x', soruTipi: 'tip' });
-    expect(d.tercihler).toBe('Öğrencinin tercihleri: tablo kullan');
+    expect(v).toMatchObject({ subtopics: 'a, b', keyConcepts: 'x', questionStyle: 'style', preferences: 'Preferences: use tables' });
   });
 });
 
-describe('ogrenciAlanlariniAyir', () => {
-  it('[BÜYÜK HARF] alanlarını ayırır', () => {
-    const p = ogrenciAlanlariniAyir('Soru: [SORUYU BURAYA YAPIŞTIR] ve [DOĞRU CEVAP].');
-    expect(p.filter((x) => x.alan).map((x) => x.metin)).toEqual(['[SORUYU BURAYA YAPIŞTIR]', '[DOĞRU CEVAP]']);
-    expect(p.map((x) => x.metin).join('')).toBe('Soru: [SORUYU BURAYA YAPIŞTIR] ve [DOĞRU CEVAP].');
+describe('splitStudentFields', () => {
+  it('splits out [UPPER CASE] fields, Turkish letters included', () => {
+    const parts = splitStudentFields('Soru: [SORUYU BURAYA YAPIŞTIR] ve [DOĞRU CEVAP].');
+    expect(parts.filter((p) => p.field).map((p) => p.text)).toEqual(['[SORUYU BURAYA YAPIŞTIR]', '[DOĞRU CEVAP]']);
+    expect(parts.map((p) => p.text).join('')).toBe('Soru: [SORUYU BURAYA YAPIŞTIR] ve [DOĞRU CEVAP].');
   });
-  it('küçük harfli köşeli parantezi alan saymaz', () => {
-    expect(ogrenciAlanlariniAyir('dizi[0] ve [not]').some((x) => x.alan)).toBe(false);
-  });
-});
-
-describe('konuSablonlari', () => {
-  const s = (id, ozel = false) => ({ id, data: { ozel } });
-  const sablonlar = [s('konu-anlat'), s('guncel-olaylar', true)];
-  it('özel şablonu yalnızca ekPromptlar listesindeki konuda gösterir', () => {
-    expect(konuSablonlari(sablonlar, { data: {} }).map((x) => x.id)).toEqual(['konu-anlat']);
-    expect(konuSablonlari(sablonlar, { data: { ekPromptlar: ['guncel-olaylar'] } })).toHaveLength(2);
+  it('ignores lower-case and numeric brackets', () => {
+    expect(splitStudentFields('arr[0] and [note]').some((p) => p.field)).toBe(false);
   });
 });
 
-describe('geriBildirimUygula', () => {
-  const t = '2026-10-27T00:00:00Z';
-  const durum = (ek = {}) => ({ seviye: 3, uzunluk: 'normal', geriBildirim: [], ...ek });
-
-  it('çok zor → seviye −1, çok basit → +1, tam kararında değiştirmez', () => {
-    expect(geriBildirimUygula(durum(), 'cok-zor', t).seviye).toBe(2);
-    expect(geriBildirimUygula(durum(), 'cok-basit', t).seviye).toBe(4);
-    expect(geriBildirimUygula(durum(), 'tam', t)).toMatchObject({ seviye: 3, uzunluk: 'normal' });
-  });
-  it('uzunluk ekseni bağımsızdır', () => {
-    expect(geriBildirimUygula(durum(), 'cok-uzun', t)).toMatchObject({ seviye: 3, uzunluk: 'ozet' });
-    expect(geriBildirimUygula(durum(), 'daha-detay', t).uzunluk).toBe('detayli');
-  });
-  it('aynı yönde art arda ikinci geri bildirim bir kademe daha kaydırır', () => {
-    const bir = geriBildirimUygula(durum({ seviye: 5 }), 'cok-zor', t);
-    expect(bir.seviye).toBe(4);
-    const iki = geriBildirimUygula(bir, 'cok-zor', t);
-    expect(iki.seviye).toBe(2);
-  });
-  it('araya başka geri bildirim girerse kademe sıfırlanır', () => {
-    let d = geriBildirimUygula(durum({ seviye: 5 }), 'cok-zor', t);
-    d = geriBildirimUygula(d, 'tam', t);
-    expect(geriBildirimUygula(d, 'cok-zor', t).seviye).toBe(3);
-  });
-  it('sınırları aşmaz', () => {
-    expect(geriBildirimUygula(durum({ seviye: 1 }), 'cok-zor', t).seviye).toBe(1);
-    const iki = geriBildirimUygula(durum({ uzunluk: 'detayli', geriBildirim: [{ tur: 'daha-detay' }] }), 'daha-detay', t);
-    expect(iki.uzunluk).toBe('detayli');
-  });
-  it('geçmişi en fazla 10 kayıt tutar', () => {
-    const gecmis = Array.from({ length: 10 }, () => ({ tur: 'tam', tarih: t }));
-    const d = geriBildirimUygula(durum({ geriBildirim: gecmis }), 'cok-basit', t);
-    expect(d.geriBildirim).toHaveLength(10);
-    expect(d.geriBildirim.at(-1).tur).toBe('cok-basit');
-  });
-  it('bilinmeyen türde hata verir', () => {
-    expect(() => geriBildirimUygula(durum(), 'harika', t)).toThrow();
+describe('topicTemplates', () => {
+  const t = (id, special = false) => ({ id, data: { special } });
+  const templates = [t('explain-topic'), t('current-events', true)];
+  it('shows a special template only on topics listing it in extraPrompts', () => {
+    expect(topicTemplates(templates, { data: {} }).map((x) => x.id)).toEqual(['explain-topic']);
+    expect(topicTemplates(templates, { data: { extraPrompts: ['current-events'] } })).toHaveLength(2);
   });
 });
 
-describe('baslangicAyari', () => {
-  it('veri yoksa 3 / normal', () => {
-    expect(baslangicAyari(['tarih/a'], {})).toEqual({ seviye: 3, uzunluk: 'normal' });
+describe('applyFeedback', () => {
+  const at = '2026-10-27T00:00:00Z';
+  const state = (extra = {}) => ({ level: 3, length: 'normal', feedback: [], ...extra });
+
+  it('too hard → level −1, too easy → +1, just right changes nothing', () => {
+    expect(applyFeedback(state(), 'too-hard', at).level).toBe(2);
+    expect(applyFeedback(state(), 'too-easy', at).level).toBe(4);
+    expect(applyFeedback(state(), 'just-right', at)).toMatchObject({ level: 3, length: 'normal' });
   });
-  it('aynı dersteki konuların ortalaması (yuvarlanmış)', () => {
-    const profil = {
-      'tarih/a': { seviye: 4, uzunluk: 'detayli' },
-      'tarih/b': { seviye: 5, uzunluk: 'detayli' },
-      'cografya/c': { seviye: 1, uzunluk: 'ozet' },
+  it('the length axis is independent', () => {
+    expect(applyFeedback(state(), 'too-long', at)).toMatchObject({ level: 3, length: 'brief' });
+    expect(applyFeedback(state(), 'more-detail', at).length).toBe('detailed');
+  });
+  it('the same feedback twice in a row moves one extra step', () => {
+    const one = applyFeedback(state({ level: 5 }), 'too-hard', at);
+    expect(one.level).toBe(4);
+    expect(applyFeedback(one, 'too-hard', at).level).toBe(2);
+  });
+  it('other feedback in between resets the streak', () => {
+    let s = applyFeedback(state({ level: 5 }), 'too-hard', at);
+    s = applyFeedback(s, 'just-right', at);
+    expect(applyFeedback(s, 'too-hard', at).level).toBe(3);
+  });
+  it('stays within bounds', () => {
+    expect(applyFeedback(state({ level: 1 }), 'too-hard', at).level).toBe(1);
+    const s = applyFeedback(state({ length: 'detailed', feedback: [{ type: 'more-detail' }] }), 'more-detail', at);
+    expect(s.length).toBe('detailed');
+  });
+  it('keeps at most 10 history entries', () => {
+    const history = Array.from({ length: 10 }, () => ({ type: 'just-right', at }));
+    const s = applyFeedback(state({ feedback: history }), 'too-easy', at);
+    expect(s.feedback).toHaveLength(10);
+    expect(s.feedback.at(-1).type).toBe('too-easy');
+  });
+  it('throws on an unknown type', () => {
+    expect(() => applyFeedback(state(), 'great', at)).toThrow();
+  });
+});
+
+describe('initialSettings', () => {
+  it('3 / normal without data', () => {
+    expect(initialSettings(['tarih/a'], {})).toEqual({ level: 3, length: 'normal' });
+  });
+  it('rounded average of topics in the same subject', () => {
+    const profile = {
+      'tarih/a': { level: 4, length: 'detailed' },
+      'tarih/b': { level: 5, length: 'detailed' },
+      'cografya/c': { level: 1, length: 'brief' },
     };
-    expect(baslangicAyari(['tarih/a', 'tarih/b', 'tarih/yeni'], profil)).toEqual({ seviye: 5, uzunluk: 'detayli' });
+    expect(initialSettings(['tarih/a', 'tarih/b', 'tarih/new'], profile)).toEqual({ level: 5, length: 'detailed' });
   });
 });
 
-describe('disAcUrl', () => {
-  it('ChatGPT için ?prompt=, Claude için ?q= ile kodlanmış metin', () => {
-    const metin = 'Konu: Osmanlı & Türk "tarihi"\nyeni satır';
-    const c = new URL(disAcUrl('chatgpt', metin));
+describe('providerUrl', () => {
+  it('ChatGPT uses ?prompt=, Claude uses ?q=, with encoded text', () => {
+    const text = 'Konu: Osmanlı & Türk "tarihi"\nnew line';
+    const c = new URL(providerUrl('chatgpt', text));
     expect(c.origin + c.pathname).toBe('https://chatgpt.com/');
-    expect(c.searchParams.get('prompt')).toBe(metin);
+    expect(c.searchParams.get('prompt')).toBe(text);
     expect(c.searchParams.has('q')).toBe(false);
-    const k = new URL(disAcUrl('claude', metin));
+    const k = new URL(providerUrl('claude', text));
     expect(k.origin + k.pathname).toBe('https://claude.ai/new');
-    expect(k.searchParams.get('q')).toBe(metin);
+    expect(k.searchParams.get('q')).toBe(text);
   });
-  it('çok uzun metinde yalnızca siteyi açar', () => {
-    expect(disAcUrl('claude', 'x'.repeat(EN_UZUN_URL_METNI + 1))).toBe('https://claude.ai/new');
+  it('opens just the site for very long text', () => {
+    expect(providerUrl('claude', 'x'.repeat(MAX_URL_TEXT + 1))).toBe('https://claude.ai/new');
   });
-  it('bilinmeyen sağlayıcıda hata verir', () => {
-    expect(() => disAcUrl('baska', 'x')).toThrow();
+  it('throws on an unknown provider', () => {
+    expect(() => providerUrl('other', 'x')).toThrow();
   });
 });
 
-describe('promptHatalari', () => {
-  const seviyeler = [1, 2, 3, 4, 5].map((n) => ({ id: `s${n}`, data: { seviye: n, ad: `S${n}`, talimat: 't' } }));
-  const uzunluklar = ['ozet', 'normal', 'detayli'].map((id) => ({ id, data: { talimat: 't' } }));
-  const sinavlar = [
+describe('promptErrors', () => {
+  const levels = [1, 2, 3, 4, 5].map((n) => ({ id: `l${n}`, data: { level: n, name: { tr: `L${n}` }, instruction: { tr: 'i' } } }));
+  const lengths = ['brief', 'normal', 'detailed'].map((id) => ({ id, data: { name: { tr: id }, instruction: { tr: 'i' } } }));
+  const exams = [
     {
-      id: 'ornek',
+      id: 'sample',
       data: {
-        ad: 'Örnek',
-        oturumlar: [{ testler: [{ ad: 'GK', dersler: [{ ders: 'tarih', ad: 'Tarih', konular: ['tarih/a'] }] }] }],
+        name: { tr: 'Örnek' },
+        sessions: [{ tests: [{ name: { tr: 'GK' }, subjects: [{ id: 'tarih', name: { tr: 'Tarih' }, topics: ['tarih/a'] }] }] }],
       },
     },
   ];
-  const konu = (ek = {}) => ({ id: 'tarih/a', data: { baslik: 'A', altBasliklar: [], anahtarKavramlar: [], ...ek } });
-  const sablon = (id, body, ozel = false) => ({ id, body, data: { ozel } });
-  const tum = (ek) => ({ seviyeler, uzunluklar, sinavlar, konular: [konu()], ...ek });
+  const topic = (extra = {}) => ({ id: 'tarih/a', data: { title: 'A', subtopics: [], keyConcepts: [], ...extra } });
+  const template = (id, body, special = false) => ({ id, body, data: { special } });
+  const all = (extra) => ({ levels, lengths, exams, topics: [topic()], locale: 'tr', ...extra });
 
-  it('geçerli şablonlarda hata yok', () => {
-    expect(promptHatalari(tum({ sablonlar: [sablon('a', '{{konu}} {{seviyeAdi}} {{tercihler}}')] }))).toEqual([]);
+  it('no errors for valid templates', () => {
+    expect(promptErrors(all({ templates: [template('a', '{{topic}} {{levelName}} {{preferences}}')] }))).toEqual([]);
   });
-  it('bilinmeyen değişkeni yakalar', () => {
-    expect(promptHatalari(tum({ sablonlar: [sablon('a', '{{konu}} {{puan}}')] }))[0]).toMatch(/bilinmeyen değişken puan/);
+  it('catches an unknown variable', () => {
+    expect(promptErrors(all({ templates: [template('a', '{{topic}} {{score}}')] }))[0]).toMatch(/unknown variable score/);
   });
-  it('kapanmamış süslü parantezi şablon başına bir kez yakalar', () => {
-    expect(promptHatalari(tum({ sablonlar: [sablon('a', '{{konu}} {{eksik')] }))).toEqual([
-      "şablon 'a': kapanmamış ya da hatalı {{…}} işareti",
+  it('reports an unclosed brace once per template', () => {
+    expect(promptErrors(all({ templates: [template('a', '{{topic}} {{missing')] }))).toEqual([
+      "template 'tr/a': unclosed or malformed {{…}} marker",
     ]);
   });
-  it('içi boşluklu değişkeni geçerli sayar', () => {
-    expect(promptHatalari(tum({ sablonlar: [sablon('a', '{{ konu }} {{ seviyeAdi }}')] }))).toEqual([]);
+  it('accepts variables with inner spaces', () => {
+    expect(promptErrors(all({ templates: [template('a', '{{ topic }} {{ levelName }}')] }))).toEqual([]);
   });
-  it('olmayan ya da özel olmayan ek promptu yakalar', () => {
-    const h = promptHatalari(tum({ sablonlar: [sablon('a', '{{konu}}')], konular: [konu({ ekPromptlar: ['a', 'yok'] })] }));
-    expect(h).toHaveLength(2);
+  it('catches a missing or non-special extra prompt', () => {
+    const errors = promptErrors(all({ templates: [template('a', '{{topic}}')], topics: [topic({ extraPrompts: ['a', 'none'] })] }));
+    expect(errors).toHaveLength(2);
   });
-  it('eksik seviye ya da uzunluğu yakalar', () => {
-    const h = promptHatalari(tum({ sablonlar: [sablon('a', '{{konu}}')], seviyeler: seviyeler.slice(1), uzunluklar: uzunluklar.slice(1) }));
-    expect(h.join('\n')).toMatch(/seviyeler 1–5/);
-    expect(h.join('\n')).toMatch(/uzunluklar/);
+  it('catches missing levels or lengths', () => {
+    const errors = promptErrors(all({ templates: [template('a', '{{topic}}')], levels: levels.slice(1), lengths: lengths.slice(1) }));
+    expect(errors.join('\n')).toMatch(/levels must be 1–5/);
+    expect(errors.join('\n')).toMatch(/lengths must be/);
   });
 });

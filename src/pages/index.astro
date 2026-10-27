@@ -1,52 +1,48 @@
 ---
-import Taban from '../layouts/Taban.astro';
-import Arama from '../components/Arama.astro';
-import GeriSayim from '../components/GeriSayim.astro';
-import Ilerleme from '../components/Ilerleme.astro';
-import { veri } from '../lib/veri.js';
-import { sinavDersleri, sinavOzeti, sinavTarihleri } from '../lib/mufredat.js';
-import { yol } from '../lib/yol.js';
+/**
+ * Root page: sends visitors to their language. With JS, it uses the remembered
+ * language or the browser's preference; without JS, it shows the language links.
+ */
+import '../styles/global.css';
+import { withBase } from '../lib/path.js';
+import { DEFAULT_LOCALE, LANGUAGE_NAMES, LOCALES, localePath, translator } from '../i18n/index.js';
+import { site } from '../site.config.js';
 
-// Build sırasında tutarlılık kontrolü de buradan geçer.
-const { sinavlar, takvim } = await veri();
-const GRUPLAR = [
-  { ad: 'KPSS', aciklama: 'Kamu Personel Seçme Sınavı' },
-  { ad: 'MEB-AGS', aciklama: 'Öğretmen adayları: Akademi Giriş Sınavı ve ÖABT' },
-];
-const grupSinavlari = (grup: string) =>
-  sinavlar.filter((s) => s.data.grup === grup).sort((a, b) => a.data.sira - b.data.sira);
+const t = translator(DEFAULT_LOCALE);
 ---
-<Taban>
-  <h1>Hangi sınava hazırlanıyorsun?</h1>
-  <p class="devam" data-devam hidden>Kaldığın yer: <a href={yol('/')}>—</a></p>
-  <Arama />
-
-  {GRUPLAR.map((g) => (
-    <section class="grup">
-      <h2>{g.ad} <span class="soluk">{g.aciklama}</span></h2>
-      <ul class="kartlar">
-        {grupSinavlari(g.ad).map((s) => {
-          const ozet = sinavOzeti(s);
-          const { siradaki, son } = sinavTarihleri(takvim, s.id);
-          const gun = siradaki ?? son;
-          return (
-            <li class="kart">
-              <a href={yol(`/sinav/${s.id}/`)} data-sinav-kart={s.id} data-kisa-ad={s.data.kisaAd}>
-                <strong>{s.data.kisaAd}</strong>
-                <span>{s.data.ad}</span>
-              </a>
-              <span class="soluk">
-                {ozet.secmeli ? `${ozet.testSayisi} test · oturum seçmeli` : `${ozet.soru} soru · ${ozet.sureDk} dk`}
-              </span>
-              {gun && <span class="soluk">Sınav: <GeriSayim tarih={gun.baslangic} /></span>}
-              <Ilerleme konular={[...new Set(sinavDersleri(s).flatMap(({ ders }) => ders.konular))]} etiket={s.data.kisaAd} />
-            </li>
-          );
-        })}
+<!doctype html>
+<html lang={DEFAULT_LOCALE} data-locales={JSON.stringify(LOCALES)} data-default-locale={DEFAULT_LOCALE} data-base={withBase('/')}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{site.name}</title>
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {LOCALES.map((l) => <link rel="alternate" hreflang={l} href={localePath(l, '/')} />)}
+    <script is:inline>
+      (function () {
+        var html = document.documentElement;
+        var locales = JSON.parse(html.dataset.locales);
+        var choice = null;
+        try { choice = localStorage.getItem('kpss-rehber:locale'); } catch (e) {}
+        if (locales.indexOf(choice) < 0) {
+          choice = html.dataset.defaultLocale;
+          var preferred = navigator.languages || [navigator.language || ''];
+          for (var i = 0; i < preferred.length; i++) {
+            var code = String(preferred[i]).slice(0, 2).toLowerCase();
+            if (locales.indexOf(code) >= 0) { choice = code; break; }
+          }
+        }
+        location.replace(html.dataset.base + choice + '/' + location.search + location.hash);
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>{site.name}</h1>
+      <p>{t('languagePicker.title')} / Choose a language</p>
+      <ul class="language-picker">
+        {LOCALES.map((l) => <li><a href={localePath(l, '/')} hreflang={l} lang={l}>{LANGUAGE_NAMES[l]}</a></li>)}
       </ul>
-    </section>
-  ))}
-</Taban>
-<script>
-  import '../scripts/son-sinav.js';
-</script>
+    </main>
+  </body>
+</html>

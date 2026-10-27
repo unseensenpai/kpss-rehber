@@ -1,0 +1,12 @@
+---
+/** How far a topic's content has come. */
+import { localeOf, translator } from '../i18n/index.js';
+
+interface Props {
+  state: 'skeleton' | 'draft' | 'published';
+}
+const { state } = Astro.props;
+const t = translator(localeOf(Astro));
+const tone = { skeleton: 'badge-neutral', draft: 'badge-warn', published: 'badge-ok' }[state];
+---
+<span class:list={['badge', tone]}>{t(`state.${state}`)}</span>

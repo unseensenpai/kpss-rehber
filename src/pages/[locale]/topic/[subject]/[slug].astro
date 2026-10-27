@@ -1,0 +1,115 @@
+---
+import { render } from 'astro:content';
+import Base from '../../../../layouts/Base.astro';
+import Breadcrumb from '../../../../components/Breadcrumb.astro';
+import SourceLine from '../../../../components/SourceLine.astro';
+import StateBadge from '../../../../components/StateBadge.astro';
+import PromptPanel from '../../../../components/PromptPanel.astro';
+import TopicStatus from '../../../../components/TopicStatus.astro';
+import { loadData } from '../../../../lib/data.js';
+import { topicUsages } from '../../../../lib/curriculum.js';
+import { LOCALES, localeOf, localePath, localized, translator } from '../../../../i18n/index.js';
+
+export async function getStaticPaths() {
+  const data = await loadData();
+  return LOCALES.flatMap((locale) =>
+    data.topics[locale].map((topic: any) => {
+      const [subject, slug] = topic.id.split('/');
+      return { params: { locale, subject, slug }, props: { topic, data } };
+    }),
+  );
+}
+
+const { topic, data } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const L = (v: any) => localized(v, locale);
+const { Content } = await render(topic.entry);
+const d = topic.data;
+const usages = topicUsages(data.exams, topic.id);
+const doc = data.sources.find((s: any) => s.id === d.document);
+// Question booklets of exams using this topic (links only; question text is never copied).
+const booklets = [...new Set(usages.flatMap((u) => u.exam.data.source.booklets))].map((id) => data.sources.find((s: any) => s.id === id)!);
+const distribution = Object.entries(d.questionDistribution ?? {}).sort(([a], [b]) => a.localeCompare(b));
+// Breadcrumb uses the first exam/subject that uses the topic.
+const first = usages[0];
+---
+<Base
+  title={d.title}
+  description={t('topic.description', { title: d.title })}
+  searchable
+  searchTitle={t('topic.searchTitle', { title: d.title, subject: L(first.subject.name) })}
+>
+  <Breadcrumb
+    items={[
+      { name: L(first.exam.data.shortName), href: localePath(locale, `/exam/${first.exam.id}/`) },
+      { name: L(first.subject.name), href: localePath(locale, `/exam/${first.exam.id}/${first.subject.id}/`) },
+      { name: d.title },
+    ]}
+  />
+  <h1 data-pagefind-weight="10">{d.title}</h1>
+  <p><StateBadge state={d.state} /></p>
+
+  <article class="topic-body">
+    <Content />
+  </article>
+
+  {d.subtopics.length > 0 && (
+    <section>
+      <h2>{t('topic.subtopics')}</h2>
+      <ul>{d.subtopics.map((s: string) => <li>{s}</li>)}</ul>
+    </section>
+  )}
+  {d.keyConcepts.length > 0 && (
+    <section>
+      <h2>{t('topic.keyConcepts')}</h2>
+      <ul class="tags">{d.keyConcepts.map((s: string) => <li>{s}</li>)}</ul>
+    </section>
+  )}
+  {d.questionStyle && (
+    <section>
+      <h2>{t('topic.questionStyle')}</h2>
+      <p>{d.questionStyle}</p>
+    </section>
+  )}
+
+  <TopicStatus topicId={topic.id} />
+
+  <section>
+    <h2>{t('topic.usedIn')}</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">{t('topic.exam')}</th><th scope="col">{t('topic.test')}</th><th scope="col">{t('topic.subject')}</th><th scope="col">{t('topic.subjectQuestions')}</th></tr></thead>
+      <tbody>
+        {usages.map(({ exam, test, subject }) => (
+          <tr>
+            <th scope="row"><a href={localePath(locale, `/exam/${exam.id}/`)}>{L(exam.data.shortName)}</a></th>
+            <td>{L(test.name)}</td>
+            <td><a href={localePath(locale, `/exam/${exam.id}/${subject.id}/`)}>{L(subject.name)}</a></td>
+            <td>{subject.questionCount}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table></div>
+  </section>
+
+  {(distribution.length > 0 || booklets.length > 0) && (
+    <section>
+      <h2>{t('topic.pastQuestions')}</h2>
+      {distribution.length > 0 && (
+        <div class="table-wrap"><table>
+          <thead><tr><th scope="col">{t('topic.year')}</th><th scope="col">{t('topic.questions')}</th></tr></thead>
+          <tbody>{distribution.map(([year, n]) => <tr><th scope="row">{year}</th><td>{n}</td></tr>)}</tbody>
+        </table></div>
+      )}
+      {booklets.length > 0 && (
+        <ul>
+          {booklets.map((b) => <li><a href={b.data.url} rel="noopener noreferrer">{L(b.data.title)}</a> {t('topic.pdf')}</li>)}
+        </ul>
+      )}
+    </section>
+  )}
+
+  <PromptPanel data={data} topics={[topic]} />
+
+  <SourceLine document={doc} verified={d.verified} updated={d.updated} title={d.title} />
+</Base>

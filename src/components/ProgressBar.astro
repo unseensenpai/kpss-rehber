@@ -1,0 +1,23 @@
+---
+/**
+ * Completion bar for a list of topics. Progress lives in the browser profile, so it
+ * renders hidden and progress.js fills and shows it. Nothing renders without topics.
+ */
+import { localeOf, translator } from '../i18n/index.js';
+
+interface Props {
+  topics: string[];
+  label: string;
+}
+const { topics, label } = Astro.props;
+const t = translator(localeOf(Astro));
+---
+{topics.length > 0 && (
+  <span class="progress" data-progress={JSON.stringify(topics)} hidden>
+    <progress max="100" value="0" aria-label={t('progress.label', { name: label })}></progress>
+    <span class="muted" data-progress-text></span>
+  </span>
+)}
+<script>
+  import '../scripts/progress.js';
+</script>

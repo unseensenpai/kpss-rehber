@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import PromptPanel from '../../components/PromptPanel.astro';
+import { loadData } from '../../lib/data.js';
+import { localeOf, localeParams, translator } from '../../i18n/index.js';
+
+export function getStaticPaths() {
+  return localeParams();
+}
+
+const locale = localeOf(Astro);
+const t = translator(locale);
+const data = await loadData();
+---
+<Base title={t('prompts.title')} description={t('prompts.description')}>
+  <Breadcrumb items={[{ name: t('nav.prompts') }]} />
+  <h1>{t('prompts.title')}</h1>
+  <p>{t('prompts.intro')}</p>
+  <PromptPanel data={data} topics={data.topics[locale]} library />
+</Base>

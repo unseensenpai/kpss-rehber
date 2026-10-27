@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import Search from '../../components/Search.astro';
+import Countdown from '../../components/Countdown.astro';
+import ProgressBar from '../../components/ProgressBar.astro';
+import { loadData } from '../../lib/data.js';
+import { examDates, examSummary, examTopics } from '../../lib/curriculum.js';
+import { localeOf, localeParams, localePath, localized, translator } from '../../i18n/index.js';
+
+export function getStaticPaths() {
+  return localeParams();
+}
+
+const locale = localeOf(Astro);
+const t = translator(locale);
+// The build's consistency check also runs through here.
+const { exams, calendar } = await loadData();
+const GROUPS = ['KPSS', 'MEB-AGS'];
+const groupExams = (group: string) => exams.filter((e) => e.data.group === group).sort((a, b) => a.data.order - b.data.order);
+---
+<Base>
+  <h1>{t('home.title')}</h1>
+  <p class="continue" data-continue hidden>{t('home.continue')} <a href={localePath(locale, '/')}>—</a></p>
+  <Search />
+
+  {GROUPS.map((g) => (
+    <section class="group">
+      <h2>{g} <span class="muted">{t(`home.groups.${g}`)}</span></h2>
+      <ul class="cards">
+        {groupExams(g).map((e) => {
+          const summary = examSummary(e);
+          const { next, last } = examDates(calendar, e.id);
+          const day = next ?? last;
+          const shortName = localized(e.data.shortName, locale);
+          return (
+            <li class="card">
+              <a href={localePath(locale, `/exam/${e.id}/`)} data-exam-card={e.id} data-short-name={shortName}>
+                <strong>{shortName}</strong>
+                <span>{localized(e.data.name, locale)}</span>
+              </a>
+              <span class="muted">
+                {summary.optional
+                  ? t('home.optionalSummary', { tests: summary.testCount })
+                  : t('home.summary', { questions: summary.questions, minutes: summary.durationMin })}
+              </span>
+              {day && <span class="muted">{t('home.examDay')} <Countdown date={day.start} /></span>}
+              <ProgressBar topics={examTopics(e)} label={shortName} />
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
+</Base>
+<script>
+  import '../../scripts/last-exam.js';
+</script>

@@ -1,0 +1,17 @@
+---
+/** Site search with Pagefind. The index is built after the build by `pagefind --site dist`. */
+import { localeOf, translator } from '../i18n/index.js';
+
+const t = translator(localeOf(Astro));
+---
+<search class="search" data-search>
+  <form role="search" data-search-form>
+    <label for="search-input">{t('search.label')}</label>
+    <input id="search-input" type="search" autocomplete="off" placeholder={t('search.placeholder')} data-search-input />
+  </form>
+  <p class="muted" aria-live="polite" data-search-status></p>
+  <ol class="search-results" data-search-results></ol>
+</search>
+<script>
+  import '../scripts/search.js';
+</script>

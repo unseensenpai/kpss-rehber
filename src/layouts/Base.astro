@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { withBase } from '../lib/path.js';
+import { LANGUAGE_NAMES, LOCALES, localeOf, localePath, translator } from '../i18n/index.js';
+import { site } from '../site.config.js';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Pagefind only indexes the main content of pages marked searchable. */
+  searchable?: boolean;
+  /** Title shown in search results; tells a subject and a topic with the same name apart. */
+  searchTitle?: string;
+}
+const locale = localeOf(Astro);
+const t = translator(locale);
+const { title, description = t('site.description'), searchable = false, searchTitle } = Astro.props;
+const fullTitle = title ? `${title} · ${site.name}` : site.name;
+
+// Same page in the other locales: strip "<base>/<locale>" from the current path.
+const prefix = localePath(locale, '/');
+const rest = Astro.url.pathname.startsWith(prefix) ? Astro.url.pathname.slice(prefix.length - 1) : '/';
+const alternates = LOCALES.map((l) => ({ locale: l, href: localePath(l, rest) }));
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    {LOCALES.length > 1 && alternates.map((a) => <link rel="alternate" hreflang={a.locale} href={a.href} />)}
+    <script is:inline>
+      (function () {
+        var t = null;
+        try { t = localStorage.getItem('kpss-rehber:theme') || localStorage.getItem('kpss-rehber:tema'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">{t('nav.skip')}</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href={localePath(locale, '/')}>{site.name}</a>
+        <nav aria-label={t('nav.main')} class="menu">
+          <a href={localePath(locale, '/prompts/')}>{t('nav.prompts')}</a>
+          <a href={localePath(locale, '/profile/')}>{t('nav.profile')}</a>
+          <a href={localePath(locale, '/sources/')}>{t('nav.sources')}</a>
+          {LOCALES.length > 1 && (
+            <span class="language-switch" role="group" aria-label={t('nav.language')}>
+              {alternates.map((a) =>
+                a.locale === locale ? (
+                  <span aria-current="true" lang={a.locale}>{LANGUAGE_NAMES[a.locale]}</span>
+                ) : (
+                  <a href={a.href} hreflang={a.locale} lang={a.locale} data-language-link={a.locale}>{LANGUAGE_NAMES[a.locale]}</a>
+                ),
+              )}
+            </span>
+          )}
+          <button class="button" type="button" data-theme-toggle aria-label={t('nav.themeLabel')}>{t('nav.theme')}</button>
+        </nav>
+      </div>
+    </header>
+    <p class="wrap storage-warning" role="status" data-storage-warning hidden>{t('storageWarning')}</p>
+    <main class="wrap" id="content" data-pagefind-body={searchable ? '' : undefined}
+      data-pagefind-meta={searchable && searchTitle ? `title:${searchTitle}` : undefined}>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        {t('footer.disclaimer')} <a href="https://www.osym.gov.tr" rel="noopener noreferrer">osym.gov.tr</a>.
+        {site.donation && <> · <a href={site.donation} rel="noopener noreferrer">{t('footer.donation')}</a></>}
+      </div>
+    </footer>
+    <script>
+      import '../scripts/theme.js';
+      import '../scripts/storage-warning.js';
+      import '../scripts/language.js';
+    </script>
+  </body>
+</html>

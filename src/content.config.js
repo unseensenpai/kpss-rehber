@@ -1,50 +1,51 @@
 import { defineCollection } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import {
-  kaynakSemasi,
-  konuSemasi,
-  sablonSemasi,
-  seviyeSemasi,
-  sinavSemasi,
-  takvimSemasi,
-  uzunlukSemasi,
-} from './lib/semalar.js';
+  calendarSchema,
+  examSchema,
+  lengthSchema,
+  levelSchema,
+  sourceSchema,
+  templateSchema,
+  topicSchema,
+} from './lib/schemas.js';
 
-const sinavlar = defineCollection({
-  loader: glob({ pattern: '*.yaml', base: './src/content/sinavlar' }),
-  schema: sinavSemasi,
+const exams = defineCollection({
+  loader: glob({ pattern: '*.yaml', base: './src/content/exams' }),
+  schema: examSchema,
 });
 
-// Kimlik klasör yolundan gelir: konular/tarih/osmanli-tarihi.md → 'tarih/osmanli-tarihi'.
-const konular = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/konular' }),
-  schema: konuSemasi,
+// The id comes from the path: topics/tr/tarih/osmanli-tarihi.md → 'tr/tarih/osmanli-tarihi'.
+// lib/data.js splits it into locale 'tr' and topic id 'tarih/osmanli-tarihi'.
+const topics = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/topics' }),
+  schema: topicSchema,
 });
 
-const kaynaklar = defineCollection({
-  loader: file('./data/kaynaklar.json'),
-  schema: kaynakSemasi,
+const sources = defineCollection({
+  loader: file('./data/sources.json'),
+  schema: sourceSchema,
 });
 
-const takvim = defineCollection({
-  loader: file('./data/takvim.yaml'),
-  schema: takvimSemasi,
+const calendar = defineCollection({
+  loader: file('./data/calendar.yaml'),
+  schema: calendarSchema,
 });
 
-// Prompt şablonları: gövde ham metin olarak kullanılır (entry.body), Markdown olarak işlenmez.
-const sablonlar = defineCollection({
-  loader: glob({ pattern: '*.md', base: './src/prompts/sablonlar' }),
-  schema: sablonSemasi,
+// Prompt templates: the body is used as raw text (entry.body), not rendered as Markdown.
+const templates = defineCollection({
+  loader: glob({ pattern: '*/*.md', base: './src/prompts/templates' }),
+  schema: templateSchema,
 });
 
-const seviyeler = defineCollection({
-  loader: file('./src/prompts/seviyeler.yaml'),
-  schema: seviyeSemasi,
+const levels = defineCollection({
+  loader: file('./src/prompts/levels.yaml'),
+  schema: levelSchema,
 });
 
-const uzunluklar = defineCollection({
-  loader: file('./src/prompts/uzunluklar.yaml'),
-  schema: uzunlukSemasi,
+const lengths = defineCollection({
+  loader: file('./src/prompts/lengths.yaml'),
+  schema: lengthSchema,
 });
 
-export const collections = { sinavlar, konular, kaynaklar, takvim, sablonlar, seviyeler, uzunluklar };
+export const collections = { exams, topics, sources, calendar, templates, levels, lengths };

@@ -1,0 +1,21 @@
+---
+/**
+ * Time left until an exam day. The build-time text is a fallback; countdown.js
+ * rewrites it for today in the browser (the site may have been built weeks earlier).
+ */
+import { daysUntil } from '../lib/curriculum.js';
+import { formatDate, localeOf, translator } from '../i18n/index.js';
+
+interface Props {
+  date: Date;
+}
+const { date } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+---
+<span class="countdown">
+  {formatDate(date, locale)} · <span data-countdown={date.toISOString().slice(0, 10)}>{t('countdown', { days: daysUntil(date) })}</span>
+</span>
+<script>
+  import '../scripts/countdown.js';
+</script>

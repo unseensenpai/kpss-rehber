@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import ProgressBar from '../../components/ProgressBar.astro';
+import { loadData } from '../../lib/data.js';
+import { examTopics } from '../../lib/curriculum.js';
+import { aliasMap, PREFERENCE_LIMIT } from '../../lib/profile-data.js';
+import { localeOf, localeParams, localePath, localized, translator } from '../../i18n/index.js';
+
+export function getStaticPaths() {
+  return localeParams();
+}
+
+const locale = localeOf(Astro);
+const t = translator(locale);
+const { exams, topics } = await loadData();
+const localeTopics = topics[locale];
+const sorted = [...exams].sort((a, b) => a.data.group.localeCompare(b.data.group) || a.data.order - b.data.order);
+const shortName = (e: (typeof exams)[number]) => localized(e.data.shortName, locale);
+// For the browser: topic titles (review list) and the old → new id map.
+const pageData = {
+  topics: Object.fromEntries(localeTopics.map((x: any) => [x.id, { title: x.data.title, href: localePath(locale, `/topic/${x.id}/`) }])),
+  aliases: aliasMap(localeTopics),
+};
+---
+<Base title={t('profile.title')} description={t('profile.description')}>
+  <Breadcrumb items={[{ name: t('profile.title') }]} />
+  <h1>{t('profile.title')}</h1>
+  <p class="muted">{t('profile.intro')}</p>
+
+  <div class="profile" data-profile-page data-page={JSON.stringify(pageData)}>
+    <section aria-labelledby="goal-heading">
+      <h2 id="goal-heading">{t('profile.goal')}</h2>
+      <div class="settings">
+        <label>{t('profile.exam')}
+          <select data-selected-exam>
+            <option value="">{t('profile.noExam')}</option>
+            {sorted.map((e) => <option value={e.id}>{shortName(e)}</option>)}
+          </select>
+        </label>
+        <label>{t('profile.targetDate')}
+          <input type="date" data-target-date />
+        </label>
+      </div>
+      <p aria-live="polite" data-target-message></p>
+    </section>
+
+    <section aria-labelledby="preferences-heading">
+      <h2 id="preferences-heading">{t('profile.preferences')}</h2>
+      <label class="field">
+        <span>{t('profile.preferencesLabel')} <span class="muted">{t('profile.preferencesHint', { limit: PREFERENCE_LIMIT })}</span></span>
+        <textarea data-preferences maxlength={PREFERENCE_LIMIT} rows="3" placeholder={t('profile.preferencesPlaceholder')}></textarea>
+      </label>
+      <p class="muted" aria-live="polite" data-preferences-message></p>
+    </section>
+
+    <section aria-labelledby="progress-heading">
+      <h2 id="progress-heading">{t('profile.progress')}</h2>
+      <ul class="progress-list">
+        {sorted.filter((e) => examTopics(e).length).map((e) => (
+          <li>
+            <a href={localePath(locale, `/exam/${e.id}/`)}>{shortName(e)}</a>
+            <ProgressBar topics={examTopics(e)} label={shortName(e)} />
+          </li>
+        ))}
+      </ul>
+      <h3>{t('profile.review')}</h3>
+      <ul data-review-list></ul>
+      <p class="muted" data-review-empty>{t('profile.reviewEmpty')}</p>
+    </section>
+
+    <section aria-labelledby="backup-heading">
+      <h2 id="backup-heading">{t('profile.backup')}</h2>
+      <p>
+        <button type="button" class="button" data-download>{t('profile.download')}</button>
+        <span class="muted">{t('profile.fileName')}</span>
+      </p>
+      <form class="upload" data-upload-form>
+        <label class="field">{t('profile.file')}
+          <input type="file" accept=".json,application/json" data-backup-file required />
+        </label>
+        <fieldset>
+          <legend>{t('profile.mode')}</legend>
+          <label><input type="radio" name="mode" value="merge" checked /> {t('profile.merge')} <span class="muted">{t('profile.mergeHint')}</span></label>
+          <label><input type="radio" name="mode" value="replace" /> {t('profile.replace')} <span class="muted">{t('profile.replaceHint')}</span></label>
+        </fieldset>
+        <button type="submit" class="button">{t('profile.upload')}</button>
+      </form>
+      <div aria-live="polite" data-upload-message></div>
+    </section>
+
+    <section aria-labelledby="delete-heading">
+      <h2 id="delete-heading">{t('profile.delete')}</h2>
+      <p class="muted">{t('profile.deleteHint')}</p>
+      <button type="button" class="button danger" data-delete>{t('profile.deleteButton')}</button>
+      <p aria-live="polite" data-delete-message></p>
+    </section>
+  </div>
+</Base>
+<script>
+  import '../../scripts/profile-page.js';
+</script>
