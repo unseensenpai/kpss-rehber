@@ -52,6 +52,7 @@ function kur(kok) {
       konu,
       seviye: seviyeBul(Number(seviyeSec.value)),
       uzunluk: uzunlukBul(uzunlukSec.value),
+      tercihler: profilOku().tercihler,
     });
     for (const kart of kartlar) {
       const sablon = veri.sablonlar.find((s) => s.id === kart.dataset.sablon);
@@ -79,10 +80,9 @@ function kur(kok) {
     baglamSec.replaceChildren(
       ...konu.baglamlar.map((b, i) => new Option(`${b.kisaAd} · ${b.ders}`, String(i))),
     );
-    // Son bakılan sınav bu konuyu içeriyorsa onun bağlamıyla başla.
-    let son = null;
-    try { son = JSON.parse(localStorage.getItem('kpss-rehber:son-sinav') ?? 'null'); } catch { /* yok */ }
-    const i = Math.max(0, konu.baglamlar.findIndex((b) => b.sinavId === son?.sinavId));
+    // Seçili sınav bu konuyu içeriyorsa onun bağlamıyla başla.
+    const secilen = profilOku().secilenSinav;
+    const i = Math.max(0, konu.baglamlar.findIndex((b) => b.sinavId === secilen));
     baglamSec.value = String(i);
     baglam = konu.baglamlar[i];
   }
@@ -194,7 +194,12 @@ function kur(kok) {
     });
   }
 
-  if (kutuphane) konulariDoldur();
+  if (kutuphane) {
+    // Kütüphane de seçili sınavla açılır (listede varsa).
+    const secilen = profilOku().secilenSinav;
+    if (veri.sinavlar.some((x) => x.id === secilen)) sinavSec.value = secilen;
+    konulariDoldur();
+  }
   else {
     baglamlariDoldur();
     ayarYukle();

@@ -70,7 +70,9 @@ test('arama sonuç getirir ve CSP ihlali olmaz', async ({ page }) => {
 });
 
 test('dar ekranda yatay kaydırma yok', async ({ page }) => {
-  for (const yolu of ['./', './sinav/lisans-alan-bilgisi/', './sinav/meb-oabt/', './konu/tarih/osmanli-tarihi/', './kaynaklar/']) {
+  // En dar yaygın telefon genişliği.
+  await page.setViewportSize({ width: 320, height: 640 });
+  for (const yolu of ['./', './sinav/lisans-alan-bilgisi/', './sinav/meb-oabt/', './konu/tarih/osmanli-tarihi/', './kaynaklar/', './promptlar/', './profil/']) {
     await page.goto(yolu);
     const tasma = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(tasma, yolu).toBeLessThanOrEqual(0);

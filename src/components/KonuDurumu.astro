@@ -1,0 +1,27 @@
+---
+/** Konunun çalışma durumu ve kişisel not; yalnızca tarayıcıdaki profile yazılır. */
+import { DURUMLAR, NOT_SINIRI } from '../lib/profil-veri.js';
+
+interface Props {
+  konuId: string;
+}
+const { konuId } = Astro.props;
+---
+<section class="konu-durumu" data-konu-durumu={konuId} data-pagefind-ignore aria-labelledby="durum-baslik">
+  <h2 id="durum-baslik">Durumun</h2>
+  <fieldset>
+    <legend class="gizli">Bu konudaki durumun</legend>
+    <label><input type="radio" name="durum" value="" checked /> Başlanmadı</label>
+    {Object.entries(DURUMLAR).map(([deger, ad]) => (
+      <label><input type="radio" name="durum" value={deger} /> {ad}</label>
+    ))}
+  </fieldset>
+  <label class="not-alani">
+    Notun <span class="soluk">(yalnızca bu tarayıcıda saklanır)</span>
+    <textarea data-not maxlength={NOT_SINIRI} rows="3" placeholder="Karıştırdığın noktalar, hatırlatmalar…"></textarea>
+  </label>
+  <p class="soluk" aria-live="polite" data-durum-mesaji></p>
+</section>
+<script>
+  import '../scripts/konu-durumu.js';
+</script>

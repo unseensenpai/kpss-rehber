@@ -1,0 +1,98 @@
+---
+import Taban from '../layouts/Taban.astro';
+import Kirinti from '../components/Kirinti.astro';
+import Ilerleme from '../components/Ilerleme.astro';
+import { veri } from '../lib/veri.js';
+import { sinavDersleri } from '../lib/mufredat.js';
+import { takmaAdEslesmesi, TERCIH_SINIRI } from '../lib/profil-veri.js';
+import { yol } from '../lib/yol.js';
+
+const { sinavlar, konular } = await veri();
+const sirali = [...sinavlar].sort((a, b) => a.data.grup.localeCompare(b.data.grup) || a.data.sira - b.data.sira);
+const sinavKonulari = (s: (typeof sinavlar)[number]) => [...new Set(sinavDersleri(s).flatMap(({ ders }) => ders.konular))];
+// Tarayıcı tarafı: konu adları (tekrar listesi için) ve eski → yeni kimlik eşlemesi.
+const sayfaVerisi = {
+  konular: Object.fromEntries(konular.map((k) => [k.id, { baslik: k.data.baslik, href: yol(`/konu/${k.id}/`) }])),
+  eslesme: takmaAdEslesmesi(konular),
+};
+---
+<Taban baslik="Profilim" aciklama="Hedef tarihin, tercihlerin, ilerlemen ve yedeklerin.">
+  <Kirinti ogeler={[{ ad: 'Profilim' }]} />
+  <h1>Profilim</h1>
+  <p class="soluk">
+    Bu bilgiler yalnızca bu tarayıcıda saklanır, hiçbir yere gönderilmez. Başka bir bilgisayarda devam etmek için
+    yedeğini indirip orada yükle.
+  </p>
+
+  <div class="profil" data-profil-sayfasi data-veri={JSON.stringify(sayfaVerisi)}>
+    <section aria-labelledby="hedef-baslik">
+      <h2 id="hedef-baslik">Hedefin</h2>
+      <div class="ayarlar">
+        <label>Hazırlandığın sınav
+          <select data-secilen-sinav>
+            <option value="">Seçilmedi</option>
+            {sirali.map((s) => <option value={s.id}>{s.data.kisaAd}</option>)}
+          </select>
+        </label>
+        <label>Hedef sınav tarihin
+          <input type="date" data-hedef-tarih />
+        </label>
+      </div>
+      <p aria-live="polite" data-hedef-mesaji></p>
+    </section>
+
+    <section aria-labelledby="tercih-baslik">
+      <h2 id="tercih-baslik">Tercihlerin</h2>
+      <label class="not-alani">
+        Promptlara eklenecek notun <span class="soluk">(en fazla {TERCIH_SINIRI} karakter)</span>
+        <textarea data-tercihler maxlength={TERCIH_SINIRI} rows="3" placeholder="örn. Örnekleri tablo hâlinde ver. Tarihleri kronolojik sırala."></textarea>
+      </label>
+      <p class="soluk" aria-live="polite" data-tercih-mesaji></p>
+    </section>
+
+    <section aria-labelledby="ilerleme-baslik">
+      <h2 id="ilerleme-baslik">İlerlemen</h2>
+      <ul class="ilerleme-listesi">
+        {sirali.filter((s) => sinavKonulari(s).length).map((s) => (
+          <li>
+            <a href={yol(`/sinav/${s.id}/`)}>{s.data.kisaAd}</a>
+            <Ilerleme konular={sinavKonulari(s)} etiket={s.data.kisaAd} />
+          </li>
+        ))}
+      </ul>
+      <h3>Tekrar edilecek konular</h3>
+      <ul data-tekrar-listesi></ul>
+      <p class="soluk" data-tekrar-bos>Henüz "Tekrar edilecek" olarak işaretlediğin konu yok.</p>
+    </section>
+
+    <section aria-labelledby="yedek-baslik">
+      <h2 id="yedek-baslik">Yedekle ve yükle</h2>
+      <p>
+        <button type="button" class="dugme" data-yedekle>⬇ Yedeği indir</button>
+        <span class="soluk">kpss-rehber-yedek-YYYY-AA-GG.json</span>
+      </p>
+      <form class="yukle" data-yukle-form>
+        <label class="not-alani">Yedek dosyası
+          <input type="file" accept=".json,application/json" data-yedek-dosyasi required />
+        </label>
+        <fieldset>
+          <legend>Mevcut ilerlemenle ne yapılsın?</legend>
+          <label><input type="radio" name="kip" value="birlestir" checked /> Birleştir <span class="soluk">(her konuda en son güncellenen kalır)</span></label>
+          <label><input type="radio" name="kip" value="uzerine-yaz" /> Üzerine yaz <span class="soluk">(mevcut ilerleme silinir)</span></label>
+        </fieldset>
+        <button type="submit" class="dugme">⬆ Yedeği yükle</button>
+      </form>
+      <div aria-live="polite" data-yukle-mesaji></div>
+    </section>
+
+    <section aria-labelledby="sil-baslik">
+      <h2 id="sil-baslik">Verileri sil</h2>
+      <p class="soluk">Bu tarayıcıdaki tüm durumlarını, notlarını, seviye ayarlarını ve tercihlerini siler. Geri alınamaz; önce yedek almanı öneririz.</p>
+      <button type="button" class="dugme tehlike" data-sil>Tüm verilerimi sil</button>
+      <p aria-live="polite" data-sil-mesaji></p>
+    </section>
+  </div>
+</Taban>
+<script>
+  import '../scripts/profil-sayfasi.js';
+</script>

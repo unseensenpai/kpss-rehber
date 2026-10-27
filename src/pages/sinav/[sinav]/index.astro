@@ -3,6 +3,7 @@ import Taban from '../../../layouts/Taban.astro';
 import Kirinti from '../../../components/Kirinti.astro';
 import KaynakSatiri from '../../../components/KaynakSatiri.astro';
 import GeriSayim from '../../../components/GeriSayim.astro';
+import Ilerleme from '../../../components/Ilerleme.astro';
 import { veri } from '../../../lib/veri.js';
 import { sinavDersleri, sinavOzeti, sinavTarihleri } from '../../../lib/mufredat.js';
 import { yol } from '../../../lib/yol.js';
@@ -49,13 +50,14 @@ const agirlikli = sinavDersleri(sinav).some(({ ders }) => ders.agirlik !== undef
         const tablo = (
           <div class="tablo-kap"><table>
             <caption class="gizli">{test.ad} dersleri</caption>
-            <thead><tr><th scope="col">Ders</th><th scope="col">Soru</th><th scope="col">Yaklaşık ağırlık</th></tr></thead>
+            <thead><tr><th scope="col">Ders</th><th scope="col">Soru</th><th scope="col">Yaklaşık ağırlık</th><th scope="col">İlerleme</th></tr></thead>
             <tbody>
               {test.dersler.map((d) => (
                 <tr>
                   <th scope="row"><a href={dersHref(d.ders)}>{d.ad}</a></th>
                   <td>{d.soruSayisi}</td>
                   <td>{d.agirlik !== undefined ? `%${d.agirlik}` : '—'}</td>
+                  <td>{d.konular.length ? <Ilerleme konular={d.konular} etiket={d.ad} /> : <span class="soluk">—</span>}</td>
                 </tr>
               ))}
             </tbody>

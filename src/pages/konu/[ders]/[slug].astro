@@ -5,6 +5,7 @@ import Kirinti from '../../../components/Kirinti.astro';
 import KaynakSatiri from '../../../components/KaynakSatiri.astro';
 import DurumRozeti from '../../../components/DurumRozeti.astro';
 import PromptPaneli from '../../../components/PromptPaneli.astro';
+import KonuDurumu from '../../../components/KonuDurumu.astro';
 import { veri } from '../../../lib/veri.js';
 import { konuKullanimlari } from '../../../lib/mufredat.js';
 import { yol } from '../../../lib/yol.js';
@@ -66,6 +67,8 @@ const ilk = kullanimlar[0];
       <p>{k.soruTipi}</p>
     </section>
   )}
+
+  <KonuDurumu konuId={konu.id} />
 
   <section>
     <h2>Hangi sınavlarda?</h2>

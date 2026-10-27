@@ -2,8 +2,9 @@
 import Taban from '../layouts/Taban.astro';
 import Arama from '../components/Arama.astro';
 import GeriSayim from '../components/GeriSayim.astro';
+import Ilerleme from '../components/Ilerleme.astro';
 import { veri } from '../lib/veri.js';
-import { sinavOzeti, sinavTarihleri } from '../lib/mufredat.js';
+import { sinavDersleri, sinavOzeti, sinavTarihleri } from '../lib/mufredat.js';
 import { yol } from '../lib/yol.js';
 
 // Build sırasında tutarlılık kontrolü de buradan geçer.
@@ -30,7 +31,7 @@ const grupSinavlari = (grup: string) =>
           const gun = siradaki ?? son;
           return (
             <li class="kart">
-              <a href={yol(`/sinav/${s.id}/`)}>
+              <a href={yol(`/sinav/${s.id}/`)} data-sinav-kart={s.id} data-kisa-ad={s.data.kisaAd}>
                 <strong>{s.data.kisaAd}</strong>
                 <span>{s.data.ad}</span>
               </a>
@@ -38,6 +39,7 @@ const grupSinavlari = (grup: string) =>
                 {ozet.secmeli ? `${ozet.testSayisi} test · oturum seçmeli` : `${ozet.soru} soru · ${ozet.sureDk} dk`}
               </span>
               {gun && <span class="soluk">Sınav: <GeriSayim tarih={gun.baslangic} /></span>}
+              <Ilerleme konular={[...new Set(sinavDersleri(s).flatMap(({ ders }) => ders.konular))]} etiket={s.data.kisaAd} />
             </li>
           );
         })}

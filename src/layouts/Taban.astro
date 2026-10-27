@@ -45,11 +45,15 @@ const tamBaslik = baslik ? `${baslik} · ${site.ad}` : site.ad;
         <a class="logo" href={yol('/')}>{site.ad}</a>
         <nav aria-label="Ana menü" class="menu">
           <a href={yol('/promptlar/')}>Promptlar</a>
+          <a href={yol('/profil/')}>Profilim</a>
           <a href={yol('/kaynaklar/')}>Kaynaklar</a>
           <button class="dugme" type="button" data-tema-dugme aria-label="Temayı değiştir">◐ Tema</button>
         </nav>
       </div>
     </header>
+    <p class="kap depolama-uyari" role="status" data-depolama-uyari hidden>
+      İlerleme kaydedilemiyor: tarayıcın bu site için depolamaya izin vermiyor (gizli sekme ya da engellenmiş site verisi). Site çalışır ama durumların ve ayarların sayfa kapanınca kaybolur.
+    </p>
     <main class="kap" id="icerik" data-pagefind-body={aranabilir ? '' : undefined}
       data-pagefind-meta={aranabilir && aramaBasligi ? `title:${aramaBasligi}` : undefined}>
       <slot />
@@ -62,6 +66,7 @@ const tamBaslik = baslik ? `${baslik} · ${site.ad}` : site.ad;
     </footer>
     <script>
       import '../scripts/tema.js';
+      import '../scripts/depolama.js';
     </script>
   </body>
 </html>

@@ -1,13 +1,12 @@
 /**
- * Tarayıcıdaki öğrenci profili (spec §8). K5 yalnızca konu bazında seviye/uzunluk
- * ve geri bildirimi yazar; durum, not, yedekleme K6'da eklenir.
+ * Tarayıcıdaki öğrenci profili (spec §8). Şema ve saf işlemler `lib/profil-veri.js`te;
+ * burası yalnızca localStorage okuma/yazma. Depolama yoksa site çalışmaya devam eder.
  */
-export const ANAHTAR = 'kpss-rehber:v1';
-export const SURUM = 1;
+import { bosProfil, profilDogrula } from '../lib/profil-veri.js';
 
-function bosProfil() {
-  return { surum: SURUM, olusturma: new Date().toISOString(), konular: {} };
-}
+export const ANAHTAR = 'kpss-rehber:v1';
+// K4'teki ayrı "son sınav" anahtarı; ilk okumada profile taşınır.
+const ESKI_SON_SINAV = 'kpss-rehber:son-sinav';
 
 function depo() {
   try {
@@ -17,29 +16,72 @@ function depo() {
   }
 }
 
-/** Profili okur; yoksa ya da bozuksa boş profil döner. */
-export function profilOku() {
-  try {
-    const ham = depo()?.getItem(ANAHTAR);
-    const p = ham ? JSON.parse(ham) : null;
-    if (p && typeof p === 'object' && p.konular && typeof p.konular === 'object') return p;
-  } catch {
-    /* bozuk JSON: boş profille devam */
-  }
-  return bosProfil();
-}
-
-/**
- * Bir konunun kaydına alanları birleştirir ve `guncelleme`yi tazeler.
- * Kaydedilemezse false döner (site çalışmaya devam eder).
- */
-export function konuKaydet(konuId, alanlar) {
-  const p = profilOku();
-  p.konular[konuId] = { ...p.konular[konuId], ...alanlar, guncelleme: new Date().toISOString() };
+/** Depolama gerçekten yazılabiliyor mu? */
+export function depolamaKullanilabilir() {
   try {
     const d = depo();
     if (!d) return false;
-    d.setItem(ANAHTAR, JSON.stringify(p));
+    d.setItem(`${ANAHTAR}:deneme`, '1');
+    d.removeItem(`${ANAHTAR}:deneme`);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Profili okur; yoksa ya da bozuksa boş profil döner (bozuk kayıt silinmez). */
+export function profilOku() {
+  let profil = null;
+  try {
+    const ham = depo()?.getItem(ANAHTAR);
+    if (ham) profil = profilDogrula(JSON.parse(ham)).profil;
+  } catch {
+    /* bozuk JSON: boş profille devam */
+  }
+  profil ??= bosProfil();
+  try {
+    const eski = depo()?.getItem(ESKI_SON_SINAV);
+    if (eski) {
+      profil.secilenSinav ??= JSON.parse(eski)?.sinavId ?? null;
+      depo().removeItem(ESKI_SON_SINAV);
+      profilYaz(profil);
+    }
+  } catch {
+    /* taşınamazsa önemli değil */
+  }
+  return profil;
+}
+
+/** Profili yazar; yazılamazsa false. */
+export function profilYaz(profil) {
+  try {
+    const d = depo();
+    if (!d) return false;
+    d.setItem(ANAHTAR, JSON.stringify(profil));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/** Bir konunun kaydına alanları birleştirir ve `guncelleme`yi tazeler. */
+export function konuKaydet(konuId, alanlar) {
+  const p = profilOku();
+  p.konular[konuId] = { ...p.konular[konuId], ...alanlar, guncelleme: new Date().toISOString() };
+  return profilYaz(p);
+}
+
+/** Sınav, hedef tarih ve tercihler gibi profil geneli ayarları yazar. */
+export function ayarKaydet(alanlar) {
+  const p = profilOku();
+  Object.assign(p, alanlar, { ayarGuncelleme: new Date().toISOString() });
+  return profilYaz(p);
+}
+
+/** Tüm profili siler. */
+export function profilSil() {
+  try {
+    depo()?.removeItem(ANAHTAR);
     return true;
   } catch {
     return false;

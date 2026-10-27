@@ -3,6 +3,7 @@ import Taban from '../../../layouts/Taban.astro';
 import Kirinti from '../../../components/Kirinti.astro';
 import KaynakSatiri from '../../../components/KaynakSatiri.astro';
 import DurumRozeti from '../../../components/DurumRozeti.astro';
+import Ilerleme from '../../../components/Ilerleme.astro';
 import { veri } from '../../../lib/veri.js';
 import { cokSoruCikanSirasi, konuOrtalamasi, sinavDersleri } from '../../../lib/mufredat.js';
 import { yol } from '../../../lib/yol.js';
@@ -33,6 +34,7 @@ const sinavHref = yol(`/sinav/${sinav.id}/`);
     <div><dt>Soru</dt><dd>{ders.soruSayisi}{ders.agirlik !== undefined && <span class="soluk"> (yaklaşık %{ders.agirlik})</span>}</dd></div>
     <div><dt>Konu</dt><dd>{konular.length}</dd></div>
   </dl>
+  <Ilerleme konular={ders.konular} etiket={ders.ad} />
 
   {konular.length ? (
     <section>
@@ -46,6 +48,7 @@ const sinavHref = yol(`/sinav/${sinav.id}/`);
               <span class="konu-bilgi">
                 {ort !== null && <span class="soluk">ort. {ort} soru</span>}
                 <DurumRozeti durum={k.data.durum} />
+                <span class="durum-isareti" data-konu-durum={k.id} hidden></span>
               </span>
             </li>
           );
