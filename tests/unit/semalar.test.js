@@ -18,6 +18,8 @@ const icerik = {
 const sinav = {
   ad: 'Örnek',
   kisaAd: 'Ö',
+  grup: 'KPSS',
+  sira: 1,
   kaynak: { belge: 'kpss-lisans-2026', dogrulandi: true },
   oturumlar: [
     {

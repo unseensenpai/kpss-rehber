@@ -2,6 +2,8 @@
 # Ders soru sayıları kılavuzdaki "yaklaşık ağırlık" yüzdelerinden türetilmiştir.
 ad: "KPSS Ortaöğretim Genel Yetenek – Genel Kültür"
 kisaAd: "KPSS Ortaöğretim"
+grup: KPSS
+sira: 3
 kaynak:
   belge: kpss-ortaogretim-2026
   dogrulandi: true

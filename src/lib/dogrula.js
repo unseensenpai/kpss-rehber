@@ -85,18 +85,14 @@ export function agirlikHatalari(/** @type {Kayit[]} */ sinavlar) {
   return hatalar;
 }
 
-/** Bir test içinde aynı ders iki kez yazılamaz. */
+/** Bir sınavda aynı ders iki kez yazılamaz (ders sayfası `/sinav/<sinav>/<ders>/`). */
 export function tekrarlananDersler(/** @type {Kayit[]} */ sinavlar) {
   const hatalar = [];
   for (const s of sinavlar) {
-    for (const o of s.data.oturumlar) {
-      for (const t of o.testler) {
-        const gorulen = new Set();
-        for (const d of t.dersler) {
-          if (gorulen.has(d.ders)) hatalar.push(`${s.id} › ${t.ad}: '${d.ders}' dersi iki kez yazılmış`);
-          gorulen.add(d.ders);
-        }
-      }
+    const gorulen = new Set();
+    for (const { sinav, test, ders } of dersler([s])) {
+      if (gorulen.has(ders.ders)) hatalar.push(`${sinav} › ${test.ad}: '${ders.ders}' dersi sınavda iki kez yazılmış`);
+      gorulen.add(ders.ders);
     }
   }
   return hatalar;
@@ -117,6 +113,9 @@ export function kaynakEksikleri(
     const belge = s.data.kaynak?.belge;
     if (!belge) hatalar.push(`${s.id}: kaynak belgesi eksik`);
     else if (!belgeler.has(belge)) hatalar.push(`${s.id}: '${belge}' belgesi kaynaklar listesinde yok`);
+    for (const k of s.data.kaynak?.kitapciklar ?? []) {
+      if (!belgeler.has(k)) hatalar.push(`${s.id}: '${k}' kitapçığı kaynaklar listesinde yok`);
+    }
   }
   for (const k of konular) {
     if (!k.data.kaynak || !k.data.kaynakYili) hatalar.push(`${k.id}: kaynak/kaynakYili eksik`);

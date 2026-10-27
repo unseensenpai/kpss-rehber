@@ -1,14 +1,50 @@
 ---
 import Taban from '../layouts/Taban.astro';
+import Arama from '../components/Arama.astro';
+import GeriSayim from '../components/GeriSayim.astro';
 import { veri } from '../lib/veri.js';
+import { sinavOzeti, sinavTarihleri } from '../lib/mufredat.js';
+import { yol } from '../lib/yol.js';
 
 // Build sırasında tutarlılık kontrolü de buradan geçer.
-const { sinavlar } = await veri();
+const { sinavlar, takvim } = await veri();
+const GRUPLAR = [
+  { ad: 'KPSS', aciklama: 'Kamu Personel Seçme Sınavı' },
+  { ad: 'MEB-AGS', aciklama: 'Öğretmen adayları: Akademi Giriş Sınavı ve ÖABT' },
+];
+const grupSinavlari = (grup: string) =>
+  sinavlar.filter((s) => s.data.grup === grup).sort((a, b) => a.data.sira - b.data.sira);
 ---
 <Taban>
   <h1>Hangi sınava hazırlanıyorsun?</h1>
-  <p>KPSS müfredatı, konu özetleri ve hazır promptlar yakında burada.</p>
-  <ul>
-    {sinavlar.map((s) => <li>{s.data.ad}</li>)}
-  </ul>
+  <p class="devam" data-devam hidden>Kaldığın yer: <a href={yol('/')}>—</a></p>
+  <Arama />
+
+  {GRUPLAR.map((g) => (
+    <section class="grup">
+      <h2>{g.ad} <span class="soluk">{g.aciklama}</span></h2>
+      <ul class="kartlar">
+        {grupSinavlari(g.ad).map((s) => {
+          const ozet = sinavOzeti(s);
+          const { siradaki, son } = sinavTarihleri(takvim, s.id);
+          const gun = siradaki ?? son;
+          return (
+            <li class="kart">
+              <a href={yol(`/sinav/${s.id}/`)}>
+                <strong>{s.data.kisaAd}</strong>
+                <span>{s.data.ad}</span>
+              </a>
+              <span class="soluk">
+                {ozet.secmeli ? `${ozet.testSayisi} test · oturum seçmeli` : `${ozet.soru} soru · ${ozet.sureDk} dk`}
+              </span>
+              {gun && <span class="soluk">Sınav: <GeriSayim tarih={gun.baslangic} /></span>}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  ))}
 </Taban>
+<script>
+  import '../scripts/son-sinav.js';
+</script>

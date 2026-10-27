@@ -1,0 +1,60 @@
+---
+import Taban from '../../../layouts/Taban.astro';
+import Kirinti from '../../../components/Kirinti.astro';
+import KaynakSatiri from '../../../components/KaynakSatiri.astro';
+import DurumRozeti from '../../../components/DurumRozeti.astro';
+import { veri } from '../../../lib/veri.js';
+import { cokSoruCikanSirasi, konuOrtalamasi, sinavDersleri } from '../../../lib/mufredat.js';
+import { yol } from '../../../lib/yol.js';
+
+export async function getStaticPaths() {
+  const tum = await veri();
+  return tum.sinavlar.flatMap((sinav) =>
+    sinavDersleri(sinav).map(({ test, ders }) => ({
+      params: { sinav: sinav.id, ders: ders.ders },
+      props: { sinav, test, ders, tum },
+    })),
+  );
+}
+
+const { sinav, test, ders, tum } = Astro.props;
+const konular = cokSoruCikanSirasi(ders.konular.map((id) => tum.konular.find((k) => k.id === id)!));
+const belge = tum.kaynaklar.find((k) => k.id === sinav.data.kaynak.belge);
+const sinavHref = yol(`/sinav/${sinav.id}/`);
+---
+<Taban baslik={`${ders.ad} · ${sinav.data.kisaAd}`} aciklama={`${sinav.data.kisaAd} ${test.ad}: ${ders.ad} konuları.`}
+  aranabilir
+  aramaBasligi={`${ders.ad} · ${sinav.data.kisaAd} dersi`}
+>
+  <Kirinti ogeler={[{ ad: sinav.data.kisaAd, href: sinavHref }, { ad: ders.ad }]} />
+  <h1>{ders.ad}</h1>
+  <dl class="ozet" data-pagefind-ignore>
+    <div><dt>Test</dt><dd>{test.ad}</dd></div>
+    <div><dt>Soru</dt><dd>{ders.soruSayisi}{ders.agirlik !== undefined && <span class="soluk"> (yaklaşık %{ders.agirlik})</span>}</dd></div>
+    <div><dt>Konu</dt><dd>{konular.length}</dd></div>
+  </dl>
+
+  {konular.length ? (
+    <section>
+      <h2>Konular</h2>
+      <ol class="konu-listesi">
+        {konular.map((k) => {
+          const ort = konuOrtalamasi(k);
+          return (
+            <li>
+              <a href={yol(`/konu/${k.id}/`)}>{k.data.baslik}</a>
+              <span class="konu-bilgi">
+                {ort !== null && <span class="soluk">ort. {ort} soru</span>}
+                <DurumRozeti durum={k.data.durum} />
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  ) : (
+    <p class="bos">Bu dersin konu listesi henüz eklenmedi.</p>
+  )}
+
+  <KaynakSatiri belge={belge} dogrulandi={sinav.data.kaynak.dogrulandi} baslik={`${ders.ad} (${sinav.data.kisaAd})`} />
+</Taban>

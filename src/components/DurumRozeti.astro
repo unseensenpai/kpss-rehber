@@ -1,0 +1,10 @@
+---
+/** Konu içeriğinin hazırlık durumu. */
+interface Props {
+  durum: 'iskelet' | 'taslak' | 'yayinda';
+}
+const { durum } = Astro.props;
+const metin = { iskelet: 'Özet hazırlanıyor', taslak: 'Taslak', yayinda: 'Hazır' }[durum];
+const sinif = { iskelet: 'rozet-notr', taslak: 'rozet-uyari', yayinda: 'rozet-iyi' }[durum];
+---
+<span class:list={['rozet', sinif]}>{metin}</span>

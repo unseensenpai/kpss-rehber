@@ -1,0 +1,18 @@
+---
+/**
+ * Sınav gününe kalan süre. Build anındaki metin yedektir; tarayıcıda
+ * geri-sayim.js bugüne göre yeniden yazar (site haftalarca önce derlenmiş olabilir).
+ */
+import { geriSayimMetni, kalanGun, tarihYaz } from '../lib/mufredat.js';
+
+interface Props {
+  tarih: Date;
+}
+const { tarih } = Astro.props;
+---
+<span class="geri-sayim">
+  {tarihYaz(tarih)} · <span data-geri-sayim={tarih.toISOString().slice(0, 10)}>{geriSayimMetni(kalanGun(tarih))}</span>
+</span>
+<script>
+  import '../scripts/geri-sayim.js';
+</script>

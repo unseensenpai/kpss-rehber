@@ -1,0 +1,89 @@
+---
+import Taban from '../../../layouts/Taban.astro';
+import Kirinti from '../../../components/Kirinti.astro';
+import KaynakSatiri from '../../../components/KaynakSatiri.astro';
+import GeriSayim from '../../../components/GeriSayim.astro';
+import { veri } from '../../../lib/veri.js';
+import { sinavDersleri, sinavOzeti, sinavTarihleri } from '../../../lib/mufredat.js';
+import { yol } from '../../../lib/yol.js';
+
+export async function getStaticPaths() {
+  const tum = await veri();
+  return tum.sinavlar.map((sinav) => ({ params: { sinav: sinav.id }, props: { sinav, tum } }));
+}
+
+const { sinav, tum } = Astro.props;
+const { ad, kisaAd, aciklama, kaynak, oturumlar } = sinav.data;
+const ozet = sinavOzeti(sinav);
+const { siradaki, son } = sinavTarihleri(tum.takvim, sinav.id);
+const gun = siradaki ?? son;
+const belge = tum.kaynaklar.find((k) => k.id === kaynak.belge);
+const dersHref = (ders: string) => yol(`/sinav/${sinav.id}/${ders}/`);
+const agirlikli = sinavDersleri(sinav).some(({ ders }) => ders.agirlik !== undefined);
+---
+<Taban baslik={kisaAd} aciklama={`${ad}: oturumlar, testler, dersler ve soru sayıları.`}
+  aranabilir
+  aramaBasligi={`${kisaAd} · sınav yapısı`}
+>
+  <Kirinti ogeler={[{ ad: kisaAd }]} />
+  <h1 data-son-sinav data-sinav-id={sinav.id} data-ad={kisaAd} data-href={yol(`/sinav/${sinav.id}/`)}>{ad}</h1>
+  {aciklama && <p>{aciklama}</p>}
+
+  <dl class="ozet" data-pagefind-ignore>
+    {ozet.secmeli ? (
+      <div><dt>Test</dt><dd>{ozet.testSayisi} <span class="soluk">(aday oturum seçer)</span></dd></div>
+    ) : (
+      <>
+        <div><dt>Toplam soru</dt><dd>{ozet.soru}</dd></div>
+        <div><dt>Süre</dt><dd>{ozet.sureDk} dk</dd></div>
+      </>
+    )}
+    {gun && <div><dt>Sınav günü</dt><dd><GeriSayim tarih={gun.baslangic} /></dd></div>}
+  </dl>
+
+  {oturumlar.map((oturum) => (
+    <section class="oturum">
+      <h2>{oturum.ad}{oturum.sureDk && <span class="soluk"> · {oturum.sureDk} dk</span>}</h2>
+      {oturum.tekTestSecilir && <p class="soluk">Aday bu oturumda yalnızca kendi alanının testine girer.</p>}
+      {oturum.testler.map((test) => {
+        const tablo = (
+          <div class="tablo-kap"><table>
+            <caption class="gizli">{test.ad} dersleri</caption>
+            <thead><tr><th scope="col">Ders</th><th scope="col">Soru</th><th scope="col">Yaklaşık ağırlık</th></tr></thead>
+            <tbody>
+              {test.dersler.map((d) => (
+                <tr>
+                  <th scope="row"><a href={dersHref(d.ders)}>{d.ad}</a></th>
+                  <td>{d.soruSayisi}</td>
+                  <td>{d.agirlik !== undefined ? `%${d.agirlik}` : '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table></div>
+        );
+        const bilgi = `${test.soruSayisi} soru${test.sureDk ? ` · ${test.sureDk} dk` : ''}`;
+        return oturum.tekTestSecilir ? (
+          <details class="test">
+            <summary><span>{test.ad}</span> <span class="soluk">{bilgi}</span></summary>
+            {tablo}
+          </details>
+        ) : (
+          <div class="test">
+            <h3>{test.ad} <span class="soluk">{bilgi}</span></h3>
+            {tablo}
+          </div>
+        );
+      })}
+    </section>
+  ))}
+
+  {agirlikli && (
+    <p class="soluk not">
+      Ders soru sayıları, kılavuzdaki "yaklaşık ağırlık" yüzdelerinden hesaplanmıştır; gerçek sınavda birkaç soru oynayabilir.
+    </p>
+  )}
+  <KaynakSatiri belge={belge} dogrulandi={kaynak.dogrulandi} baslik={kisaAd} />
+</Taban>
+<script>
+  import '../../../scripts/son-sinav.js';
+</script>

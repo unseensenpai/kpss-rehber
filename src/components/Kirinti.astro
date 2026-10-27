@@ -1,0 +1,17 @@
+---
+/** Sayfanın müfredat ağacındaki yeri: Ana sayfa › Sınav › Ders › Konu. */
+import { yol } from '../lib/yol.js';
+
+interface Props {
+  ogeler: { ad: string; href?: string }[];
+}
+const { ogeler } = Astro.props;
+---
+<nav aria-label="Konum" class="kirinti" data-pagefind-ignore>
+  <ol>
+    <li><a href={yol('/')}>Ana sayfa</a></li>
+    {ogeler.map((o) => (
+      <li>{o.href ? <a href={o.href}>{o.ad}</a> : <span aria-current="page">{o.ad}</span>}</li>
+    ))}
+  </ol>
+</nav>

@@ -1,0 +1,31 @@
+---
+import Taban from '../layouts/Taban.astro';
+import Kirinti from '../components/Kirinti.astro';
+import { veri } from '../lib/veri.js';
+import { tarihYaz } from '../lib/mufredat.js';
+
+const { kaynaklar } = await veri();
+const TUR = { kilavuz: 'Kılavuz', 'konu-dagilimi': 'Konu dağılımı', 'soru-kitapcigi': 'Soru kitapçığı' };
+const sirali = [...kaynaklar].sort((a, b) => b.data.yil - a.data.yil || a.data.baslik.localeCompare(b.data.baslik, 'tr'));
+---
+<Taban baslik="Kaynaklar" aciklama="Sitedeki sınav yapısının dayandığı ÖSYM belgeleri.">
+  <Kirinti ogeler={[{ ad: 'Kaynaklar' }]} />
+  <h1>Kaynaklar</h1>
+  <p>
+    Sınav yapıları, soru sayıları, süreler ve konu listeleri aşağıdaki resmi ÖSYM belgelerinden alınmıştır.
+    Soru kitapçıklarının yalnızca bağlantısı verilir; soru metinleri siteye kopyalanmaz.
+  </p>
+  <div class="tablo-kap"><table>
+    <thead><tr><th scope="col">Belge</th><th scope="col">Tür</th><th scope="col">Yıl</th><th scope="col">Son kontrol</th></tr></thead>
+    <tbody>
+      {sirali.map((k) => (
+        <tr>
+          <th scope="row"><a href={k.data.url} rel="noopener noreferrer">{k.data.baslik}</a></th>
+          <td>{TUR[k.data.tur]}</td>
+          <td>{k.data.yil}</td>
+          <td>{tarihYaz(k.data.kontrolTarihi)}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table></div>
+</Taban>

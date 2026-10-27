@@ -2,9 +2,12 @@
 # Ders soru sayıları kılavuzdaki "yaklaşık ağırlık" yüzdelerinden türetilmiştir.
 ad: "KPSS Ön Lisans Genel Yetenek – Genel Kültür"
 kisaAd: "KPSS Ön Lisans"
+grup: KPSS
+sira: 2
 kaynak:
   belge: kpss-onlisans-2026
   dogrulandi: true
+  kitapciklar: [kpss-onlisans-kitapcik-2026]
 oturumlar:
   - ad: Genel Yetenek-Genel Kültür
     sureDk: 130

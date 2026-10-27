@@ -2,6 +2,9 @@
 # Aday girmek istediği oturumları seçer; seçtiği oturumdaki üç testin hepsini cevaplar.
 ad: "KPSS Lisans Alan Bilgisi (A Grubu)"
 kisaAd: "A Grubu"
+grup: KPSS
+sira: 4
+oturumlarSecmeli: true
 aciklama: "Her test 40 soru; testler sırayla ayrı kitapçıkla uygulanır."
 kaynak:
   belge: kpss-lisans-2026

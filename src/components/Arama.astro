@@ -1,0 +1,14 @@
+---
+/** Pagefind ile site içi arama. Dizin build sonrası `pagefind --site dist` ile üretilir. */
+---
+<search class="arama" data-arama>
+  <form role="search" data-arama-form>
+    <label for="arama-girdi">Konu, ders ya da sınav ara</label>
+    <input id="arama-girdi" type="search" autocomplete="off" placeholder="örn. Osmanlı, paragraf, ÖABT" data-arama-girdi />
+  </form>
+  <p class="soluk" aria-live="polite" data-arama-durum></p>
+  <ol class="arama-sonuclari" data-arama-sonuclar></ol>
+</search>
+<script>
+  import '../scripts/arama.js';
+</script>

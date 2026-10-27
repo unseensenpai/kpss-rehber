@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview",
     "test": "vitest run",
     "test:e2e": "playwright test"
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@playwright/test": "1.64.0",
+    "pagefind": "1.5.2",
     "vitest": "5.0.4"
   }
 }

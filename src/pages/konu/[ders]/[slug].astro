@@ -1,0 +1,104 @@
+---
+import { render } from 'astro:content';
+import Taban from '../../../layouts/Taban.astro';
+import Kirinti from '../../../components/Kirinti.astro';
+import KaynakSatiri from '../../../components/KaynakSatiri.astro';
+import DurumRozeti from '../../../components/DurumRozeti.astro';
+import { veri } from '../../../lib/veri.js';
+import { konuKullanimlari } from '../../../lib/mufredat.js';
+import { yol } from '../../../lib/yol.js';
+
+export async function getStaticPaths() {
+  const tum = await veri();
+  return tum.konular.map((konu) => {
+    const [ders, slug] = konu.id.split('/');
+    return { params: { ders, slug }, props: { konu, tum } };
+  });
+}
+
+const { konu, tum } = Astro.props;
+const { Content } = await render(konu);
+const k = konu.data;
+const kullanimlar = konuKullanimlari(tum.sinavlar, konu.id);
+const belge = tum.kaynaklar.find((b) => b.id === k.belge);
+// Konuyu kullanan sınavların soru kitapçıkları (yalnızca bağlantı; soru metni kopyalanmaz).
+const kitapciklar = [...new Set(kullanimlar.flatMap((x) => x.sinav.data.kaynak.kitapciklar))].map(
+  (id) => tum.kaynaklar.find((b) => b.id === id)!,
+);
+const dagilim = Object.entries(k.soruDagilimi ?? {}).sort(([a], [b]) => a.localeCompare(b));
+// Kırıntı için konuyu ilk kullanan sınav/ders.
+const ilk = kullanimlar[0];
+---
+<Taban baslik={k.baslik} aciklama={`${k.baslik}: konu özeti, sınavlardaki yeri ve kaynakları.`}
+  aranabilir
+  aramaBasligi={`${k.baslik} · ${ilk.ders.ad} konusu`}
+>
+  <Kirinti
+    ogeler={[
+      { ad: ilk.sinav.data.kisaAd, href: yol(`/sinav/${ilk.sinav.id}/`) },
+      { ad: ilk.ders.ad, href: yol(`/sinav/${ilk.sinav.id}/${ilk.ders.ders}/`) },
+      { ad: k.baslik },
+    ]}
+  />
+  <h1 data-pagefind-weight="10">{k.baslik}</h1>
+  <p><DurumRozeti durum={k.durum} /></p>
+
+  <article class="ozet-metni">
+    <Content />
+  </article>
+
+  {k.altBasliklar.length > 0 && (
+    <section>
+      <h2>Alt başlıklar</h2>
+      <ul>{k.altBasliklar.map((a) => <li>{a}</li>)}</ul>
+    </section>
+  )}
+  {k.anahtarKavramlar.length > 0 && (
+    <section>
+      <h2>Anahtar kavramlar</h2>
+      <ul class="etiketler">{k.anahtarKavramlar.map((a) => <li>{a}</li>)}</ul>
+    </section>
+  )}
+  {k.soruTipi && (
+    <section>
+      <h2>ÖSYM nasıl soruyor?</h2>
+      <p>{k.soruTipi}</p>
+    </section>
+  )}
+
+  <section>
+    <h2>Hangi sınavlarda?</h2>
+    <div class="tablo-kap"><table>
+      <thead><tr><th scope="col">Sınav</th><th scope="col">Test</th><th scope="col">Ders</th><th scope="col">Ders sorusu</th></tr></thead>
+      <tbody>
+        {kullanimlar.map(({ sinav, test, ders }) => (
+          <tr>
+            <th scope="row"><a href={yol(`/sinav/${sinav.id}/`)}>{sinav.data.kisaAd}</a></th>
+            <td>{test.ad}</td>
+            <td><a href={yol(`/sinav/${sinav.id}/${ders.ders}/`)}>{ders.ad}</a></td>
+            <td>{ders.soruSayisi}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table></div>
+  </section>
+
+  {(dagilim.length > 0 || kitapciklar.length > 0) && (
+    <section>
+      <h2>Çıkmış sorular</h2>
+      {dagilim.length > 0 && (
+        <div class="tablo-kap"><table>
+          <thead><tr><th scope="col">Yıl</th><th scope="col">Soru</th></tr></thead>
+          <tbody>{dagilim.map(([yil, n]) => <tr><th scope="row">{yil}</th><td>{n}</td></tr>)}</tbody>
+        </table></div>
+      )}
+      {kitapciklar.length > 0 && (
+        <ul>
+          {kitapciklar.map((b) => <li><a href={b.data.url} rel="noopener noreferrer">{b.data.baslik}</a> (ÖSYM, PDF)</li>)}
+        </ul>
+      )}
+    </section>
+  )}
+
+  <KaynakSatiri belge={belge} dogrulandi={k.dogrulandi} guncelleme={k.guncelleme} baslik={k.baslik} />
+</Taban>

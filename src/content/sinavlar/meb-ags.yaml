@@ -2,6 +2,8 @@
 # 2026'dan itibaren Eğitim Bilimleri KPSS'de değil, AGS içinde.
 ad: "MEB Akademi Giriş Sınavı (AGS)"
 kisaAd: "MEB-AGS"
+grup: MEB-AGS
+sira: 1
 kaynak:
   belge: meb-ags-2026
   dogrulandi: true

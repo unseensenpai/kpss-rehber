@@ -87,9 +87,10 @@ describe('agirlikHatalari', () => {
 });
 
 describe('tekrarlananDersler', () => {
-  it('aynı testte iki kez yazılan dersi yakalar', () => {
-    const s = sinav([ders('turkce', 2), ders('turkce', 2)]);
-    expect(tekrarlananDersler([s])).toEqual(["ornek › GY: 'turkce' dersi iki kez yazılmış"]);
+  it('sınavda iki kez yazılan dersi yakalar (farklı testlerde de)', () => {
+    const s = sinav([ders('turkce', 2)]);
+    s.data.oturumlar[0].testler.push({ ad: 'GK', soruSayisi: 2, dersler: [ders('turkce', 2)] });
+    expect(tekrarlananDersler([s])).toEqual(["ornek › GK: 'turkce' dersi sınavda iki kez yazılmış"]);
   });
 });
 

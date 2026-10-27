@@ -2,6 +2,8 @@
 # Aday yalnızca kendi alanının testine girer. Yabancı dil alanları ÖABT yerine YDS/e-YDS kullanır.
 ad: "Öğretmenlik Alan Bilgisi Testi (ÖABT)"
 kisaAd: "ÖABT"
+grup: MEB-AGS
+sira: 2
 kaynak:
   belge: meb-ags-2026
   dogrulandi: true

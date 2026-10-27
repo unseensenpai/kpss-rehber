@@ -39,6 +39,8 @@ export const takvimSemasi = z.object({
 const sinavKaynak = z.object({
   belge: kimlik,
   dogrulandi: z.boolean(),
+  // Konu sayfalarında "ÖSYM kitapçığı" olarak bağlanan soru kitapçıkları (yalnızca link).
+  kitapciklar: z.array(kimlik).default([]),
 });
 
 const dersSemasi = z.object({
@@ -73,7 +75,12 @@ const oturumSemasi = z
 export const sinavSemasi = z.object({
   ad: z.string().min(1),
   kisaAd: z.string().min(1),
+  // Ana sayfadaki gruplama ve grup içi sıra.
+  grup: z.enum(['KPSS', 'MEB-AGS']),
+  sira: pozitifTam,
   aciklama: z.string().optional(),
+  // A Grubu gibi: aday girmek istediği oturumları seçer, toplam soru/süre anlamsızdır.
+  oturumlarSecmeli: z.boolean().default(false),
   kaynak: sinavKaynak,
   oturumlar: z.array(oturumSemasi).min(1),
 });

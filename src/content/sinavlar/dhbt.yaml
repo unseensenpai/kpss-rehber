@@ -2,6 +2,8 @@
 # DHBT-1 tüm öğrenim düzeylerinde ortak; DHBT-2 lisans, ön lisans ve ortaöğretim için ayrı müfredattan gelir.
 ad: "Din Hizmetleri Alan Bilgisi Testi (DHBT)"
 kisaAd: "DHBT"
+grup: KPSS
+sira: 5
 aciklama: "Aday, KPSS'ye girdiği öğrenim düzeyinde DHBT'ye girer."
 kaynak:
   belge: kpss-lisans-2026

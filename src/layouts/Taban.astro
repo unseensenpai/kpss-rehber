@@ -1,13 +1,23 @@
 ---
 import '../styles/genel.css';
 import { yol } from '../lib/yol.js';
+import { site } from '../site.config.js';
 
 interface Props {
   baslik?: string;
   aciklama?: string;
+  /** Pagefind yalnızca bu işaretli sayfaların ana içeriğini dizinler. */
+  aranabilir?: boolean;
+  /** Arama sonucunda görünen başlık; aynı adlı ders ve konuyu ayırmak için. */
+  aramaBasligi?: string;
 }
-const { baslik, aciklama = 'KPSS müfredatı, konu özetleri ve hazır AI promptları.' } = Astro.props;
-const tamBaslik = baslik ? `${baslik} · KPSS Rehber` : 'KPSS Rehber';
+const {
+  baslik,
+  aciklama = 'KPSS müfredatı, konu özetleri ve hazır AI promptları.',
+  aranabilir = false,
+  aramaBasligi,
+} = Astro.props;
+const tamBaslik = baslik ? `${baslik} · ${site.ad}` : site.ad;
 ---
 <!doctype html>
 <html lang="tr">
@@ -29,18 +39,24 @@ const tamBaslik = baslik ? `${baslik} · KPSS Rehber` : 'KPSS Rehber';
     </script>
   </head>
   <body>
+    <a class="atla" href="#icerik">İçeriğe geç</a>
     <header class="ust">
       <div class="kap">
-        <a class="logo" href={yol('/')}>KPSS Rehber</a>
-        <button class="dugme" type="button" data-tema-dugme aria-label="Temayı değiştir">◐ Tema</button>
+        <a class="logo" href={yol('/')}>{site.ad}</a>
+        <nav aria-label="Ana menü" class="menu">
+          <a href={yol('/kaynaklar/')}>Kaynaklar</a>
+          <button class="dugme" type="button" data-tema-dugme aria-label="Temayı değiştir">◐ Tema</button>
+        </nav>
       </div>
     </header>
-    <main class="kap">
+    <main class="kap" id="icerik" data-pagefind-body={aranabilir ? '' : undefined}
+      data-pagefind-meta={aranabilir && aramaBasligi ? `title:${aramaBasligi}` : undefined}>
       <slot />
     </main>
     <footer class="alt">
       <div class="kap">
         Bu site ÖSYM ile bağlantılı değildir. Resmi bilgi için <a href="https://www.osym.gov.tr" rel="noopener noreferrer">osym.gov.tr</a>.
+        {site.bagis && <> · <a href={site.bagis} rel="noopener noreferrer">Bağış</a></>}
       </div>
     </footer>
     <script>

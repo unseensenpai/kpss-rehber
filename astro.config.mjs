@@ -22,6 +22,8 @@ export default defineConfig({
         "form-action 'none'",
         "object-src 'none'",
       ],
+      // Pagefind araması WebAssembly derler; 'self' Astro varsayılanını korur.
+      scriptDirective: { resources: ["'self'", "'wasm-unsafe-eval'"] },
     },
   },
 });
