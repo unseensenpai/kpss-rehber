@@ -1,27 +1,35 @@
-name: Yeni ÖSYM belgesi
-description: Yeni yayımlanan ya da değişen bir ÖSYM belgesini bildir (kılavuz, konu dağılımı, soru kitapçığı).
+name: Yeni ÖSYM belgesi / New ÖSYM document
+description: Yeni yayımlanan ya da değişen bir ÖSYM belgesini bildir. / Report a newly published or changed ÖSYM document (guide, topic distribution, question booklet).
 title: "[Kaynak] "
 labels: [new-source]
 body:
   - type: markdown
     attributes:
-      value: Haftalık kaynak kontrolü de bu etiketle issue açar. Aynı belge için açık bir issue var mı, önce kontrol et.
+      value: |
+        Haftalık kaynak kontrolü de bu etiketle issue açar. Aynı belge için açık bir issue var mı, önce kontrol et.
+
+        The weekly source check also opens issues with this label. Please check for an open issue about the same document first.
   - type: input
     id: url
     attributes:
-      label: Belge bağlantısı
+      label: Belge bağlantısı / Document link
       placeholder: https://dokuman.osym.gov.tr/...
     validations:
       required: true
   - type: dropdown
     id: kind
     attributes:
-      label: Belge türü
-      options: [Kılavuz, Konu dağılımı, Soru kitapçığı, Sınav takvimi, Diğer]
+      label: Belge türü / Document type
+      options:
+        - Kılavuz / Guide
+        - Konu dağılımı / Topic distribution
+        - Soru kitapçığı / Question booklet
+        - Sınav takvimi / Exam calendar
+        - Diğer / Other
     validations:
       required: true
   - type: textarea
     id: change
     attributes:
-      label: Ne değişti?
-      description: Etkilenen sınav, test, soru sayısı ya da tarih
+      label: Ne değişti? / What changed?
+      description: Etkilenen sınav, test, soru sayısı ya da tarih / Affected exam, test, question count or date

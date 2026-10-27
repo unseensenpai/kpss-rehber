@@ -15,21 +15,24 @@ const content = {
   questionStyle: 'Paragrafın ana düşüncesini bulma',
 };
 
+/** Same text in every locale, for fixtures. */
+const both = (text) => ({ tr: text, en: text });
+
 const exam = {
-  name: { tr: 'Örnek' },
-  shortName: { tr: 'Ö' },
+  name: both('Örnek'),
+  shortName: both('Ö'),
   group: 'KPSS',
   order: 1,
   source: { document: 'kpss-lisans-2026', verified: true },
   sessions: [
     {
-      name: { tr: 'Sabah' },
+      name: both('Sabah'),
       durationMin: 60,
       tests: [
         {
-          name: { tr: 'GY' },
+          name: both('GY'),
           questionCount: 1,
-          subjects: [{ id: 'turkce', name: { tr: 'Türkçe' }, questionCount: 1, topics: ['turkce/paragraf'] }],
+          subjects: [{ id: 'turkce', name: both('Türkçe'), questionCount: 1, topics: ['turkce/paragraf'] }],
         },
       ],
     },
@@ -71,7 +74,7 @@ describe('examSchema', () => {
   });
   it('visible text needs every locale', () => {
     expect(examSchema.safeParse({ ...exam, name: 'Örnek' }).success).toBe(false);
-    expect(examSchema.safeParse({ ...exam, name: { en: 'Sample' } }).success).toBe(false);
+    expect(examSchema.safeParse({ ...exam, name: { tr: 'Örnek' } }).success).toBe(false);
   });
   it('the session or every test needs a duration', () => {
     const bad = structuredClone(exam);
@@ -90,7 +93,7 @@ describe('examSchema', () => {
 describe('sourceSchema', () => {
   const source = {
     id: 'kpss-lisans-2026',
-    title: { tr: 'Kılavuz' },
+    title: both('Kılavuz'),
     kind: 'guide',
     sourceType: 'osym-guide',
     year: 2026,

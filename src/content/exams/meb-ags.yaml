@@ -1,46 +1,46 @@
 # Structure and weights: meb-ags-2026 guide, section 3.1 and Tablo-1.
 # Since 2026, Educational Sciences is part of AGS, not KPSS.
-name: { tr: "MEB Akademi Giriş Sınavı (AGS)" }
-shortName: { tr: "MEB-AGS" }
+name: { tr: "MEB Akademi Giriş Sınavı (AGS)", en: "Ministry of Education Academy Entrance Exam (AGS)" }
+shortName: { tr: "MEB-AGS", en: "MEB-AGS" }
 group: MEB-AGS
 order: 1
 source:
   document: meb-ags-2026
   verified: true
 sessions:
-  - name: { tr: "AGS" }
+  - name: { tr: "AGS", en: "AGS" }
     durationMin: 110
     tests:
-      - name: { tr: "Akademi Giriş Sınavı" }
+      - name: { tr: "Akademi Giriş Sınavı", en: "Academy Entrance Exam" }
         questionCount: 80
         subjects:
           - id: turkce
-            name: { tr: "Sözel Yetenek" }
+            name: { tr: "Sözel Yetenek", en: "Verbal Ability" }
             weight: 18.75
             questionCount: 15
             topics: [turkce/sozcukte-anlam, turkce/cumlede-anlam, turkce/anlatimin-olusmasi, turkce/paragrafta-anlam, turkce/sozel-mantik]
           - id: matematik
-            name: { tr: "Sayısal Yetenek" }
+            name: { tr: "Sayısal Yetenek", en: "Quantitative Ability" }
             weight: 18.75
             questionCount: 15
             topics: [matematik/temel-matematik, matematik/grafik-tablo-yorumlama, matematik/mantiksal-muhakeme]
           - id: tarih
-            name: { tr: "Tarih" }
+            name: { tr: "Tarih", en: "History" }
             weight: 7.5
             questionCount: 6
             topics: [tarih/osmanli-oncesi-turk-devletleri, tarih/osmanli-tarihi, tarih/ataturk-ilkeleri-inkilap-tarihi, tarih/cagdas-turk-dunya-tarihi]
           - id: cografya
-            name: { tr: "Türkiye Coğrafyası" }
+            name: { tr: "Türkiye Coğrafyası", en: "Geography of Turkey" }
             weight: 7.5
             questionCount: 6
             topics: [cografya/turkiye-fiziki, cografya/turkiye-beseri, cografya/turkiye-ekonomik]
           - id: egitim-bilimleri
-            name: { tr: "Eğitim Bilimleri ve Türk Millî Eğitim Sistemi" }
+            name: { tr: "Eğitim Bilimleri ve Türk Millî Eğitim Sistemi", en: "Educational Sciences and the Turkish National Education System" }
             weight: 37.5
             questionCount: 30
             topics: [egitim-bilimleri/egitimin-temelleri, egitim-bilimleri/ogretim-yontem-teknikleri, egitim-bilimleri/sinif-yonetimi, egitim-bilimleri/program-okuryazarligi, egitim-bilimleri/olcme-degerlendirme, egitim-bilimleri/ogrenme-psikolojisi, egitim-bilimleri/gelisim-psikolojisi, egitim-bilimleri/rehberlik, egitim-bilimleri/egitim-ogretim-teknolojileri, egitim-bilimleri/milli-egitim-sistemi, egitim-bilimleri/maarif-modeli]
           - id: mevzuat
-            name: { tr: "Mevzuat" }
+            name: { tr: "Mevzuat", en: "Legislation" }
             weight: 10
             questionCount: 8
             topics: [mevzuat/anayasa-insan-haklari, mevzuat/milli-egitim-temel-kanunu, mevzuat/ilkogretim-egitim-kanunu, mevzuat/ogretmenlik-meslegi-kanunu]

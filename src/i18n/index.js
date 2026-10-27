@@ -4,6 +4,7 @@
  */
 import { withBase } from '../lib/path.js';
 import { DEFAULT_LOCALE, LOCALES } from './locales.js';
+import en from './en.js';
 import tr from './tr.js';
 
 export { DEFAULT_LOCALE, LOCALES };
@@ -12,7 +13,7 @@ export const INTL_LOCALE = { tr: 'tr-TR', en: 'en-GB' };
 /** Each language's name in its own language, for the language switcher. */
 export const LANGUAGE_NAMES = { tr: 'Türkçe', en: 'English' };
 
-const DICTIONARIES = { tr };
+const DICTIONARIES = { tr, en };
 
 /**
  * Returns `t(key, params)` for a locale. Keys are dotted paths; string values get

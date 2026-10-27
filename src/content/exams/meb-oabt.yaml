@@ -1,736 +1,736 @@
 # Structure and weights: meb-ags-2026 guide, section 3.1 and Tablo-1 (ÖABT).
 # Candidates take only their own field's test. Foreign-language fields use YDS/e-YDS instead of ÖABT.
-name: { tr: "Öğretmenlik Alan Bilgisi Testi (ÖABT)" }
-shortName: { tr: "ÖABT" }
+name: { tr: "Öğretmenlik Alan Bilgisi Testi (ÖABT)", en: "Teaching Field Knowledge Test (ÖABT)" }
+shortName: { tr: "ÖABT", en: "ÖABT" }
 group: MEB-AGS
 order: 2
 source:
   document: meb-ags-2026
   verified: true
 sessions:
-  - name: { tr: "ÖABT" }
+  - name: { tr: "ÖABT", en: "ÖABT" }
     singleTestChoice: true
     tests:
-      - name: { tr: "Türkçe" }
+      - name: { tr: "Türkçe", en: "Turkish" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: tr-anlama-anlatma
-            name: { tr: "Anlama ve Anlatma Teknikleri" }
+            name: { tr: "Anlama ve Anlatma Teknikleri", en: "Comprehension and Expression Techniques" }
             weight: 32
             questionCount: 16
             topics: []
           - id: tr-dil-bilgisi
-            name: { tr: "Dil Bilgisi ve Dil Bilimi" }
+            name: { tr: "Dil Bilgisi ve Dil Bilimi", en: "Grammar and Linguistics" }
             weight: 24
             questionCount: 12
             topics: []
           - id: tr-cocuk-edebiyati
-            name: { tr: "Çocuk Edebiyatı" }
+            name: { tr: "Çocuk Edebiyatı", en: "Children's Literature" }
             weight: 6
             questionCount: 3
             topics: []
           - id: tr-halk-edebiyati
-            name: { tr: "Türk Halk Edebiyatı" }
+            name: { tr: "Türk Halk Edebiyatı", en: "Turkish Folk Literature" }
             weight: 10
             questionCount: 5
             topics: []
           - id: tr-eski-edebiyat
-            name: { tr: "Eski Türk Edebiyatı" }
+            name: { tr: "Eski Türk Edebiyatı", en: "Classical Turkish Literature" }
             weight: 10
             questionCount: 5
             topics: []
           - id: tr-yeni-edebiyat
-            name: { tr: "Yeni Türk Edebiyatı" }
+            name: { tr: "Yeni Türk Edebiyatı", en: "Modern Turkish Literature" }
             weight: 10
             questionCount: 5
             topics: []
           - id: tr-edebiyat-kuramlari
-            name: { tr: "Edebiyat Bilgi ve Kuramları" }
+            name: { tr: "Edebiyat Bilgi ve Kuramları", en: "Literary Knowledge and Theory" }
             weight: 8
             questionCount: 4
             topics: []
-      - name: { tr: "İlköğretim Matematik" }
+      - name: { tr: "İlköğretim Matematik", en: "Elementary Mathematics" }
         questionCount: 50
         durationMin: 90
         subjects:
           - id: im-analiz
-            name: { tr: "Analiz" }
+            name: { tr: "Analiz", en: "Analysis" }
             weight: 36
             questionCount: 18
             topics: []
           - id: im-cebir
-            name: { tr: "Cebir" }
+            name: { tr: "Cebir", en: "Algebra" }
             weight: 24
             questionCount: 12
             topics: []
           - id: im-geometri
-            name: { tr: "Geometri" }
+            name: { tr: "Geometri", en: "Geometry" }
             weight: 24
             questionCount: 12
             topics: []
           - id: im-uygulamali
-            name: { tr: "Uygulamalı Matematik" }
+            name: { tr: "Uygulamalı Matematik", en: "Applied Mathematics" }
             weight: 16
             questionCount: 8
             topics: []
-      - name: { tr: "Matematik" }
+      - name: { tr: "Matematik", en: "Mathematics" }
         questionCount: 50
         durationMin: 90
         subjects:
           - id: mat-analiz
-            name: { tr: "Analiz" }
+            name: { tr: "Analiz", en: "Analysis" }
             weight: 36
             questionCount: 18
             topics: []
           - id: mat-cebir
-            name: { tr: "Cebir" }
+            name: { tr: "Cebir", en: "Algebra" }
             weight: 24
             questionCount: 12
             topics: []
           - id: mat-geometri
-            name: { tr: "Geometri" }
+            name: { tr: "Geometri", en: "Geometry" }
             weight: 20
             questionCount: 10
             topics: []
           - id: mat-uygulamali
-            name: { tr: "Uygulamalı Matematik" }
+            name: { tr: "Uygulamalı Matematik", en: "Applied Mathematics" }
             weight: 20
             questionCount: 10
             topics: []
-      - name: { tr: "Fen Bilimleri" }
+      - name: { tr: "Fen Bilimleri", en: "Science" }
         questionCount: 50
         durationMin: 90
         subjects:
           - id: fen-fizik
-            name: { tr: "Fizik" }
+            name: { tr: "Fizik", en: "Physics" }
             weight: 32
             questionCount: 16
             topics: []
           - id: fen-kimya
-            name: { tr: "Kimya" }
+            name: { tr: "Kimya", en: "Chemistry" }
             weight: 30
             questionCount: 15
             topics: []
           - id: fen-biyoloji
-            name: { tr: "Biyoloji" }
+            name: { tr: "Biyoloji", en: "Biology" }
             weight: 26
             questionCount: 13
             topics: []
           - id: fen-jeoloji
-            name: { tr: "Jeoloji (Yer Bilimi)" }
+            name: { tr: "Jeoloji (Yer Bilimi)", en: "Geology (Earth Science)" }
             weight: 4
             questionCount: 2
             topics: []
           - id: fen-astronomi
-            name: { tr: "Astronomi" }
+            name: { tr: "Astronomi", en: "Astronomy" }
             weight: 4
             questionCount: 2
             topics: []
           - id: fen-cevre-bilimi
-            name: { tr: "Çevre Bilimi" }
+            name: { tr: "Çevre Bilimi", en: "Environmental Science" }
             weight: 4
             questionCount: 2
             topics: []
-      - name: { tr: "Sosyal Bilgiler" }
+      - name: { tr: "Sosyal Bilgiler", en: "Social Studies" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: sb-tarih
-            name: { tr: "Tarih" }
+            name: { tr: "Tarih", en: "History" }
             weight: 44
             questionCount: 22
             topics: []
           - id: sb-cografya
-            name: { tr: "Coğrafya" }
+            name: { tr: "Coğrafya", en: "Geography" }
             weight: 24
             questionCount: 12
             topics: []
           - id: sb-siyaset-bilimi
-            name: { tr: "Siyaset Bilimi" }
+            name: { tr: "Siyaset Bilimi", en: "Political Science" }
             weight: 16
             questionCount: 8
             topics: []
           - id: sb-diger-sosyal-bilimler
-            name: { tr: "Diğer Sosyal Bilim Alanları" }
+            name: { tr: "Diğer Sosyal Bilim Alanları", en: "Other Social Science Fields" }
             weight: 16
             questionCount: 8
             topics: []
-      - name: { tr: "Türk Dili ve Edebiyatı" }
+      - name: { tr: "Türk Dili ve Edebiyatı", en: "Turkish Language and Literature" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: tde-turk-dili
-            name: { tr: "Eski Türk Dili ve Yeni Türk Dili" }
+            name: { tr: "Eski Türk Dili ve Yeni Türk Dili", en: "Old Turkish and Modern Turkish Language" }
             weight: 30
             questionCount: 15
             topics: []
           - id: tde-halk-edebiyati
-            name: { tr: "Türk Halk Edebiyatı" }
+            name: { tr: "Türk Halk Edebiyatı", en: "Turkish Folk Literature" }
             weight: 20
             questionCount: 10
             topics: []
           - id: tde-eski-edebiyat
-            name: { tr: "Eski Türk Edebiyatı" }
+            name: { tr: "Eski Türk Edebiyatı", en: "Classical Turkish Literature" }
             weight: 20
             questionCount: 10
             topics: []
           - id: tde-yeni-edebiyat
-            name: { tr: "Yeni Türk Edebiyatı" }
+            name: { tr: "Yeni Türk Edebiyatı", en: "Modern Turkish Literature" }
             weight: 30
             questionCount: 15
             topics: []
-      - name: { tr: "Tarih" }
+      - name: { tr: "Tarih", en: "History" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: ot-tarih-metodolojisi
-            name: { tr: "Tarih Metodolojisi" }
+            name: { tr: "Tarih Metodolojisi", en: "Historical Methodology" }
             weight: 8
             questionCount: 4
             topics: []
           - id: ot-osmanli-turkcesi
-            name: { tr: "Osmanlı Türkçesi" }
+            name: { tr: "Osmanlı Türkçesi", en: "Ottoman Turkish" }
             weight: 6
             questionCount: 3
             topics: []
           - id: ot-eski-cag
-            name: { tr: "Eski Çağ Tarihi" }
+            name: { tr: "Eski Çağ Tarihi", en: "Ancient History" }
             weight: 4
             questionCount: 2
             topics: []
           - id: ot-ilk-turk-devletleri
-            name: { tr: "İlk Türk Devletleri Tarihi" }
+            name: { tr: "İlk Türk Devletleri Tarihi", en: "History of the Early Turkic States" }
             weight: 10
             questionCount: 5
             topics: []
           - id: ot-orta-cag-islam
-            name: { tr: "Orta Çağ İslam Tarihi" }
+            name: { tr: "Orta Çağ İslam Tarihi", en: "Medieval Islamic History" }
             weight: 14
             questionCount: 7
             topics: []
           - id: ot-osmanli
-            name: { tr: "Osmanlı Tarihi" }
+            name: { tr: "Osmanlı Tarihi", en: "Ottoman History" }
             weight: 18
             questionCount: 9
             topics: []
           - id: ot-cumhuriyet
-            name: { tr: "Türkiye Cumhuriyeti Tarihi" }
+            name: { tr: "Türkiye Cumhuriyeti Tarihi", en: "History of the Republic of Turkey" }
             weight: 16
             questionCount: 8
             topics: []
           - id: ot-dunya-tarihi
-            name: { tr: "Orta Çağ’dan XX. Yüzyıl’a Dünya Tarihi" }
+            name: { tr: "Orta Çağ’dan XX. Yüzyıl’a Dünya Tarihi", en: "World History from the Middle Ages to the 20th Century" }
             weight: 14
             questionCount: 7
             topics: []
           - id: ot-xx-yuzyil
-            name: { tr: "XX. Yüzyıl Türk ve Dünya Tarihi" }
+            name: { tr: "XX. Yüzyıl Türk ve Dünya Tarihi", en: "20th-Century Turkish and World History" }
             weight: 10
             questionCount: 5
             topics: []
-      - name: { tr: "Coğrafya" }
+      - name: { tr: "Coğrafya", en: "Geography" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: oc-fiziki
-            name: { tr: "Fiziki Coğrafya" }
+            name: { tr: "Fiziki Coğrafya", en: "Physical Geography" }
             weight: 40
             questionCount: 20
             topics: []
           - id: oc-beseri-ekonomik
-            name: { tr: "Beşerî ve Ekonomik Coğrafya" }
+            name: { tr: "Beşerî ve Ekonomik Coğrafya", en: "Human and Economic Geography" }
             weight: 40
             questionCount: 20
             topics: []
           - id: oc-kitalar-ulkeler
-            name: { tr: "Kıtalar ve Ülkeler Coğrafyası" }
+            name: { tr: "Kıtalar ve Ülkeler Coğrafyası", en: "Geography of Continents and Countries" }
             weight: 20
             questionCount: 10
             topics: []
-      - name: { tr: "Fizik" }
+      - name: { tr: "Fizik", en: "Physics" }
         questionCount: 50
         durationMin: 90
         subjects:
           - id: fiz-mekanik
-            name: { tr: "Mekanik" }
+            name: { tr: "Mekanik", en: "Mechanics" }
             weight: 30
             questionCount: 15
             topics: []
           - id: fiz-elektrik-manyetizma
-            name: { tr: "Elektrik ve Manyetizma" }
+            name: { tr: "Elektrik ve Manyetizma", en: "Electricity and Magnetism" }
             weight: 24
             questionCount: 12
             topics: []
           - id: fiz-madde-isil
-            name: { tr: "Maddenin Mekanik ve Isıl Özellikleri" }
+            name: { tr: "Maddenin Mekanik ve Isıl Özellikleri", en: "Mechanical and Thermal Properties of Matter" }
             weight: 10
             questionCount: 5
             topics: []
           - id: fiz-dalgalar-optik
-            name: { tr: "Dalgalar ve Optik" }
+            name: { tr: "Dalgalar ve Optik", en: "Waves and Optics" }
             weight: 16
             questionCount: 8
             topics: []
           - id: fiz-modern-fizik
-            name: { tr: "Modern Fizik" }
+            name: { tr: "Modern Fizik", en: "Modern Physics" }
             weight: 20
             questionCount: 10
             topics: []
-      - name: { tr: "Kimya/Kimya Teknolojisi" }
+      - name: { tr: "Kimya/Kimya Teknolojisi", en: "Chemistry/Chemical Technology" }
         questionCount: 50
         durationMin: 90
         subjects:
           - id: kim-temel
-            name: { tr: "Temel Kimya" }
+            name: { tr: "Temel Kimya", en: "General Chemistry" }
             weight: 32
             questionCount: 16
             topics: []
           - id: kim-analitik
-            name: { tr: "Analitik Kimya" }
+            name: { tr: "Analitik Kimya", en: "Analytical Chemistry" }
             weight: 20
             questionCount: 10
             topics: []
           - id: kim-anorganik
-            name: { tr: "Anorganik Kimya" }
+            name: { tr: "Anorganik Kimya", en: "Inorganic Chemistry" }
             weight: 16
             questionCount: 8
             topics: []
           - id: kim-organik
-            name: { tr: "Organik Kimya" }
+            name: { tr: "Organik Kimya", en: "Organic Chemistry" }
             weight: 20
             questionCount: 10
             topics: []
           - id: kim-fizikokimya
-            name: { tr: "Fizikokimya" }
+            name: { tr: "Fizikokimya", en: "Physical Chemistry" }
             weight: 12
             questionCount: 6
             topics: []
-      - name: { tr: "Biyoloji" }
+      - name: { tr: "Biyoloji", en: "Biology" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: bio-hucre-metabolizma
-            name: { tr: "Hücre ve Metabolizma" }
+            name: { tr: "Hücre ve Metabolizma", en: "Cell and Metabolism" }
             weight: 20
             questionCount: 10
             topics: []
           - id: bio-bitki
-            name: { tr: "Bitki Biyolojisi" }
+            name: { tr: "Bitki Biyolojisi", en: "Plant Biology" }
             weight: 12
             questionCount: 6
             topics: []
           - id: bio-insan-hayvan
-            name: { tr: "İnsan ve Hayvan Biyolojisi" }
+            name: { tr: "İnsan ve Hayvan Biyolojisi", en: "Human and Animal Biology" }
             weight: 28
             questionCount: 14
             topics: []
           - id: bio-ekoloji
-            name: { tr: "Ekoloji" }
+            name: { tr: "Ekoloji", en: "Ecology" }
             weight: 12
             questionCount: 6
             topics: []
           - id: bio-siniflandirma
-            name: { tr: "Canlıların Sınıflandırılması" }
+            name: { tr: "Canlıların Sınıflandırılması", en: "Classification of Living Things" }
             weight: 8
             questionCount: 4
             topics: []
           - id: bio-genetik
-            name: { tr: "Genetik" }
+            name: { tr: "Genetik", en: "Genetics" }
             weight: 20
             questionCount: 10
             topics: []
-      - name: { tr: "Din Kültürü ve Ahlâk Bilgisi / İmam-Hatip Lisesi Meslek Dersleri" }
+      - name: { tr: "Din Kültürü ve Ahlâk Bilgisi / İmam-Hatip Lisesi Meslek Dersleri", en: "Religious Culture and Ethics / İmam-Hatip High School Vocational Courses" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: dkab-kuran-tecvid
-            name: { tr: "Kur’an-ı Kerim ve Tecvid" }
+            name: { tr: "Kur’an-ı Kerim ve Tecvid", en: "The Qur'an and Tajwid" }
             weight: 8
             questionCount: 4
             topics: []
           - id: dkab-tefsir
-            name: { tr: "Tefsir" }
+            name: { tr: "Tefsir", en: "Tafsir (Qur’anic Exegesis)" }
             weight: 10
             questionCount: 5
             topics: []
           - id: dkab-hadis
-            name: { tr: "Hadis" }
+            name: { tr: "Hadis", en: "Hadith" }
             weight: 10
             questionCount: 5
             topics: []
           - id: dkab-fikih
-            name: { tr: "Fıkıh" }
+            name: { tr: "Fıkıh", en: "Fiqh (Islamic Jurisprudence)" }
             weight: 14
             questionCount: 7
             topics: []
           - id: dkab-akaid
-            name: { tr: "Akaid" }
+            name: { tr: "Akaid", en: "Aqidah (Islamic Creed)" }
             weight: 2
             questionCount: 1
             topics: []
           - id: dkab-kelam
-            name: { tr: "Kelam" }
+            name: { tr: "Kelam", en: "Kalam (Islamic Theology)" }
             weight: 10
             questionCount: 5
             topics: []
           - id: dkab-mezhepler
-            name: { tr: "İslam Mezhepleri ve Akımları" }
+            name: { tr: "İslam Mezhepleri ve Akımları", en: "Islamic Schools and Movements" }
             weight: 6
             questionCount: 3
             topics: []
           - id: dkab-siyer
-            name: { tr: "Siyer" }
+            name: { tr: "Siyer", en: "Sirah (Life of the Prophet)" }
             weight: 6
             questionCount: 3
             topics: []
           - id: dkab-islam-tarihi
-            name: { tr: "İslam Tarihi, Kültür ve Medeniyeti" }
+            name: { tr: "İslam Tarihi, Kültür ve Medeniyeti", en: "Islamic History, Culture and Civilization" }
             weight: 10
             questionCount: 5
             topics: []
           - id: dkab-islam-felsefesi
-            name: { tr: "İslam Felsefesi" }
+            name: { tr: "İslam Felsefesi", en: "Islamic Philosophy" }
             weight: 4
             questionCount: 2
             topics: []
           - id: dkab-din-felsefesi
-            name: { tr: "Din Felsefesi" }
+            name: { tr: "Din Felsefesi", en: "Philosophy of Religion" }
             weight: 4
             questionCount: 2
             topics: []
           - id: dkab-din-sosyolojisi
-            name: { tr: "Din Sosyolojisi" }
+            name: { tr: "Din Sosyolojisi", en: "Sociology of Religion" }
             weight: 4
             questionCount: 2
             topics: []
           - id: dkab-din-psikolojisi
-            name: { tr: "Din Psikolojisi" }
+            name: { tr: "Din Psikolojisi", en: "Psychology of Religion" }
             weight: 4
             questionCount: 2
             topics: []
           - id: dkab-din-egitimi
-            name: { tr: "Din Eğitimi" }
+            name: { tr: "Din Eğitimi", en: "Religious Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: dkab-dinler-tarihi
-            name: { tr: "Dinler Tarihi" }
+            name: { tr: "Dinler Tarihi", en: "History of Religions" }
             weight: 4
             questionCount: 2
             topics: []
-      - name: { tr: "Rehberlik" }
+      - name: { tr: "Rehberlik", en: "Guidance and Counseling" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: reh-psikolojik-kavramlar
-            name: { tr: "Temel Psikolojik Kavramlar" }
+            name: { tr: "Temel Psikolojik Kavramlar", en: "Basic Psychological Concepts" }
             weight: 16
             questionCount: 8
             topics: []
           - id: reh-kuram-ilke-teknikler
-            name: { tr: "Psikolojik Danışma Kuram İlke ve Teknikleri" }
+            name: { tr: "Psikolojik Danışma Kuram İlke ve Teknikleri", en: "Counseling Theories, Principles and Techniques" }
             weight: 20
             questionCount: 10
             topics: []
           - id: reh-davranis-uyum
-            name: { tr: "Davranış ve Uyum Problemleri" }
+            name: { tr: "Davranış ve Uyum Problemleri", en: "Behavior and Adjustment Problems" }
             weight: 12
             questionCount: 6
             topics: []
           - id: reh-bireyi-tanima
-            name: { tr: "Bireyi Tanıma Teknikleri" }
+            name: { tr: "Bireyi Tanıma Teknikleri", en: "Individual Assessment Techniques" }
             weight: 14
             questionCount: 7
             topics: []
           - id: reh-bireyle-grupla
-            name: { tr: "Bireyle ve Grupla Psikolojik Danışma" }
+            name: { tr: "Bireyle ve Grupla Psikolojik Danışma", en: "Individual and Group Counseling" }
             weight: 14
             questionCount: 7
             topics: []
           - id: reh-mesleki-rehberlik
-            name: { tr: "Mesleki Rehberlik ve Kariyer Danışmanlığı" }
+            name: { tr: "Mesleki Rehberlik ve Kariyer Danışmanlığı", en: "Vocational Guidance and Career Counseling" }
             weight: 12
             questionCount: 6
             topics: []
           - id: reh-arastirma-program
-            name: { tr: "Psikolojik Danışma ve Rehberlikte Araştırma ve Program Geliştirme" }
+            name: { tr: "Psikolojik Danışma ve Rehberlikte Araştırma ve Program Geliştirme", en: "Research and Program Development in Counseling and Guidance" }
             weight: 8
             questionCount: 4
             topics: []
           - id: reh-etik-yasal
-            name: { tr: "Meslek Etiği ve Yasal Konular" }
+            name: { tr: "Meslek Etiği ve Yasal Konular", en: "Professional Ethics and Legal Issues" }
             weight: 4
             questionCount: 2
             topics: []
-      - name: { tr: "Beden Eğitimi" }
+      - name: { tr: "Beden Eğitimi", en: "Physical Education" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: be-temeller
-            name: { tr: "Beden Eğitimi ve Sporun Temelleri" }
+            name: { tr: "Beden Eğitimi ve Sporun Temelleri", en: "Foundations of Physical Education and Sport" }
             weight: 16
             questionCount: 8
             topics: []
           - id: be-anatomi-kinesiyoloji
-            name: { tr: "İnsan Anatomisi ve Kinesiyoloji" }
+            name: { tr: "İnsan Anatomisi ve Kinesiyoloji", en: "Human Anatomy and Kinesiology" }
             weight: 8
             questionCount: 4
             topics: []
           - id: be-saglik-ilk-yardim
-            name: { tr: "Sağlık Bilgisi ve İlk Yardım" }
+            name: { tr: "Sağlık Bilgisi ve İlk Yardım", en: "Health Education and First Aid" }
             weight: 6
             questionCount: 3
             topics: []
           - id: be-egzersiz-fizyolojisi
-            name: { tr: "Egzersiz Fizyolojisi" }
+            name: { tr: "Egzersiz Fizyolojisi", en: "Exercise Physiology" }
             weight: 8
             questionCount: 4
             topics: []
           - id: be-antrenman
-            name: { tr: "Antrenman Bilgisi" }
+            name: { tr: "Antrenman Bilgisi", en: "Training Science" }
             weight: 6
             questionCount: 3
             topics: []
           - id: be-fiziksel-uygunluk
-            name: { tr: "Fiziksel Uygunluk" }
+            name: { tr: "Fiziksel Uygunluk", en: "Physical Fitness" }
             weight: 6
             questionCount: 3
             topics: []
           - id: be-egzersiz-beslenme
-            name: { tr: "Egzersiz ve Beslenme" }
+            name: { tr: "Egzersiz ve Beslenme", en: "Exercise and Nutrition" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-engelliler
-            name: { tr: "Engelliler İçin Beden Eğitimi ve Spor" }
+            name: { tr: "Engelliler İçin Beden Eğitimi ve Spor", en: "Physical Education and Sport for People with Disabilities" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-psikomotor
-            name: { tr: "Psikomotor Gelişim" }
+            name: { tr: "Psikomotor Gelişim", en: "Psychomotor Development" }
             weight: 6
             questionCount: 3
             topics: []
           - id: be-spor-yonetimi
-            name: { tr: "Beden Eğitimi ve Spor Yönetimi" }
+            name: { tr: "Beden Eğitimi ve Spor Yönetimi", en: "Physical Education and Sports Management" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-beceri-ogrenimi
-            name: { tr: "Beceri Öğrenimi" }
+            name: { tr: "Beceri Öğrenimi", en: "Motor Skill Learning" }
             weight: 6
             questionCount: 3
             topics: []
           - id: be-atletizm
-            name: { tr: "Atletizm" }
+            name: { tr: "Atletizm", en: "Athletics" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-takim-sporlari
-            name: { tr: "Takım Sporları" }
+            name: { tr: "Takım Sporları", en: "Team Sports" }
             weight: 10
             questionCount: 5
             topics: []
           - id: be-ritim-dans
-            name: { tr: "Ritim Eğitimi ve Dans, Halk Oyunları" }
+            name: { tr: "Ritim Eğitimi ve Dans, Halk Oyunları", en: "Rhythm Education, Dance and Folk Dances" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-jimnastik
-            name: { tr: "Jimnastik" }
+            name: { tr: "Jimnastik", en: "Gymnastics" }
             weight: 4
             questionCount: 2
             topics: []
           - id: be-egitsel-oyunlar
-            name: { tr: "Eğitsel Oyunlar" }
+            name: { tr: "Eğitsel Oyunlar", en: "Educational Games" }
             weight: 4
             questionCount: 2
             topics: []
-      - name: { tr: "Okul Öncesi" }
+      - name: { tr: "Okul Öncesi", en: "Preschool" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: oo-giris
-            name: { tr: "Erken Çocukluk Eğitimine Giriş" }
+            name: { tr: "Erken Çocukluk Eğitimine Giriş", en: "Introduction to Early Childhood Education" }
             weight: 8
             questionCount: 4
             topics: []
           - id: oo-saglik-ilk-yardim
-            name: { tr: "Çocuk Sağlığı ve İlk Yardım" }
+            name: { tr: "Çocuk Sağlığı ve İlk Yardım", en: "Child Health and First Aid" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oo-gelisim
-            name: { tr: "Erken Çocukluk Döneminde Gelişim" }
+            name: { tr: "Erken Çocukluk Döneminde Gelişim", en: "Development in Early Childhood" }
             weight: 12
             questionCount: 6
             topics: []
           - id: oo-ruh-sagligi
-            name: { tr: "Çocuk Ruh Sağlığı" }
+            name: { tr: "Çocuk Ruh Sağlığı", en: "Children's Mental Health" }
             weight: 8
             questionCount: 4
             topics: []
           - id: oo-edebiyat
-            name: { tr: "Erken Çocukluk Dönemi Edebiyatı" }
+            name: { tr: "Erken Çocukluk Dönemi Edebiyatı", en: "Early Childhood Literature" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oo-program-yontem
-            name: { tr: "Erken Çocuklukta Program, Yöntem ve Yaklaşımlar" }
+            name: { tr: "Erken Çocuklukta Program, Yöntem ve Yaklaşımlar", en: "Early Childhood Programs, Methods and Approaches" }
             weight: 12
             questionCount: 6
             topics: []
           - id: oo-anne-baba
-            name: { tr: "Anne-Baba Eğitimi" }
+            name: { tr: "Anne-Baba Eğitimi", en: "Parent Education" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oo-cocuk-haklari
-            name: { tr: "Çocuk Hakları" }
+            name: { tr: "Çocuk Hakları", en: "Children's Rights" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oo-alan-egitimi
-            name: { tr: "Alan Eğitimi Testi" }
+            name: { tr: "Alan Eğitimi Testi", en: "Field Teaching Test" }
             weight: 40
             questionCount: 20
             topics: []
-      - name: { tr: "Sınıf Öğretmenliği" }
+      - name: { tr: "Sınıf Öğretmenliği", en: "Primary School Teaching" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: so-temel-matematik
-            name: { tr: "İlkokulda Temel Matematik" }
+            name: { tr: "İlkokulda Temel Matematik", en: "Basic Mathematics in Primary School" }
             weight: 6
             questionCount: 3
             topics: []
           - id: so-temel-fen
-            name: { tr: "İlkokulda Temel Fen Bilimleri" }
+            name: { tr: "İlkokulda Temel Fen Bilimleri", en: "Basic Science in Primary School" }
             weight: 10
             questionCount: 5
             topics: []
           - id: so-turk-dili
-            name: { tr: "Türk Dili" }
+            name: { tr: "Türk Dili", en: "Turkish Language" }
             weight: 6
             questionCount: 3
             topics: []
           - id: so-turk-tarihi-kulturu
-            name: { tr: "Türk Tarihi ve Kültürü" }
+            name: { tr: "Türk Tarihi ve Kültürü", en: "Turkish History and Culture" }
             weight: 4
             questionCount: 2
             topics: []
           - id: so-cografya-jeopolitik
-            name: { tr: "Türkiye Coğrafyası ve Jeopolitiği" }
+            name: { tr: "Türkiye Coğrafyası ve Jeopolitiği", en: "Geography and Geopolitics of Turkey" }
             weight: 4
             questionCount: 2
             topics: []
           - id: so-cocuk-edebiyati
-            name: { tr: "Çocuk Edebiyatı" }
+            name: { tr: "Çocuk Edebiyatı", en: "Children's Literature" }
             weight: 4
             questionCount: 2
             topics: []
           - id: so-alan-egitimi
-            name: { tr: "Alan Eğitimi Testi" }
+            name: { tr: "Alan Eğitimi Testi", en: "Field Teaching Test" }
             weight: 66
             questionCount: 33
             topics: []
-      - name: { tr: "Özel Eğitim" }
+      - name: { tr: "Özel Eğitim", en: "Special Education" }
         questionCount: 50
         durationMin: 70
         subjects:
           - id: oe-zihin-otizm
-            name: { tr: "Zihin Yetersizliği ve Otizm Spektrum Bozukluğu" }
+            name: { tr: "Zihin Yetersizliği ve Otizm Spektrum Bozukluğu", en: "Intellectual Disability and Autism Spectrum Disorder" }
             weight: 10
             questionCount: 5
             topics: []
           - id: oe-ogrenme-guclugu-ozel-yetenek
-            name: { tr: "Öğrenme Güçlüğü ve Özel Yetenek" }
+            name: { tr: "Öğrenme Güçlüğü ve Özel Yetenek", en: "Learning Disabilities and Giftedness" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oe-isitme-gorme
-            name: { tr: "İşitme ve Görme Yetersizliği" }
+            name: { tr: "İşitme ve Görme Yetersizliği", en: "Hearing and Visual Impairment" }
             weight: 10
             questionCount: 5
             topics: []
           - id: oe-erken-cocukluk
-            name: { tr: "Erken Çocuklukta Özel Eğitim" }
+            name: { tr: "Erken Çocuklukta Özel Eğitim", en: "Early Childhood Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-uygulamali-davranis-analizi
-            name: { tr: "Uygulamalı Davranış Analizi" }
+            name: { tr: "Uygulamalı Davranış Analizi", en: "Applied Behavior Analysis" }
             weight: 8
             questionCount: 4
             topics: []
           - id: oe-bep
-            name: { tr: "Bireyselleştirilmiş Eğitim Programları" }
+            name: { tr: "Bireyselleştirilmiş Eğitim Programları", en: "Individualized Education Programs" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oe-degerlendirme
-            name: { tr: "Özel Eğitimde Değerlendirme" }
+            name: { tr: "Özel Eğitimde Değerlendirme", en: "Assessment in Special Education" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oe-dil-iletisim
-            name: { tr: "Dil ve İletişim Becerilerinin Desteklenmesi" }
+            name: { tr: "Dil ve İletişim Becerilerinin Desteklenmesi", en: "Supporting Language and Communication Skills" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-politika-yasal
-            name: { tr: "Özel Eğitim Politikaları ve Yasal Düzenlemeler" }
+            name: { tr: "Özel Eğitim Politikaları ve Yasal Düzenlemeler", en: "Special Education Policies and Legislation" }
             weight: 6
             questionCount: 3
             topics: []
           - id: oe-tymm-programlari
-            name: { tr: "2024 TYMM Özel Eğitim Programları" }
+            name: { tr: "2024 TYMM Özel Eğitim Programları", en: "2024 TYMM Special Education Programs" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-okuma-yazma
-            name: { tr: "Özel Eğitimde Okuma-Yazma Öğretimi" }
+            name: { tr: "Özel Eğitimde Okuma-Yazma Öğretimi", en: "Teaching Reading and Writing in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-fen-sosyal
-            name: { tr: "Özel Eğitimde Fen ve Sosyal Bilgiler Öğretimi" }
+            name: { tr: "Özel Eğitimde Fen ve Sosyal Bilgiler Öğretimi", en: "Teaching Science and Social Studies in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-matematik
-            name: { tr: "Özel Eğitimde Matematik Öğretimi" }
+            name: { tr: "Özel Eğitimde Matematik Öğretimi", en: "Teaching Mathematics in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-sanatsal-beceriler
-            name: { tr: "Özel Eğitimde Sanatsal Becerilerin Öğretimi" }
+            name: { tr: "Özel Eğitimde Sanatsal Becerilerin Öğretimi", en: "Teaching Artistic Skills in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-fiziksel-egitim-spor
-            name: { tr: "Özel Eğitimde Fiziksel Eğitim ve Spor" }
+            name: { tr: "Özel Eğitimde Fiziksel Eğitim ve Spor", en: "Physical Education and Sport in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-sosyal-uyum
-            name: { tr: "Özel Eğitimde Sosyal Uyum Becerilerinin Öğretimi" }
+            name: { tr: "Özel Eğitimde Sosyal Uyum Becerilerinin Öğretimi", en: "Teaching Social Adjustment Skills in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-turkce
-            name: { tr: "Özel Eğitimde Türkçe Öğretimi" }
+            name: { tr: "Özel Eğitimde Türkçe Öğretimi", en: "Teaching Turkish in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-oyun-muzik
-            name: { tr: "Özel Eğitimde Oyun ve Müzik" }
+            name: { tr: "Özel Eğitimde Oyun ve Müzik", en: "Play and Music in Special Education" }
             weight: 4
             questionCount: 2
             topics: []
           - id: oe-aile-egitimi
-            name: { tr: "Özel Eğitimde Aile Eğitimi" }
+            name: { tr: "Özel Eğitimde Aile Eğitimi", en: "Family Education in Special Education" }
             weight: 4
             questionCount: 2
             topics: []

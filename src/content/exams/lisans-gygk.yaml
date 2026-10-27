@@ -1,7 +1,7 @@
 # Structure and weights: kpss-lisans-2026 guide, "Sınavda Uygulanacak Testler" and Tablo-1.
 # Subject question counts are derived from the guide's "approximate weight" percentages.
-name: { tr: "KPSS Lisans Genel Yetenek – Genel Kültür" }
-shortName: { tr: "KPSS Lisans" }
+name: { tr: "KPSS Lisans Genel Yetenek – Genel Kültür", en: "KPSS Bachelor's General Ability – General Culture" }
+shortName: { tr: "KPSS Lisans", en: "KPSS Bachelor's" }
 group: KPSS
 order: 1
 source:
@@ -9,42 +9,42 @@ source:
   verified: true
   booklets: [kpss-lisans-gygk-kitapcik-2026]
 sessions:
-  - name: { tr: "Genel Yetenek-Genel Kültür" }
+  - name: { tr: "Genel Yetenek-Genel Kültür", en: "General Ability – General Culture" }
     durationMin: 130
     tests:
-      - name: { tr: "Genel Yetenek" }
+      - name: { tr: "Genel Yetenek", en: "General Ability" }
         questionCount: 60
         subjects:
           - id: turkce
-            name: { tr: "Sözel Bölüm" }
+            name: { tr: "Sözel Bölüm", en: "Verbal Section" }
             weight: 50
             questionCount: 30
             topics: []
           - id: matematik
-            name: { tr: "Sayısal Bölüm" }
+            name: { tr: "Sayısal Bölüm", en: "Quantitative Section" }
             weight: 50
             questionCount: 30
             topics: []
-      - name: { tr: "Genel Kültür" }
+      - name: { tr: "Genel Kültür", en: "General Culture" }
         questionCount: 60
         subjects:
           - id: tarih
-            name: { tr: "Tarih" }
+            name: { tr: "Tarih", en: "History" }
             weight: 45
             questionCount: 27
             topics: [tarih/osmanli-oncesi-turk-devletleri, tarih/osmanli-tarihi, tarih/ataturk-ilkeleri-inkilap-tarihi, tarih/cagdas-turk-dunya-tarihi]
           - id: cografya
-            name: { tr: "Türkiye Coğrafyası" }
+            name: { tr: "Türkiye Coğrafyası", en: "Geography of Turkey" }
             weight: 30
             questionCount: 18
             topics: [cografya/turkiye-fiziki, cografya/turkiye-beseri, cografya/turkiye-ekonomik]
           - id: vatandaslik
-            name: { tr: "Temel Yurttaşlık Bilgisi" }
+            name: { tr: "Temel Yurttaşlık Bilgisi", en: "Basic Citizenship" }
             weight: 15
             questionCount: 9
             topics: [vatandaslik/hukuk-baslangici, vatandaslik/anayasa-insan-haklari, vatandaslik/idare]
           - id: guncel-bilgiler
-            name: { tr: "Güncel Bilgiler" }
+            name: { tr: "Güncel Bilgiler", en: "Current Affairs" }
             weight: 10
             questionCount: 6
             topics: [guncel-bilgiler/turkiye-dunya-guncel]

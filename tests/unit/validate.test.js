@@ -28,7 +28,7 @@ const sources = [{ id: 'guide', data: {} }];
 
 const valid = () => ({
   exams: [exam([subject('turkce', 2, ['turkce/paragraf']), subject('matematik', 2, ['matematik/sayilar'])])],
-  topics: { tr: [topic('turkce/paragraf'), topic('matematik/sayilar')] },
+  topics: { tr: [topic('turkce/paragraf'), topic('matematik/sayilar')], en: [topic('turkce/paragraf'), topic('matematik/sayilar')] },
   sources,
   calendar: [{ id: 'c1', data: { exam: 'sample', document: 'guide', start: new Date('2026-09-06') } }],
 });

@@ -2,7 +2,8 @@
   {
     "id": "kpss-lisans-2026",
     "title": {
-      "tr": "2026 KPSS Kılavuzu (Lisans: Genel Yetenek-Genel Kültür, Alan Bilgisi, DHBT)"
+      "tr": "2026 KPSS Kılavuzu (Lisans: Genel Yetenek-Genel Kültür, Alan Bilgisi, DHBT)",
+      "en": "2026 KPSS Guide (Bachelor's: General Ability–General Culture, Field Knowledge, DHBT)"
     },
     "kind": "guide",
     "sourceType": "osym-guide",
@@ -14,7 +15,8 @@
   {
     "id": "kpss-onlisans-2026",
     "title": {
-      "tr": "2026 KPSS Ön Lisans Başvuru Kılavuzu"
+      "tr": "2026 KPSS Ön Lisans Başvuru Kılavuzu",
+      "en": "2026 KPSS Associate Application Guide"
     },
     "kind": "guide",
     "sourceType": "osym-guide",
@@ -26,7 +28,8 @@
   {
     "id": "kpss-ortaogretim-2026",
     "title": {
-      "tr": "2026 KPSS Ortaöğretim Başvuru Kılavuzu"
+      "tr": "2026 KPSS Ortaöğretim Başvuru Kılavuzu",
+      "en": "2026 KPSS Secondary Application Guide"
     },
     "kind": "guide",
     "sourceType": "osym-guide",
@@ -38,7 +41,8 @@
   {
     "id": "meb-ags-2026",
     "title": {
-      "tr": "2026 MEB Akademi Giriş Sınavı (MEB-AGS) Başvuru Kılavuzu"
+      "tr": "2026 MEB Akademi Giriş Sınavı (MEB-AGS) Başvuru Kılavuzu",
+      "en": "2026 Ministry of Education Academy Entrance Exam (MEB-AGS) Application Guide"
     },
     "kind": "guide",
     "sourceType": "osym-guide",
@@ -50,7 +54,8 @@
   {
     "id": "meb-ags-konu-dagilimi-2026",
     "title": {
-      "tr": "2026 AGS ve ÖABT Konu Dağılımları"
+      "tr": "2026 AGS ve ÖABT Konu Dağılımları",
+      "en": "2026 AGS and ÖABT Topic Distributions"
     },
     "kind": "topic-distribution",
     "sourceType": "osym-oabt-scope",
@@ -62,7 +67,8 @@
   {
     "id": "kpss-lisans-gygk-kitapcik-2026",
     "title": {
-      "tr": "2026 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı"
+      "tr": "2026 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı",
+      "en": "2026 KPSS Bachelor's GA-GC Question Booklet and Answer Key"
     },
     "kind": "question-booklet",
     "sourceType": "past-exam-analysis",
@@ -74,7 +80,8 @@
   {
     "id": "kpss-onlisans-kitapcik-2026",
     "title": {
-      "tr": "2026 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı"
+      "tr": "2026 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı",
+      "en": "2026 KPSS Associate Question Booklet and Answer Key"
     },
     "kind": "question-booklet",
     "sourceType": "past-exam-analysis",

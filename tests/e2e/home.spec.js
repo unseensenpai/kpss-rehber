@@ -1,9 +1,12 @@
 import { expect, test } from '@playwright/test';
 
-test('the root page sends visitors to their language', async ({ page }) => {
+test('the root page sends a Turkish browser to Turkish', async ({ browser }, testInfo) => {
+  const context = await browser.newContext({ baseURL: testInfo.project.use.baseURL, locale: 'tr-TR' });
+  const page = await context.newPage();
   await page.goto('./');
   await expect(page).toHaveURL(/\/kpss-rehber\/tr\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'tr');
+  await context.close();
 });
 
 test('home page opens with a Turkish heading', async ({ page }) => {

@@ -1,100 +1,117 @@
-# Katkı rehberi
+# Contributing
 
-KPSS Rehber'e katkın için teşekkürler. Bu proje ücretsiz ve ticari değildir; en değerli katkılar **hata bildirimleri**, **konu özetleri** ve **prompt iyileştirmeleri**dir.
+**English** · [Türkçe](CONTRIBUTING.tr.md)
 
-## Hızlı başlangıç
+Thanks for helping KPSS Rehber. The project is free and non-commercial; the most valuable contributions are **bug reports**, **topic summaries**, **translations** and **prompt improvements**.
+
+## Quick start
 
 ```bash
 npm ci
 npm run dev        # http://localhost:4321/kpss-rehber/
-npm test           # birim testleri (Vitest)
-npm run test:e2e   # uçtan uca testler (Playwright, build + önizleme)
+npm test           # unit tests (Vitest)
+npm run test:e2e   # end-to-end tests (Playwright, build + preview)
 ```
 
-Node 22 gerekir. `npm install` hata verirse repodaki `.npmrc` dosyasının yerinde olduğundan emin ol.
+Node 22 is required. If `npm install` fails, make sure the repository's `.npmrc` is in place.
 
-## Veri nerede?
+## Where the data lives
 
-| Dosya | İçerik |
+| Path | Contents |
 |---|---|
-| `src/content/sinavlar/*.yaml` | Sınav → oturum → test → ders → konu referansları |
-| `src/content/konular/<ders>/<slug>.md` | Konu bilgileri ve statik özet |
-| `src/prompts/sablonlar/*.md` | Prompt şablonları |
-| `src/prompts/seviyeler.yaml`, `uzunluklar.yaml` | Seviye ve uzunluk talimatları |
-| `data/kaynaklar.json` | Takip edilen resmi ÖSYM belgeleri |
-| `data/takvim.yaml` | Başvuru ve sınav tarihleri |
+| `src/content/exams/*.yaml` | Exam → session → test → subject → topic references; visible names as `{ tr, en }` |
+| `src/content/topics/<locale>/<subject>/<slug>.md` | One file per topic and language |
+| `src/prompts/templates/<locale>/*.md` | Prompt templates per language |
+| `src/prompts/levels.yaml`, `lengths.yaml` | Level and length instructions (`{ tr, en }`) |
+| `src/i18n/tr.js`, `en.js` | UI strings; both dictionaries must have the same keys |
+| `data/sources.json` | Tracked official ÖSYM documents |
+| `data/calendar.yaml` | Application and exam dates |
 
-Tüm veri build sırasında doğrulanır. Bozuk referans, yetim konu, tutmayan soru toplamı, kaynaksız kayıt ya da doldurulmamış şablon değişkeni **build'i kırar**; hata mesajı neyi düzeltmen gerektiğini söyler.
+All data is validated at build time. A broken reference, an orphan topic, question counts that do not add up, a record without a source, a missing translation or an unfilled template variable **fails the build**; the error message says what to fix.
 
-## Kaynak kuralı (en önemli kural)
+## Source rule (the most important rule)
 
-- ÖSYM verisi (soru sayıları, süreler, kapsamlar, tarihler) **ezberden girilmez**. Her kayıt `data/kaynaklar.json`daki resmi bir belgeye bağlanır.
-- ÖSYM'nin ayrıntılı listesi olmayan yerlerde konu ağacı çıkmış soru kitapçıklarından türetilir ve `kaynak: cikmis-soru-analizi` olarak işaretlenir.
-- **Çıkmış soruların metni siteye kopyalanmaz** (telif ÖSYM'ye aittir). Yalnızca kitapçığın bağlantısı verilir ve istatistik çıkarılır.
+- ÖSYM data (question counts, durations, scopes, dates) is **never entered from memory**. Every record links to an official document in `data/sources.json`.
+- Where ÖSYM publishes no detailed list, the topic tree is derived from past question booklets and marked `sourceType: past-exam-analysis`.
+- **Past exam questions are never copied to the site** (ÖSYM holds the copyright). Only the booklet link is given and statistics are derived.
 
-## Konu dosyası
+## Topic file
 
-```markdown
----
-baslik: Osmanlı Tarihi
-ders: tarih                      # klasör adıyla aynı olmalı
-durum: taslak                    # iskelet | taslak | yayinda
-altBasliklar: [Kuruluş dönemi, Yükselme dönemi]
-anahtarKavramlar: [tımar, devşirme]
-soruTipi: Dönemin olaylarını ve kurumlarını eşleştirme, yorumlama
-kaynak: osym-kilavuz             # osym-kilavuz | osym-oabt-kapsam | cikmis-soru-analizi
-kaynakYili: 2026
-belge: kpss-lisans-2026          # data/kaynaklar.json kimliği
-dogrulandi: true
-guncelleme: 2026-10-27
-soruDagilimi: { 2025: 3, 2026: 2 }   # isteğe bağlı
----
-
-## Temel mantık
-...
-```
-
-`durum: iskelet` olan konuda `altBasliklar`, `anahtarKavramlar` ve `soruTipi` boş kalabilir; `taslak` ya da `yayinda` olduğunda zorunludur. Özet metni **promptsuz** okunabilmeli: öğrenci yapay zekâ kullanmadan konunun temel mantığını kavramalı.
-
-Yeni konu eklerken onu en az bir sınavın `konular` listesine de ekle; yoksa yetim konu hatası alırsın.
-
-## Prompt şablonu
-
-`src/prompts/sablonlar/<id>.md`:
+`src/content/topics/tr/tarih/osmanli-tarihi.md`:
 
 ```markdown
 ---
-baslik: Konuyu anlat
-aciklama: Kartta görünen kısa açıklama.
-sira: 1
-ozel: false          # true ise yalnızca konunun ekPromptlar listesinde görünür
+title: Osmanlı Tarihi
+subject: tarih                   # must match the folder name
+state: draft                     # skeleton | draft | published
+subtopics: [Kuruluş dönemi, Yükselme dönemi]
+keyConcepts: [tımar, devşirme]
+questionStyle: Matching and interpreting the period's events and institutions
+sourceType: osym-guide           # osym-guide | osym-oabt-scope | past-exam-analysis
+sourceYear: 2026
+document: kpss-lisans-2026       # id in data/sources.json
+verified: true
+updated: 2026-10-27
+questionDistribution: { 2025: 3, 2026: 2 }   # optional
 ---
-Sınav: {{sinav}}
-Konu: {{konu}}
-Seviye ({{seviyeAdi}}): {{seviyeTalimati}}
+
+## Core idea
 ...
-[SORUYU BURAYA YAPIŞTIR]
 ```
 
-- Kullanılabilen değişkenler: `sinav, ders, konu, altBasliklar, anahtarKavramlar, soruTipi, seviyeAdi, seviyeTalimati, uzunlukTalimati, tercihler`. Başka bir değişken build'i kırar.
-- Öğrencinin dolduracağı alanları `[BÜYÜK HARFLE]` yaz; sayfada vurgulanır.
-- Model emin olmadığı bilgiyi kesinmiş gibi yazmamalı; şablonda bunu hatırlat.
+- `state: skeleton` topics may leave `subtopics`, `keyConcepts` and `questionStyle` empty; they are required for `draft` and `published`.
+- The summary must be readable **without prompts**: a student should grasp the core idea without using AI.
+- Every topic needs a file in **every language** (`topics/tr/...` and `topics/en/...`). Fields that are not translated (`subject`, `sourceType`, `sourceYear`, `verified`, `document`, `questionDistribution`, `extraPrompts`, `aliases`) must be identical in all languages.
+- When you add a topic, add it to at least one exam's `topics` list, or you will get an orphan-topic error.
+- Topic ids (`subject/slug`) are stored in students' backups. If you must rename one, list the old id in `aliases` so progress moves over.
 
-## PR akışı
+## Prompt template
 
-1. Repoyu fork'la, `main`'den bir dal aç (`konu/osmanli-tarihi-ozet`, `duzeltme/takvim-2027` gibi).
-2. Değişikliği yap, `npm test` ve `npm run build` çalıştır.
-3. PR açıklamasında hangi resmi belgeye dayandığını yaz.
-4. CI yeşil olmadan birleştirme yapılmaz.
+`src/prompts/templates/<locale>/<id>.md`:
 
-## Commit kuralları
+```markdown
+---
+title: Explain the topic
+description: Short description shown on the card.
+order: 1
+special: false       # true: only shown on topics that list it in extraPrompts
+---
+Exam: {{exam}}
+Topic: {{topic}}
+Level ({{levelName}}): {{levelInstruction}}
+...
+[PASTE THE QUESTION HERE]
+```
 
-- Mesajlar Türkçe ve [Conventional Commits](https://www.conventionalcommits.org/tr/) biçiminde: `feat: …`, `fix: …`, `docs: …`, `chore: …`, `test: …`
-- Kod ve dosya adları Türkçe (`prompt-doldur.js`, `seviyeler.yaml`).
-- Satır sonları LF.
+- Available variables: `exam, subject, topic, subtopics, keyConcepts, questionStyle, levelName, levelInstruction, lengthInstruction, preferences`. Any other variable fails the build.
+- Write fields the student fills in as `[UPPER CASE]`; they are highlighted on the page.
+- The same template id must exist in every language with the same `order` and `special`.
+- Remind the model not to present uncertain information as fact.
 
-## Lisans
+## Adding a language
 
-Kod katkıların MIT ([LICENSE](LICENSE)), içerik katkıların (konu metinleri ve prompt şablonları) CC BY-SA 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)) ile lisanslanır. PR açarak bunu kabul etmiş olursun.
+1. Add the code to `LOCALES` in `src/i18n/locales.js` and its name to `LANGUAGE_NAMES`/`INTL_LOCALE` in `src/i18n/index.js`.
+2. Add `src/i18n/<locale>.js` with the same keys as `tr.js` (a unit test checks this) and register it in `DICTIONARIES`.
+3. Add the locale's value to every `{ tr, en }` field, and translate every topic and template folder.
+4. `npm run build` lists everything still missing.
 
-Davranış kuralları için bkz. [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
+## Code style
+
+- Code, file names, identifiers and comments are in **English**. UI text lives only in `src/i18n/*.js`; never hard-code visible text in components.
+- In-site links use `localePath(locale, '/path/')`.
+- Line endings are LF.
+
+## Pull request flow
+
+1. Fork the repository and create a branch from `main` (`topic/ottoman-history-summary`, `fix/calendar-2027`).
+2. Make your change and run `npm test` and `npm run build`.
+3. In the PR description, name the official document the change relies on.
+4. Nothing is merged until CI is green.
+
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) in English: `feat: …`, `fix: …`, `docs: …`, `chore: …`, `test: …`, `content: …`.
+
+## License
+
+Code contributions are licensed under MIT ([LICENSE](LICENSE)); content contributions (topic texts and prompt templates) under CC BY-SA 4.0 ([LICENSE-CONTENT](LICENSE-CONTENT)). Opening a PR means you agree to this.
+
+See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for the code of conduct.

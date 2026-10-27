@@ -1,21 +1,21 @@
 # Levels 1–5 (spec §7). `instruction` replaces {{levelInstruction}} in templates.
 - id: basic
   level: 1
-  name: { tr: "Temel" }
-  instruction: { tr: "Konuyu hiç bilmeyen birine anlatır gibi anlat. Terimleri ilk geçtiği yerde tanımla, günlük hayattan basit örnekler kullan, ön bilgi varsayma." }
+  name: { tr: "Temel", en: "Basic" }
+  instruction: { tr: "Konuyu hiç bilmeyen birine anlatır gibi anlat. Terimleri ilk geçtiği yerde tanımla, günlük hayattan basit örnekler kullan, ön bilgi varsayma.", en: "Explain it as if to someone who knows nothing about the topic. Define terms where they first appear, use simple everyday examples and assume no prior knowledge." }
 - id: easy
   level: 2
-  name: { tr: "Kolay" }
-  instruction: { tr: "Temel kavramları bildiğimi varsay ama hızlı bir hatırlatma yap. Örnekleri basit tut, bir adımı atlamadan ilerle." }
+  name: { tr: "Kolay", en: "Easy" }
+  instruction: { tr: "Temel kavramları bildiğimi varsay ama hızlı bir hatırlatma yap. Örnekleri basit tut, bir adımı atlamadan ilerle.", en: "Assume I know the basic concepts but give a quick refresher. Keep examples simple and do not skip steps." }
 - id: medium
   level: 3
-  name: { tr: "Orta" }
-  instruction: { tr: "KPSS'ye hazırlanan ortalama bir aday seviyesinde anlat. Kavramları bağlantılarıyla ver, ÖSYM'nin sık sorduğu ayrımları vurgula." }
+  name: { tr: "Orta", en: "Medium" }
+  instruction: { tr: "KPSS'ye hazırlanan ortalama bir aday seviyesinde anlat. Kavramları bağlantılarıyla ver, ÖSYM'nin sık sorduğu ayrımları vurgula.", en: "Explain it at the level of an average KPSS candidate. Connect the concepts and highlight the distinctions ÖSYM often asks about." }
 - id: hard
   level: 4
-  name: { tr: "Zor" }
-  instruction: { tr: "Temel bilgiyi bildiğimi varsay. Karıştırılan kavramlara, istisnalara ve çeldiricilere odaklan; birden fazla bilgiyi birleştiren örnekler kullan." }
+  name: { tr: "Zor", en: "Hard" }
+  instruction: { tr: "Temel bilgiyi bildiğimi varsay. Karıştırılan kavramlara, istisnalara ve çeldiricilere odaklan; birden fazla bilgiyi birleştiren örnekler kullan.", en: "Assume I know the basics. Focus on commonly confused concepts, exceptions and distractors; use examples that combine several facts." }
 - id: advanced
   level: 5
-  name: { tr: "İleri" }
-  instruction: { tr: "Konuya hâkim olduğumu varsay. Ayrıntılara, nadir sorulan noktalara ve ÖSYM'nin en zor soru kalıplarına odaklan; yorum ve çıkarım gerektiren örnekler ver." }
+  name: { tr: "İleri", en: "Advanced" }
+  instruction: { tr: "Konuya hâkim olduğumu varsay. Ayrıntılara, nadir sorulan noktalara ve ÖSYM'nin en zor soru kalıplarına odaklan; yorum ve çıkarım gerektiren örnekler ver.", en: "Assume I have mastered the topic. Focus on details, rarely asked points and ÖSYM's hardest question patterns; give examples that require interpretation and inference." }

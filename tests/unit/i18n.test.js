@@ -1,6 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { formatDate, LOCALES, localePath, localized, translator } from '../../src/i18n/index.js';
+import en from '../../src/i18n/en.js';
 import tr from '../../src/i18n/tr.js';
+
+const DICTIONARIES = { tr, en };
 
 /** Dotted key paths of a dictionary (leaves only). */
 function keys(obj, prefix = '') {
@@ -28,11 +31,16 @@ describe('translator', () => {
 });
 
 describe('dictionaries', () => {
-  it('every locale has exactly the same keys as Turkish', async () => {
+  it('every locale has a dictionary with exactly the same keys as Turkish', () => {
     for (const locale of LOCALES) {
-      const dict = (await import(`../../src/i18n/${locale}.js`)).default;
-      expect(keys(dict).sort(), locale).toEqual(keys(tr).sort());
+      expect(DICTIONARIES[locale], locale).toBeDefined();
+      expect(keys(DICTIONARIES[locale]).sort(), locale).toEqual(keys(tr).sort());
     }
+  });
+  it('English countdown handles singular and plural', () => {
+    const t = translator('en');
+    expect(t('countdown', { days: 1 })).toBe('1 day left');
+    expect(t('countdown', { days: 3 })).toBe('3 days left');
   });
 });
 
@@ -44,9 +52,11 @@ describe('helpers', () => {
   it('localized picks the locale value, passes plain strings through and throws when missing', () => {
     expect(localized({ tr: 'Tarih' }, 'tr')).toBe('Tarih');
     expect(localized('ÖABT', 'tr')).toBe('ÖABT');
+    expect(localized({ tr: 'Tarih', en: 'History' }, 'en')).toBe('History');
     expect(() => localized({ tr: 'Tarih' }, 'en')).toThrow();
   });
   it('formatDate uses the locale', () => {
     expect(formatDate(new Date('2026-09-06'), 'tr')).toBe('6 Eylül 2026');
+    expect(formatDate(new Date('2026-09-06'), 'en')).toBe('6 September 2026');
   });
 });

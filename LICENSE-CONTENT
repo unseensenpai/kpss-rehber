@@ -1,12 +1,35 @@
-KPSS Rehber içerik lisansı
-==========================
+KPSS Rehber content license / KPSS Rehber içerik lisansı
+=========================================================
 
-Copyright (c) 2026 unseensenpai ve katkıcılar
+Copyright (c) 2026 unseensenpai and contributors / ve katkıcılar
+
+[English]
+
+The following content is licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0) license:
+
+  - src/content/topics/**    (topic summaries and topic information, all languages)
+  - src/prompts/**           (prompt templates, level and length instructions)
+
+You may copy, distribute and adapt this content as long as you credit the source
+("KPSS Rehber, https://github.com/unseensenpai/kpss-rehber") and share your
+adaptations under the same license.
+
+Summary:     https://creativecommons.org/licenses/by-sa/4.0/
+Legal code:  https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+Not covered:
+  - The site's source code is licensed under MIT (see LICENSE).
+  - Exam structures, question counts, durations and dates are facts taken from
+    ÖSYM's official documents. ÖSYM documents and question booklets belong to
+    ÖSYM; this repository only links to them and never copies their text.
+
+[Türkçe]
 
 Aşağıdaki içerik Creative Commons Atıf-AynıLisanslaPaylaş 4.0 Uluslararası
 (CC BY-SA 4.0) lisansı ile lisanslanmıştır:
 
-  - src/content/konular/**   (konu özetleri ve konu bilgileri)
+  - src/content/topics/**    (konu özetleri ve konu bilgileri, tüm diller)
   - src/prompts/**           (prompt şablonları, seviye ve uzunluk talimatları)
 
 Bu içeriği, kaynak göstererek ("KPSS Rehber, https://github.com/unseensenpai/kpss-rehber")
@@ -16,8 +39,7 @@ dağıtabilir ve uyarlayabilirsiniz.
 Lisans özeti:   https://creativecommons.org/licenses/by-sa/4.0/deed.tr
 Lisans metni:   https://creativecommons.org/licenses/by-sa/4.0/legalcode.tr
 
-Kapsam dışı
------------
+Kapsam dışı:
   - Sitenin kaynak kodu MIT lisanslıdır (bkz. LICENSE).
   - Sınav yapısı, soru sayıları, süreler ve tarihler ÖSYM'nin resmi belgelerinden
     alınmış olgusal bilgilerdir. ÖSYM belgeleri ve soru kitapçıkları ÖSYM'ye aittir;

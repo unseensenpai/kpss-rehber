@@ -1,13 +1,13 @@
 # Length axis (spec §7). `instruction` replaces {{lengthInstruction}} in templates.
 - id: brief
   order: 1
-  name: { tr: "Özet" }
-  instruction: { tr: "Kısa tut. Yalnızca en önemli noktaları maddeler hâlinde ver, toplamda bir ekranı geçme." }
+  name: { tr: "Özet", en: "Brief" }
+  instruction: { tr: "Kısa tut. Yalnızca en önemli noktaları maddeler hâlinde ver, toplamda bir ekranı geçme.", en: "Keep it short. Give only the most important points as bullet points, no more than one screen in total." }
 - id: normal
   order: 2
-  name: { tr: "Normal" }
-  instruction: { tr: "Dengeli bir uzunlukta anlat. Gerekli yerlerde kısa açıklama ve örnek kullan." }
+  name: { tr: "Normal", en: "Normal" }
+  instruction: { tr: "Dengeli bir uzunlukta anlat. Gerekli yerlerde kısa açıklama ve örnek kullan.", en: "Use a balanced length. Add short explanations and examples where needed." }
 - id: detailed
   order: 3
-  name: { tr: "Detaylı" }
-  instruction: { tr: "Ayrıntılı anlat. Her alt başlığı açıklama ve örnekle ele al, sonunda kısa bir tekrar özeti ver." }
+  name: { tr: "Detaylı", en: "Detailed" }
+  instruction: { tr: "Ayrıntılı anlat. Her alt başlığı açıklama ve örnekle ele al, sonunda kısa bir tekrar özeti ver.", en: "Go into detail. Cover each subtopic with explanations and examples, and end with a short review summary." }

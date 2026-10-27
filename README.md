@@ -1,32 +1,35 @@
 # KPSS Rehber
 
-KPSS ve MEB-AGS'ye hazırlananlar için **ücretsiz, ticari olmayan** bir çalışma rehberi: tüm müfredatın haritası, konuların promptsuz statik özetleri ve kendi ChatGPT ya da Claude hesabında kullanabileceğin hazır prompt setleri.
+**English** · [Türkçe](README.tr.md)
+
+A **free, non-commercial** study guide for people preparing for KPSS and MEB-AGS, Turkey's public personnel and teacher selection exams: a map of the whole curriculum, prompt-free static topic summaries, and ready-made prompts you can use in your own ChatGPT or Claude account. The site is available in Turkish and English.
 
 **Site:** https://unseensenpai.github.io/kpss-rehber/
 
-![KPSS Rehber ana sayfası](docs/ekran-goruntusu.png)
+![KPSS Rehber home page](docs/screenshot.png)
 
-## Ne var?
+## Features
 
-- **Müfredat ağacı:** sınav → oturum → test → ders → konu. Soru sayıları, süreler ve sınav tarihleri resmi ÖSYM belgelerinden alınır; her kayıt kaynağını ve yılını gösterir.
-- **Konu sayfaları:** statik özet, konunun hangi sınavlarda geçtiği, ÖSYM soru kitapçığı bağlantıları ve "Hata bildir" bağlantısı.
-- **Hazır promptlar:** konuyu anlat, örnek soru üret, adım adım çözüm, yanlış analizi, bilgi kartları, çalışma planı (Güncel Bilgiler için ayrıca güncel olaylar listesi). Seviye (1–5) ve uzunluk seçilir; geri bildirimle konu bazında uyarlanır. **Kopyala**, **ChatGPT'de aç**, **Claude'da aç**.
-- **Arama:** site içi tam metin arama (Pagefind, tarayıcıda çalışır).
-- **Gizlilik:** hesap, sunucu, çerez ve analitik yok. İlerleme yalnızca senin tarayıcında tutulur.
+- **Curriculum tree:** exam → session → test → subject → topic. Question counts, durations and exam dates come from official ÖSYM documents; every record shows its source and year.
+- **Topic pages:** static summary, which exams use the topic, links to ÖSYM question booklets, and a "report a mistake" link.
+- **Ready-made prompts:** explain the topic, generate questions, step-by-step solution, mistake analysis, flashcards, study plan (plus a current events list for Current Affairs). Choose a level (1–5) and length; feedback adapts them per topic. **Copy**, **Open in ChatGPT**, **Open in Claude**.
+- **Progress and backup:** mark topics as studying / done / to review, add notes, see progress bars, and move your progress to another computer with a JSON backup.
+- **Search:** full-text site search (Pagefind, runs in the browser), per language.
+- **Privacy:** no accounts, server, cookies or analytics. Progress is stored only in your browser.
 
-## Kapsanan sınavlar (2026)
+## Exams covered (2026)
 
-| Sınav | Yapı |
+| Exam | Structure |
 |---|---|
-| KPSS Lisans, Ön Lisans, Ortaöğretim | Genel Yetenek 60 + Genel Kültür 60 soru, 130 dk |
-| KPSS Lisans Alan Bilgisi (A Grubu) | 9 test, 40'ar soru, 3 oturum |
-| DHBT | 40 soru, 60 dk |
-| MEB-AGS | 80 soru, 110 dk (Eğitim Bilimleri artık burada) |
-| ÖABT | 17 alan, 50'şer soru, 70/90 dk |
+| KPSS Bachelor's, Associate, Secondary | General Ability 60 + General Culture 60 questions, 130 min |
+| KPSS Bachelor's Field Knowledge (Group A) | 9 tests of 40 questions, 3 sessions |
+| DHBT | 40 questions, 60 min |
+| MEB-AGS | 80 questions, 110 min (Educational Sciences is now here) |
+| ÖABT | 17 fields, 50 questions each, 70/90 min |
 
-Ayrıntılar ve resmi belgeler sitedeki **Kaynaklar** sayfasında.
+Details and the official documents are on the site's **Sources** page.
 
-## Yerelde çalıştırma
+## Running locally
 
 ```bash
 npm ci
@@ -34,25 +37,34 @@ npm run dev        # http://localhost:4321/kpss-rehber/
 ```
 
 ```bash
-npm test           # birim testleri
-npm run test:e2e   # uçtan uca testler (build + önizleme)
-npm run build      # dist/ + arama dizini
+npm test           # unit tests
+npm run test:e2e   # end-to-end tests (build + preview)
+npm run build      # dist/ + search index
 ```
 
-Node 22 gerekir. Astro (statik çıktı), Vitest, Playwright ve Pagefind kullanılır.
+Requires Node 22. Built with Astro (static output), Vitest, Playwright and Pagefind.
 
-## İçerik ekleme
+## Project layout
 
-Konular `src/content/konular/<ders>/<slug>.md`, sınav yapıları `src/content/sinavlar/*.yaml`, prompt şablonları `src/prompts/` altında. Build sırasında tüm veri doğrulanır; bozuk referans, kaynaksız kayıt ya da tutmayan soru toplamı build'i kırar. Ayrıntılar için [CONTRIBUTING.md](CONTRIBUTING.md).
+| Path | Contents |
+|---|---|
+| `src/content/exams/*.yaml` | Exam → session → test → subject → topic references |
+| `src/content/topics/<locale>/<subject>/<slug>.md` | Topic metadata and static summary, one file per language |
+| `src/prompts/templates/<locale>/*.md` | Prompt templates, one folder per language |
+| `src/prompts/levels.yaml`, `lengths.yaml` | Level and length instructions |
+| `src/i18n/` | UI dictionaries (`tr.js`, `en.js`) and helpers |
+| `data/sources.json`, `data/calendar.yaml` | Tracked ÖSYM documents; application and exam dates |
 
-Yanlış ya da eski bir bilgi gördüysen sayfadaki **Hata bildir** bağlantısını kullan.
+All data is validated during the build: a broken reference, a record without a source, question counts that do not add up, a missing translation or an unfilled template variable fails the build. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Lisans
+If you spot wrong or outdated information, use the **Report a mistake** link on the page.
 
-- Kod: [MIT](LICENSE)
-- İçerik (konu metinleri ve prompt şablonları): [CC BY-SA 4.0](LICENSE-CONTENT)
-- ÖSYM belgeleri ve soru kitapçıkları ÖSYM'ye aittir; bu repoda yalnızca bağlantıları bulunur.
+## License
 
-## Sorumluluk reddi
+- Code: [MIT](LICENSE)
+- Content (topic texts and prompt templates): [CC BY-SA 4.0](LICENSE-CONTENT)
+- ÖSYM documents and question booklets belong to ÖSYM; this repository only links to them.
 
-Bu site **ÖSYM ile bağlantılı değildir**. Bilgiler resmi belgelerden derlenir ancak hata içerebilir; konu özetleri yapay zekâ desteğiyle hazırlanabilir. Başvuru, sınav ve sonuçlarla ilgili kesin bilgi için her zaman [osym.gov.tr](https://www.osym.gov.tr) adresini esas al.
+## Disclaimer
+
+This site is **not affiliated with ÖSYM**. Information is compiled from official documents but may contain mistakes; topic summaries may be written with AI assistance. For authoritative information on applications, exams and results, always rely on [osym.gov.tr](https://www.osym.gov.tr).

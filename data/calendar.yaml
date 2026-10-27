@@ -4,9 +4,9 @@
 - { id: lisans-gygk-exam, exam: lisans-gygk, kind: exam, start: 2026-09-06, time: "10:15", document: kpss-lisans-2026 }
 - { id: lisans-alan-bilgisi-application, exam: lisans-alan-bilgisi, kind: application, start: 2026-07-01, end: 2026-07-13, document: kpss-lisans-2026 }
 - { id: lisans-alan-bilgisi-late-application, exam: lisans-alan-bilgisi, kind: late-application, start: 2026-07-22, end: 2026-07-23, document: kpss-lisans-2026 }
-- { id: lisans-alan-bilgisi-exam-1, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "10:15", note: { tr: "1. oturum: Kamu Yönetimi, Uluslararası İlişkiler, Çalışma Ekonomisi ve Endüstri İlişkileri" }, document: kpss-lisans-2026 }
-- { id: lisans-alan-bilgisi-exam-2, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "14:45", note: { tr: "2. oturum: Hukuk, İktisat, Maliye" }, document: kpss-lisans-2026 }
-- { id: lisans-alan-bilgisi-exam-3, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-13, time: "10:15", note: { tr: "3. oturum: İşletme, Muhasebe, İstatistik" }, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-1, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "10:15", note: { tr: "1. oturum: Kamu Yönetimi, Uluslararası İlişkiler, Çalışma Ekonomisi ve Endüstri İlişkileri", en: "Session 1: Public Administration, International Relations, Labor Economics and Industrial Relations" }, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-2, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-12, time: "14:45", note: { tr: "2. oturum: Hukuk, İktisat, Maliye", en: "Session 2: Law, Economics, Public Finance" }, document: kpss-lisans-2026 }
+- { id: lisans-alan-bilgisi-exam-3, exam: lisans-alan-bilgisi, kind: exam, start: 2026-09-13, time: "10:15", note: { tr: "3. oturum: İşletme, Muhasebe, İstatistik", en: "Session 3: Business Administration, Accounting, Statistics" }, document: kpss-lisans-2026 }
 - { id: onlisans-gygk-application, exam: onlisans-gygk, kind: application, start: 2026-07-29, end: 2026-08-10, document: kpss-onlisans-2026 }
 - { id: onlisans-gygk-late-application, exam: onlisans-gygk, kind: late-application, start: 2026-08-19, end: 2026-08-20, document: kpss-onlisans-2026 }
 - { id: onlisans-gygk-exam, exam: onlisans-gygk, kind: exam, start: 2026-10-04, time: "10:15", document: kpss-onlisans-2026 }

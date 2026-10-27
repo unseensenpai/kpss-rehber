@@ -1,48 +1,50 @@
-name: Hata bildir
-description: Sitede yanlış bilgi, bozuk bağlantı ya da çalışmayan bir şey bildir.
+name: Hata bildir / Report a mistake
+description: Sitede yanlış bilgi, bozuk bağlantı ya da çalışmayan bir şey bildir. / Report wrong information, a broken link or something that does not work.
 title: "[Hata] "
 labels: [bug]
 body:
   - type: markdown
     attributes:
       value: |
-        Teşekkürler! Sayfadaki "Hata bildir" bağlantısından geldiysen sayfa adresi aşağıda dolu gelir.
-        Lütfen kişisel bilgi (ad, T.C. kimlik no, aday no) paylaşma.
+        Teşekkürler! Sayfadaki "Hata bildir" bağlantısından geldiysen sayfa adresi aşağıda dolu gelir. Lütfen kişisel bilgi (ad, T.C. kimlik no, aday no) paylaşma.
+
+        Thanks! If you came from a page's "Report a mistake" link, the page address is already filled in below. Please do not share personal information (name, ID number, candidate number).
   # The site's "report a mistake" link prefills this field via ?page=...
   - type: input
     id: page
     attributes:
-      label: Sayfa
-      description: Hatanın olduğu sayfanın adresi
-      placeholder: /kpss-rehber/konu/tarih/osmanli-tarihi/
+      label: Sayfa / Page
+      description: Hatanın olduğu sayfanın adresi / Address of the page with the mistake
+      placeholder: /kpss-rehber/tr/topic/tarih/osmanli-tarihi/
     validations:
       required: true
   - type: dropdown
     id: kind
     attributes:
-      label: Hata türü
+      label: Hata türü / Kind of mistake
       options:
-        - Yanlış ya da eski bilgi (soru sayısı, süre, tarih, kapsam)
-        - Konu özetinde hata
-        - Prompt beklendiği gibi çalışmıyor
-        - Bozuk bağlantı
-        - Görünüm / erişilebilirlik sorunu
-        - Diğer
+        - Yanlış ya da eski bilgi / Wrong or outdated information (question count, duration, date, scope)
+        - Konu özetinde hata / Mistake in a topic summary
+        - Çeviri hatası / Translation mistake
+        - Prompt beklendiği gibi çalışmıyor / Prompt does not work as expected
+        - Bozuk bağlantı / Broken link
+        - Görünüm / erişilebilirlik sorunu / Display or accessibility problem
+        - Diğer / Other
     validations:
       required: true
   - type: textarea
     id: details
     attributes:
-      label: Ne yanlış, doğrusu ne olmalı?
+      label: Ne yanlış, doğrusu ne olmalı? / What is wrong, and what should it be?
     validations:
       required: true
   - type: input
     id: source
     attributes:
-      label: Kaynak
-      description: Doğrusunu gösteren resmi belge (ÖSYM kılavuzu vb.) bağlantısı
+      label: Kaynak / Source
+      description: Doğrusunu gösteren resmi belge (ÖSYM kılavuzu vb.) / Official document showing the correct information (ÖSYM guide etc.)
   - type: input
     id: browser
     attributes:
-      label: Tarayıcı ve cihaz
+      label: Tarayıcı ve cihaz / Browser and device
       placeholder: Chrome, Android
