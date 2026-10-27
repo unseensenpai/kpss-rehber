@@ -1,5 +1,6 @@
 # Structure and weights: kpss-onlisans-2026 guide, "Sınavda Uygulanacak Testler" and Tablo-1.
 # Subject question counts are derived from the guide's "approximate weight" percentages.
+# Turkish and mathematics topics: past-exam analysis of the published 10% of ÖSYM booklets (2018–2026, Lisans, Ön Lisans, Ortaöğretim).
 name: { tr: "KPSS Ön Lisans Genel Yetenek – Genel Kültür", en: "KPSS Associate General Ability – General Culture" }
 shortName: { tr: "KPSS Ön Lisans", en: "KPSS Associate" }
 group: KPSS
@@ -7,7 +8,7 @@ order: 2
 source:
   document: kpss-onlisans-2026
   verified: true
-  booklets: [kpss-onlisans-kitapcik-2026]
+  booklets: [kpss-onlisans-kitapcik-2026, kpss-onlisans-kitapcik-2024, kpss-onlisans-kitapcik-2022, kpss-onlisans-kitapcik-2018]
 sessions:
   - name: { tr: "Genel Yetenek-Genel Kültür", en: "General Ability – General Culture" }
     durationMin: 130
@@ -19,12 +20,12 @@ sessions:
             name: { tr: "Sözel Bölüm", en: "Verbal Section" }
             weight: 50
             questionCount: 30
-            topics: []
+            topics: [turkce/sozcukte-anlam, turkce/cumlede-anlam, turkce/anlatimin-olusmasi, turkce/paragrafta-anlam, turkce/paragrafta-yapi, turkce/dil-bilgisi, turkce/yazim-noktalama, turkce/sozel-mantik]
           - id: matematik
             name: { tr: "Sayısal Bölüm", en: "Quantitative Section" }
             weight: 50
             questionCount: 30
-            topics: []
+            topics: [matematik/temel-matematik, matematik/problemler, matematik/geometri, matematik/mantiksal-muhakeme]
       - name: { tr: "Genel Kültür", en: "General Culture" }
         questionCount: 60
         subjects:

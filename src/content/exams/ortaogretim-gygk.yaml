@@ -1,5 +1,6 @@
 # Structure and weights: kpss-ortaogretim-2026 guide, "Sınavda Uygulanacak Testler" and Tablo-1.
 # Subject question counts are derived from the guide's "approximate weight" percentages.
+# Turkish and mathematics topics: past-exam analysis of the published 10% of ÖSYM booklets (2018–2026, Lisans, Ön Lisans, Ortaöğretim).
 name: { tr: "KPSS Ortaöğretim Genel Yetenek – Genel Kültür", en: "KPSS Secondary General Ability – General Culture" }
 shortName: { tr: "KPSS Ortaöğretim", en: "KPSS Secondary" }
 group: KPSS
@@ -7,6 +8,7 @@ order: 3
 source:
   document: kpss-ortaogretim-2026
   verified: true
+  booklets: [kpss-ortaogretim-kitapcik-2026, kpss-ortaogretim-kitapcik-2022]
 sessions:
   - name: { tr: "Genel Yetenek-Genel Kültür", en: "General Ability – General Culture" }
     durationMin: 130
@@ -18,12 +20,12 @@ sessions:
             name: { tr: "Sözel Bölüm", en: "Verbal Section" }
             weight: 50
             questionCount: 30
-            topics: []
+            topics: [turkce/sozcukte-anlam, turkce/cumlede-anlam, turkce/anlatimin-olusmasi, turkce/paragrafta-anlam, turkce/paragrafta-yapi, turkce/dil-bilgisi, turkce/yazim-noktalama, turkce/sozel-mantik]
           - id: matematik
             name: { tr: "Sayısal Bölüm", en: "Quantitative Section" }
             weight: 50
             questionCount: 30
-            topics: []
+            topics: [matematik/temel-matematik, matematik/problemler, matematik/geometri, matematik/mantiksal-muhakeme]
       - name: { tr: "Genel Kültür", en: "General Culture" }
         questionCount: 60
         subjects:

@@ -67,8 +67,8 @@
   {
     "id": "kpss-lisans-gygk-kitapcik-2026",
     "title": {
-      "tr": "2026 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı",
-      "en": "2026 KPSS Bachelor's GA-GC Question Booklet and Answer Key"
+      "tr": "2026 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Bachelor's GA-GC Question Booklet and Answer Key (10%)"
     },
     "kind": "question-booklet",
     "sourceType": "past-exam-analysis",
@@ -80,8 +80,8 @@
   {
     "id": "kpss-onlisans-kitapcik-2026",
     "title": {
-      "tr": "2026 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı",
-      "en": "2026 KPSS Associate Question Booklet and Answer Key"
+      "tr": "2026 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Associate Question Booklet and Answer Key (10%)"
     },
     "kind": "question-booklet",
     "sourceType": "past-exam-analysis",
@@ -89,5 +89,122 @@
     "url": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-on-lisans-temel-soru-kitapcigi-ve-cevap-anahtari-10-le3c9n-04123429.pdf",
     "sha256": "761b95d44601ff45d3cd3c60828a711c9723cfa6e06fe0d82e6c3d460354e6ff",
     "checkedAt": "2026-10-27"
+  },
+  {
+    "id": "kpss-lisans-gygk-kitapcik-2018",
+    "title": {
+      "tr": "2018 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2018 KPSS Bachelor's GA-GC Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2018,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/InternetkitapcikGY-GK24072018.pdf",
+    "sha256": "c1b5dc18a1bff9f58f6477a9db5773ab7965eccb3abed3ae875a3d7579933791",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-lisans-gygk-kitapcik-2020",
+    "title": {
+      "tr": "2020 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2020 KPSS Bachelor's GA-GC Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2020,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2020/KPSS/gy-gk14092020.pdf",
+    "sha256": "bfefd53447137119586a38c52e10d1d52a389ea88b1f5c3bc4a6b5477e2744b6",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-lisans-gygk-kitapcik-2022",
+    "title": {
+      "tr": "2022 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2022 KPSS Bachelor's GA-GC Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2022,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/LISANS/kpss_lisans_gygk_18092022.pdf",
+    "sha256": "aa5c88c8fca3b4e65ffe1b3e45b1d4c888ae9dd7b6ce5473a54ed34d09cdad80",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-lisans-gygk-kitapcik-2024",
+    "title": {
+      "tr": "2024 KPSS Lisans GY-GK Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2024 KPSS Bachelor's GA-GC Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2024,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/LISANS/GYGK14072024.pdf",
+    "sha256": "44ebc5b1eb4107372f66493d2083f2fc8f170cec7fb3e172226e33d4b29df932",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-onlisans-kitapcik-2018",
+    "title": {
+      "tr": "2018 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2018 KPSS Associate Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2018,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2018/KPSS/ONL/internetkitapcik06112018.pdf",
+    "sha256": "e43a611e5983ccf6d2fbaf335891b4e841c067b5e9db57b21fc16a654bbb1f28",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-onlisans-kitapcik-2022",
+    "title": {
+      "tr": "2022 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2022 KPSS Associate Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2022,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ONL/internetk09102022.pdf",
+    "sha256": "76beb82f47d98b5d0093328b83f2c5974f7ec499662658327c8f7c5ac845dc03",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-onlisans-kitapcik-2024",
+    "title": {
+      "tr": "2024 KPSS Ön Lisans Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2024 KPSS Associate Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2024,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2024/KPSS/ONL/kitapcik01092024.pdf",
+    "sha256": "25f479aef94b69a9b26cc7c4ec7d47dcce6852fe526f51d8bfbdd60fe076179b",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-ortaogretim-kitapcik-2022",
+    "title": {
+      "tr": "2022 KPSS Ortaöğretim Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2022 KPSS Secondary Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2022,
+    "url": "https://dokuman.osym.gov.tr/pdfdokuman/2022/KPSS/ORTAOGRETIM/tsk06112022.pdf",
+    "sha256": "149e1ae45f14f5964a5d7b108118ef3458de8be93e8945d70f593745114b3cee",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "kpss-ortaogretim-kitapcik-2026",
+    "title": {
+      "tr": "2026 KPSS Ortaöğretim Temel Soru Kitapçığı ve Cevap Anahtarı (%10)",
+      "en": "2026 KPSS Secondary Question Booklet and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/10/2026-kpss-ortaogretim-sinavi-temel-soru-kitapcigi-ve-cevap-anahtari-10-b671sx-25124536.pdf",
+    "sha256": "61210ec9caa967faf51d15435e7ab6d99b23bf24be5eeccddd9bf0601a21d98a",
+    "checkedAt": "2026-10-28"
   }
 ]
