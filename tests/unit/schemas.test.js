@@ -57,6 +57,23 @@ describe('topicSchema', () => {
   it('rejects an unknown source type', () => {
     expect(topicSchema.safeParse({ ...topic, sourceType: 'wikipedia' }).success).toBe(false);
   });
+  describe('published', () => {
+    const published = { ...topic, ...content, state: 'published', verified: true, reviewedBy: 'Ayşe', reviewedAt: '2026-10-28' };
+    it('needs a reviewer, a review date and a verified source', () => {
+      expect(topicSchema.safeParse(published).success).toBe(true);
+      for (const field of ['reviewedBy', 'reviewedAt']) {
+        const { [field]: _, ...missing } = published;
+        expect(topicSchema.safeParse(missing).success).toBe(false);
+      }
+      expect(topicSchema.safeParse({ ...published, verified: false }).success).toBe(false);
+    });
+    it('rejects edits after the review', () => {
+      expect(topicSchema.safeParse({ ...published, updated: '2026-10-29' }).success).toBe(false);
+    });
+    it('review fields are only allowed on published topics', () => {
+      expect(topicSchema.safeParse({ ...published, state: 'draft' }).success).toBe(false);
+    });
+  });
   it('questionDistribution maps year → count', () => {
     expect(topicSchema.safeParse({ ...topic, questionDistribution: { 2024: 2 } }).success).toBe(true);
     expect(topicSchema.safeParse({ ...topic, questionDistribution: { last: 2 } }).success).toBe(false);

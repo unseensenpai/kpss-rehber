@@ -1,0 +1,54 @@
+name: İçerik incelemesi / Content review
+description: Bir konu özetini inceledim; düzeltmelerim ya da onayım var. / I reviewed a topic summary and have corrections or approval.
+title: "[İnceleme] "
+labels: [content]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kontrol listesi: [docs/REVIEW.tr.md](https://github.com/unseensenpai/kpss-rehber/blob/main/docs/REVIEW.tr.md) · Checklist: [docs/REVIEW.md](https://github.com/unseensenpai/kpss-rehber/blob/main/docs/REVIEW.md)
+  - type: input
+    id: page
+    attributes:
+      label: Konu sayfası / Topic page
+      placeholder: https://unseensenpai.github.io/kpss-rehber/tr/topic/tarih/osmanli-tarihi/
+    validations:
+      required: true
+  - type: dropdown
+    id: locale
+    attributes:
+      label: İncelenen dil / Language reviewed
+      options:
+        - Türkçe
+        - English
+    validations:
+      required: true
+  - type: dropdown
+    id: verdict
+    attributes:
+      label: Sonuç / Verdict
+      options:
+        - Yayına uygun / Ready to publish
+        - Düzeltmelerle yayına uygun / Ready after the corrections below
+        - Yeniden yazılmalı / Needs rewriting
+    validations:
+      required: true
+  - type: textarea
+    id: corrections
+    attributes:
+      label: Düzeltmeler ve kaynakları / Corrections and their sources
+      description: Her düzeltme için yanlış ifadeyi, doğrusunu ve dayanağını (kanun maddesi, ÖSYM belgesi, ders kitabı) yaz. / For each correction give the wrong statement, the fix and its basis (statute, ÖSYM document, textbook).
+  - type: input
+    id: reviewer
+    attributes:
+      label: Sayfada görünecek adın / Name to show on the page
+      description: Ad soyad, unvan ya da GitHub kullanıcı adı. Boş bırakırsan GitHub kullanıcı adın kullanılır. / Full name, title or GitHub handle. Left empty, your GitHub handle is used.
+  - type: checkboxes
+    id: agreement
+    attributes:
+      label: Kurallar / Rules
+      options:
+        - label: Kontrol listesinin tamamını uyguladım. / I went through the whole checklist.
+          required: true
+        - label: Adımın konu sayfasında inceleyen olarak yayımlanmasını kabul ediyorum. / I agree to my name being shown as the reviewer on the topic page.
+          required: true

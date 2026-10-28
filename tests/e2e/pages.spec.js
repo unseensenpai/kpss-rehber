@@ -32,6 +32,14 @@ test('exam → subject → topic navigation', async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test('a draft topic invites review in each language', async ({ page }) => {
+  await page.goto('./tr/topic/tarih/osmanli-tarihi/');
+  await expect(page.getByText('Taslak', { exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'İncelemeye katıl' })).toHaveAttribute('href', /docs\/REVIEW\.tr\.md$/);
+  await page.goto('./en/topic/tarih/osmanli-tarihi/');
+  await expect(page.getByRole('link', { name: 'Help review' })).toHaveAttribute('href', /docs\/REVIEW\.md$/);
+});
+
 test('ÖABT fields are listed in expandable boxes', async ({ page }) => {
   await page.goto('./tr/exam/meb-oabt/');
   // "Fen Bilimleri" also has a Fizik subject; select by the summary title.

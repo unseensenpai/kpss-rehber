@@ -44,6 +44,7 @@ Kılavuzların yayımlanma sırasıyla, sınav sınav ilerle (genellikle ilkbaha
 - [ ] Resmi kapsam cümleleri hâlâ kılavuz ya da konu dağılımıyla örtüşüyor.
 - [ ] Frontmatter'da `document`, `sourceYear` ve `updated`; aynı değişiklik her dilde.
 - [ ] Yeni konular sınav dosyalarından bağlandı. Bir konu yeniden adlandırılır ya da birleştirilirse eski kimliğini yeni konunun `aliases` listesine yaz; öğrencilerin ilerlemesi korunur.
+- [ ] Değişen yayındaki (`published`) konuları yeniden incelet ya da taslağa al; mevzuat konularını değişiklik olmasa da yeniden oku ([REVIEW.tr.md](REVIEW.tr.md)).
 
 ### 5. Soru dağılımı (her sınavdan sonra)
 

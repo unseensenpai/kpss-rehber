@@ -30,7 +30,7 @@ Node 22 gerekir. `npm install` hata verirse repodaki `.npmrc` dosyasının yerin
 
 Tüm veri build sırasında doğrulanır. Bozuk referans, yetim konu, tutmayan soru toplamı, kaynaksız kayıt, eksik çeviri ya da doldurulmamış şablon değişkeni **build'i kırar**; hata mesajı neyi düzeltmen gerektiğini söyler.
 
-Haftalık bir iş (`npm run check:sources`) yeni ya da değişen ÖSYM belgelerini `new-source` etiketli issue olarak bildirir. Siteyi yeni sınav yılına taşıma adımları [docs/ANNUAL-REVIEW.tr.md](docs/ANNUAL-REVIEW.tr.md) dosyasında.
+Haftalık bir iş (`npm run check:sources`) yeni ya da değişen ÖSYM belgelerini `new-source` etiketli issue olarak bildirir. Siteyi yeni sınav yılına taşıma adımları [docs/ANNUAL-REVIEW.tr.md](docs/ANNUAL-REVIEW.tr.md), bir özetin incelenip yayına alınması [docs/REVIEW.tr.md](docs/REVIEW.tr.md) dosyasında.
 
 ## Kaynak kuralı (en önemli kural)
 
@@ -63,6 +63,7 @@ questionDistribution: { 2025: 3, 2026: 2 }   # isteğe bağlı
 ```
 
 - `state: skeleton` olan konuda `subtopics`, `keyConcepts` ve `questionStyle` boş kalabilir; `draft` ya da `published` olduğunda zorunludur.
+- `state: published`, bu dildeki dosyanın bir inceleyiciden geçtiği anlamına gelir; `reviewedBy` ve `reviewedAt` ister ve `npm run review` ile verilir ([docs/REVIEW.tr.md](docs/REVIEW.tr.md)). Yeni özetler `draft` olarak başlar.
 - Özet **promptsuz** okunabilmeli: öğrenci yapay zekâ kullanmadan konunun temel mantığını kavramalı.
 - Her konunun **her dilde** bir dosyası olmalı (`topics/tr/...` ve `topics/en/...`). Çevrilmeyen alanlar (`subject`, `sourceType`, `sourceYear`, `verified`, `document`, `questionDistribution`, `extraPrompts`, `aliases`) tüm dillerde aynı olmalı.
 - Yeni konu eklerken onu en az bir sınavın `topics` listesine de ekle; yoksa yetim konu hatası alırsın.

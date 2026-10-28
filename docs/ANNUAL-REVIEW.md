@@ -44,6 +44,7 @@ Work exam by exam, in the order the guides are published (usually MEB-AGS in spr
 - [ ] Official scope sentences still match the guide or topic distribution.
 - [ ] `document`, `sourceYear` and `updated` in the frontmatter; the same change in every language.
 - [ ] New topics referenced from the exam files. When a topic is renamed or merged, list its old id in the new topic's `aliases` so students keep their progress.
+- [ ] Have changed `published` topics reviewed again or set them back to draft; re-read legislation topics even when nothing changed ([REVIEW.md](REVIEW.md)).
 
 ### 5. Question distribution (after each exam)
 

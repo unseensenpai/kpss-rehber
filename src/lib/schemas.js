@@ -4,7 +4,10 @@ import { LOCALES } from '../i18n/locales.js';
 /** Document types that exam and topic data rely on (spec §5). */
 export const SOURCE_TYPES = ['osym-guide', 'osym-oabt-scope', 'past-exam-analysis'];
 
-/** skeleton: only the name from the official list; draft/published: content fields must be filled. */
+/**
+ * skeleton: only the name from the official list; draft/published: content fields must be filled.
+ * published: a person has reviewed this locale's summary (docs/REVIEW.md).
+ */
 export const TOPIC_STATES = ['skeleton', 'draft', 'published'];
 
 const slug = z.string().regex(/^[a-z0-9-]+$/, 'lowercase letters, digits and hyphens only');
@@ -106,8 +109,24 @@ export const topicSchema = z
     questionDistribution: z.record(z.string().regex(/^\d{4}$/), z.number().int().nonnegative()).optional(),
     extraPrompts: z.array(z.string().min(1)).optional(),
     aliases: z.array(z.string().min(1)).optional(),
+    // Per locale: who reviewed this file's summary and when. Only on published topics.
+    reviewedBy: z.string().min(1).optional(),
+    reviewedAt: z.coerce.date().optional(),
   })
   .superRefine((t, ctx) => {
+    if (t.state === 'published') {
+      for (const field of ['reviewedBy', 'reviewedAt']) {
+        if (!t[field]) ctx.addIssue({ code: 'custom', path: [field], message: 'required when published' });
+      }
+      if (!t.verified) ctx.addIssue({ code: 'custom', path: ['verified'], message: 'a published topic must be verified against an official document' });
+      if (t.reviewedAt && t.reviewedAt < t.updated) {
+        ctx.addIssue({ code: 'custom', path: ['reviewedAt'], message: 'edited after review: review again or set state back to draft' });
+      }
+    } else {
+      for (const field of ['reviewedBy', 'reviewedAt']) {
+        if (t[field]) ctx.addIssue({ code: 'custom', path: [field], message: `only allowed when published, not ${t.state}` });
+      }
+    }
     if (t.state === 'skeleton') return;
     for (const field of ['subtopics', 'keyConcepts']) {
       if (!t[field].length) ctx.addIssue({ code: 'custom', path: [field], message: `cannot be empty when ${t.state}` });

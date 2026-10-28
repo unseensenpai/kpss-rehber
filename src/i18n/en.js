@@ -32,7 +32,12 @@ export default {
     issuePrefix: '[Bug]',
   },
   countdown: ({ days }) => (days > 1 ? `${days} days left` : days === 1 ? '1 day left' : days === 0 ? 'today' : 'held'),
-  state: { skeleton: 'Summary in progress', draft: 'Draft', published: 'Ready' },
+  state: { skeleton: 'Summary in progress', draft: 'Draft', published: 'Reviewed' },
+  review: {
+    by: 'Reviewed by {by} · {date}',
+    pending: 'No reviewer has checked this summary yet; please report any mistake.',
+    join: 'Help review',
+  },
   status: { notStarted: 'Not started', studying: 'Studying', done: 'Done', review: 'To review' },
   progress: { label: '{name} progress', text: '{done}/{total} done' },
   home: {

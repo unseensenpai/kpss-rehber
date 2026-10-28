@@ -30,7 +30,7 @@ Node 22 is required. If `npm install` fails, make sure the repository's `.npmrc`
 
 All data is validated at build time. A broken reference, an orphan topic, question counts that do not add up, a record without a source, a missing translation or an unfilled template variable **fails the build**; the error message says what to fix.
 
-A weekly job (`npm run check:sources`) reports new or changed ÖSYM documents as `new-source` issues. How to move the site to a new exam year is in [docs/ANNUAL-REVIEW.md](docs/ANNUAL-REVIEW.md).
+A weekly job (`npm run check:sources`) reports new or changed ÖSYM documents as `new-source` issues. How to move the site to a new exam year is in [docs/ANNUAL-REVIEW.md](docs/ANNUAL-REVIEW.md); how a summary is reviewed and published is in [docs/REVIEW.md](docs/REVIEW.md).
 
 ## Source rule (the most important rule)
 
@@ -63,6 +63,7 @@ questionDistribution: { 2025: 3, 2026: 2 }   # optional
 ```
 
 - `state: skeleton` topics may leave `subtopics`, `keyConcepts` and `questionStyle` empty; they are required for `draft` and `published`.
+- `state: published` means a reviewer checked this language's file; it needs `reviewedBy` and `reviewedAt` and is set with `npm run review` ([docs/REVIEW.md](docs/REVIEW.md)). New summaries start as `draft`.
 - The summary must be readable **without prompts**: a student should grasp the core idea without using AI.
 - Every topic needs a file in **every language** (`topics/tr/...` and `topics/en/...`). Fields that are not translated (`subject`, `sourceType`, `sourceYear`, `verified`, `document`, `questionDistribution`, `extraPrompts`, `aliases`) must be identical in all languages.
 - When you add a topic, add it to at least one exam's `topics` list, or you will get an orphan-topic error.

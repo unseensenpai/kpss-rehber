@@ -121,6 +121,7 @@ details.test .table-wrap { border-radius: 0 0 var(--radius) var(--radius); }
 .badge-ok { color: var(--ok); }
 .badge-warn { color: var(--warn); }
 .badge-neutral { color: var(--muted); }
+.review-note { font-size: 14px; margin-left: 6px; }
 
 .source-line { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 14px; }
 .source-line p { margin: 4px 0; }

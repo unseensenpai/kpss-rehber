@@ -4,6 +4,7 @@ import Base from '../../../../layouts/Base.astro';
 import Breadcrumb from '../../../../components/Breadcrumb.astro';
 import SourceLine from '../../../../components/SourceLine.astro';
 import StateBadge from '../../../../components/StateBadge.astro';
+import ReviewNote from '../../../../components/ReviewNote.astro';
 import PromptPanel from '../../../../components/PromptPanel.astro';
 import TopicStatus from '../../../../components/TopicStatus.astro';
 import { loadData } from '../../../../lib/data.js';
@@ -48,7 +49,7 @@ const first = usages[0];
     ]}
   />
   <h1 data-pagefind-weight="10">{d.title}</h1>
-  <p><StateBadge state={d.state} /></p>
+  <p><StateBadge state={d.state} /> <ReviewNote state={d.state} reviewedBy={d.reviewedBy} reviewedAt={d.reviewedAt} /></p>
 
   <article class="topic-body">
     <Content />

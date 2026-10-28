@@ -1,0 +1,23 @@
+---
+/** Who reviewed a published summary, or an invitation to review a draft (docs/REVIEW.md). */
+import { formatDate, localeOf, translator } from '../i18n/index.js';
+import { site } from '../site.config.js';
+
+interface Props {
+  state: 'skeleton' | 'draft' | 'published';
+  reviewedBy?: string;
+  reviewedAt?: Date;
+}
+const { state, reviewedBy, reviewedAt } = Astro.props;
+const locale = localeOf(Astro);
+const t = translator(locale);
+const guide = `https://github.com/${site.repo}/blob/main/docs/REVIEW${locale === 'tr' ? '.tr' : ''}.md`;
+---
+{state === 'published' && reviewedBy && reviewedAt && (
+  <span class="muted review-note" data-pagefind-ignore>{t('review.by', { by: reviewedBy, date: formatDate(reviewedAt, locale) })}</span>
+)}
+{state === 'draft' && (
+  <span class="muted review-note" data-pagefind-ignore>
+    {t('review.pending')} <a href={guide} rel="noopener noreferrer">{t('review.join')}</a>
+  </span>
+)}

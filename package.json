@@ -14,7 +14,8 @@
     "preview": "astro preview",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check:sources": "node tools/source-check.mjs"
+    "check:sources": "node tools/source-check.mjs",
+    "review": "node tools/review.mjs"
   },
   "dependencies": {
     "astro": "7.3.8"

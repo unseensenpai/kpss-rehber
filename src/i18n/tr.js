@@ -32,7 +32,12 @@ export default {
     issuePrefix: '[Hata]',
   },
   countdown: ({ days }) => (days > 0 ? `${days} gün kaldı` : days === 0 ? 'bugün' : 'yapıldı'),
-  state: { skeleton: 'Özet hazırlanıyor', draft: 'Taslak', published: 'Hazır' },
+  state: { skeleton: 'Özet hazırlanıyor', draft: 'Taslak', published: 'İncelendi' },
+  review: {
+    by: '{by} inceledi · {date}',
+    pending: 'Bu özet henüz bir inceleyiciden geçmedi; hata görürsen bildir.',
+    join: 'İncelemeye katıl',
+  },
   status: { notStarted: 'Başlanmadı', studying: 'Çalışıyorum', done: 'Tamamlandı', review: 'Tekrar edilecek' },
   progress: { label: '{name} ilerlemesi', text: '{done}/{total} tamamlandı' },
   home: {
