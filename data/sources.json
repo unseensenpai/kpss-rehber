@@ -323,5 +323,239 @@
     "url": "https://dokuman.osym.gov.tr/web/2026/9/statistik-m3t0cl-13135237.pdf",
     "sha256": "c5826146ac737f8f54f365b2ad0c11ecda7adc9fc98423b1c2324cde1516abb6",
     "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-ags-kitapcik-2026",
+    "title": {
+      "tr": "2026 MEB-AGS Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 MEB-AGS Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-testi-ve-cevap-anahtari-10-26z1re9o.pdf",
+    "sha256": "39310b1f5fe739b10e816c621ac6f7eb0eec20fda336f97128a6de5c23dcb434",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-ilkogretim-matematik-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT İlköğretim Matematik Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Elementary Mathematics Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-lkogretim-matematik-testi-ve-cevap-anahtari-10-26xn5icr.pdf",
+    "sha256": "c72864cefb4c06affccc8226ada256c12becf7e8e6b03f4595540d922c71fe66",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-fen-bilimleri-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Fen Bilimleri Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Science Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-fen-bilimleri-testi-ve-cevap-anahtari-10-26rlg3li.pdf",
+    "sha256": "9ef91ed037cc0419244d271869ffda95072d08082393f360a602cc6934c9e257",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-matematik-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Matematik Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Mathematics Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-matematik-testi-ve-cevap-anahtari-10-265gnoi5.pdf",
+    "sha256": "7a752016c4dd329dca29d5d6663974019e7822569b92f9f21da5ff4039e7c277",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-fizik-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Fizik Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Physics Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-fizik-testi-ve-cevap-anahtari-10-26j3ckn8.pdf",
+    "sha256": "c6045660d8c3e4a17cd25f763ce35cd2f5d13ebf342f83515003a2145b11b19a",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-kimya-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Kimya/Kimya Teknolojisi Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Chemistry/Chemical Technology Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-kimya-kimya-teknolojisi-testi-ve-cevap-anahtari-10-260mf7l8.pdf",
+    "sha256": "14ab3b221c56212000f2f7abcf6d0bddccf1bae84d590919c9cc6e50022920f1",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-turkce-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Türkçe Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Turkish Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-turkce-testi-ve-cevap-anahtari-10-26llw97b.pdf",
+    "sha256": "8b80d0f4d809bec516878726ebb6feb8666b5ee9085a3fcbf1698220720b8590",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-sosyal-bilgiler-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Sosyal Bilgiler Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Social Studies Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-sosyal-bilgiler-testi-ve-cevap-anahtari-10-268bvwzk.pdf",
+    "sha256": "8ca0158db982d5ba966d1f6057f9fa71daf22c142d97417545663c695dd1889f",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-turk-dili-edebiyati-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Türk Dili ve Edebiyatı Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Turkish Language and Literature Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-turk-dili-ve-edebiyati-testi-ve-cevap-anahtari-10-26r361cm.pdf",
+    "sha256": "99a58c994cbd1ebc2e741ab9c40a20e1242e3495b54c5f20dfa874261a79a2ce",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-tarih-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Tarih Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT History Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-tarih-testi-ve-cevap-anahtari-10-267zotnq.pdf",
+    "sha256": "05969bf32a4f05f57ce544b8ee19967c9aa21e5a1152ce8bd7f99168a149e4f0",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-cografya-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Coğrafya Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Geography Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-cografya-testi-ve-cevap-anahtari-10-261rc94c.pdf",
+    "sha256": "e8a5b6ae196e06b8cd65c01749a070bcf97f408582a97cf8fd24afb4def92bc4",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-biyoloji-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Biyoloji Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Biology Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-biyoloji-testi-ve-cevap-anahtari-10-266qx0zq.pdf",
+    "sha256": "81b77f9a073fdee056900347d2abe9eeb2d3e50cda7c61e4d9f71d8060fb6ec0",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-din-kulturu-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Din Kültürü ve Ahlak Bilgisi/İmam Hatip Lisesi Meslek Dersleri Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Religious Culture and Ethics Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-din-kulturu-ve-ahlak-bilgisimam-hatip-lisesi-meslek-dersleri-testi-ve-cevap-anahtari-10-2656vn6r.pdf",
+    "sha256": "799415356026778407f13ae84e26e49812bd2b0baf05ac31e2cdda038324066a",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-rehberlik-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Rehberlik Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Guidance and Counseling Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-rehberlik-testi-ve-cevap-anahtari-10-26z1r5po.pdf",
+    "sha256": "7c50d9f49be347d98c77fce94204ee9e0f4cbe9bf2a2cc67434ad102d4d76889",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-beden-egitimi-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Beden Eğitimi Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Physical Education Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-beden-egitimi-testi-ve-cevap-anahtari-10-26ale083.pdf",
+    "sha256": "5ab904daa1f315e2deeaefc2b4af140c28f3e52b89b52000935b8c0f13f34dfc",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-okul-oncesi-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Okul Öncesi Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Preschool Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-okul-oncesi-testi-ve-cevap-anahtari-10-260s78ru.pdf",
+    "sha256": "45e847c529f96bb5b135debfc5643dc4b51dff3d3b5cc461af7d135922513d49",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-sinif-ogretmenligi-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Sınıf Öğretmenliği Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Primary School Teaching Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-sinif-ogretmenligi-testi-ve-cevap-anahtari-10-26em5j3w.pdf",
+    "sha256": "4434c8028294635ea0b6cb0258ca426cae398719c330cd251a087b686cfdc71d",
+    "checkedAt": "2026-10-28"
+  },
+  {
+    "id": "meb-oabt-ozel-egitim-kitapcik-2026",
+    "title": {
+      "tr": "2026 ÖABT Özel Eğitim Testi ve Cevap Anahtarı (%10)",
+      "en": "2026 ÖABT Special Education Test and Answer Key (10%)"
+    },
+    "kind": "question-booklet",
+    "sourceType": "past-exam-analysis",
+    "year": 2026,
+    "url": "https://dokuman.osym.gov.tr/web/2026/7/2026-meb-ags-ogretmenlik-alan-bilgisi-ozel-egitim-testi-ve-cevap-anahtari-10-26x8enb2.pdf",
+    "sha256": "b36d5ffe43f9f24dfb2111442bc37c0e2e86f5e31f05dbb04a1cbc997cfe1298",
+    "checkedAt": "2026-10-28"
   }
 ]
